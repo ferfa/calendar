@@ -24,5 +24,15 @@ namespace calendar
         {
             InitializeComponent();
         }
+
+        private void button_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("ahoj");
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("ahoj");
+        }
     }
 }
