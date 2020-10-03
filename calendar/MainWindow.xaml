@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calendar"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <system:String x:Key="strAhoj">ahoj</system:String>
+    </Window.Resources>
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="72"/>
         <Button x:Name="button" Content="Button" Margin="544,307,36,57" Click="button_Click"/>
