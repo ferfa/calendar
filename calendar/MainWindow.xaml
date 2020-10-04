@@ -109,6 +109,42 @@
                     <Border BorderBrush="Black" Grid.Row="4" Grid.Column="4" BorderThickness="0,0,1,1"></Border>
                     <Border BorderBrush="Black" Grid.Row="4" Grid.Column="5" BorderThickness="0,0,1,1"></Border>
                     <Border BorderBrush="Black" Grid.Row="4" Grid.Column="6" BorderThickness="0,0,1,1"></Border>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text=""></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text=""></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text=""></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="1"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="4" Text="2"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="5" Text="3"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text="4"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="5"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="6"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="7"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="8"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="4" Text="9"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="5" Text="10"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="6" Text="11"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="12"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="13"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="14"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Text="15"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="4" Text="16"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="5" Text="17"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="6" Text="18"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="19"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="20"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="21"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="3" Text="22"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="4" Text="23"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="5" Text="24"></TextBlock>
+                    <TextBlock Grid.Row="3" Grid.Column="6" Text="25"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="26"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="1" Text="27"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="28"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="3" Text="29"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="4" Text="30"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="5" Text="31"></TextBlock>
+                    <TextBlock Grid.Row="4" Grid.Column="6" Text=""></TextBlock>
                 </Grid>
             </Grid>
         </Grid>
