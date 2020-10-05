@@ -23,11 +23,7 @@ namespace calendar
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show((string)FindResource("strAhoj"));
+            MonthGrid.Init(2001, 11);
         }
     }
 }
