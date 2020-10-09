@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,12 +20,29 @@ namespace calendar
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
+        public static ObservableCollection<string> TaskList { get; } = new ObservableCollection<string>();
+
         public MainWindow()
         {
+            
+            
+            NewTaskWindow newTaskWindow = new NewTaskWindow();
+            newTaskWindow.Show();
+
+            TaskList.Add("úkol");
+            TaskList.Add("připomenutí");
+            TaskList.Add("schůzka");
+
             InitializeComponent();
-            MonthGrid.Init(2001, 11);
+            DataContext = this;
+        }
+
+        public static void AddNewTask(string name)
+        {
+            TaskList.Add(name);
         }
     }
 }

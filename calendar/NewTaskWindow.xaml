@@ -1,0 +1,26 @@
+﻿<Window x:Class="calendar.NewTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:calendar"
+        mc:Ignorable="d"
+        Title="Add new task..." Height="150" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <WrapPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Task name:" HorizontalAlignment="Center" Margin="5"></TextBlock>
+            <TextBox Name="NewTaskNameTB" Width="200" Margin="5"></TextBox>
+            <Button Name="SubmitButton" Click="SubmitButton_Click" Content="Add" Width="50" Margin="5"></Button>
+        </WrapPanel>
+    </Grid>
+</Window>

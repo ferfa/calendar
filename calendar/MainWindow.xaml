@@ -89,17 +89,7 @@
                                 <RowDefinition Height="4*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="6" Grid.Row="0"></TextBlock>
-                            <ListBox Grid.Row="1"
-                                ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                <ListBoxItem Content="schůzka"/>
-                                <ListBoxItem Content="připomenutí"/>
-                                <ListBoxItem Content="úkol"/>
-                                <ListBoxItem Content="nákup"/>
-                                <ListBoxItem Content="úkol"/>
-                                <ListBoxItem Content="úkol"/>
-                                <ListBoxItem Content="úkol"/>
-                                <ListBoxItem Content="úkol"/>
-                                <ListBoxItem Content="úkol"/>
+                            <ListBox Name="TaskListLB" Grid.Row="1" ItemsSource="{Binding TaskList}" ScrollViewer.VerticalScrollBarVisibility="Auto">
                             </ListBox>
                         </Grid>
                     </Border>
