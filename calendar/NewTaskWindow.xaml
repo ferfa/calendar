@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calendar"
         mc:Ignorable="d"
-        Title="Add new task..." Height="150" Width="400">
+        Title="Přidat novou událost..." Height="150" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -18,9 +19,13 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <WrapPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Task name:" HorizontalAlignment="Center" Margin="5"></TextBlock>
+            <TextBlock Grid.Column="1" Text="Přidat novou událost dne " FontSize="16"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Day}" FontWeight="Bold" FontSize="16"></TextBlock>
+        </WrapPanel>
+        <WrapPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="Název události:" HorizontalAlignment="Center" Margin="5"></TextBlock>
             <TextBox Name="NewTaskNameTB" Width="200" Margin="5"></TextBox>
-            <Button Name="SubmitButton" Click="SubmitButton_Click" Content="Add" Width="50" Margin="5"></Button>
+            <Button Name="SubmitButton" Click="SubmitButton_Click" IsDefault="True" Content="Přidat" Width="50" Margin="5"></Button>
         </WrapPanel>
     </Grid>
 </Window>

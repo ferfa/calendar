@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace calendar
 {
-    class DayCell
+    public class DayCell
     {
-        private int _dayOfMonth;
+        public int Day { get; } = 0;
+        public ObservableCollection<Task> Tasks { get; } = new ObservableCollection<Task>();
 
         public DayCell(DateTime DT)
         {
-            _dayOfMonth = DT.Day;
+            Day = DT.Day;
         }
     }
 }

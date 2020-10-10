@@ -88,8 +88,15 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="4*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="6" Grid.Row="0"></TextBlock>
-                            <ListBox Name="TaskListLB" Grid.Row="1" ItemsSource="{Binding TaskList}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="6"></TextBlock>
+                                <Button Name="NewTaskButton" Grid.Column="1" Content="Přidat..." Margin="2" Click="NewTaskButton_Click"></Button>
+                            </Grid>
+                            <ListBox Name="TaskListLB" Grid.Row="1" ItemsSource="{Binding Path=CurrentMonth.DayCells[0].Tasks}" ScrollViewer.VerticalScrollBarVisibility="Auto">
                             </ListBox>
                         </Grid>
                     </Border>

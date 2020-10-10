@@ -23,26 +23,20 @@ namespace calendar
 
     public partial class MainWindow : Window
     {
-        public static ObservableCollection<string> TaskList { get; } = new ObservableCollection<string>();
-
+        public static MonthGrid CurrentMonth { get; } = new MonthGrid();
+        
         public MainWindow()
         {
-            
-            
-            NewTaskWindow newTaskWindow = new NewTaskWindow();
-            newTaskWindow.Show();
-
-            TaskList.Add("úkol");
-            TaskList.Add("připomenutí");
-            TaskList.Add("schůzka");
 
             InitializeComponent();
             DataContext = this;
         }
 
-        public static void AddNewTask(string name)
+        private void NewTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            TaskList.Add(name);
+            new NewTaskWindow(6).Show();
+
+            Console.WriteLine(sender);
         }
     }
 }

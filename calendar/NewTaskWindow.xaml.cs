@@ -17,16 +17,20 @@ namespace calendar
     /// </summary>
     public partial class NewTaskWindow : Window
     {
-        public NewTaskWindow()
+        public int Day { get; } = 0;
+
+        public NewTaskWindow(int day)
         {
-            this.DataContext = this;
+            Day = day;
 
             InitializeComponent();
+            DataContext = this;
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.AddNewTask(NewTaskNameTB.Text);
+            MainWindow.CurrentMonth.DayCells[0].Tasks.Add(new Task(NewTaskNameTB.Text));
+            this.Close();
         }
     }
 }
