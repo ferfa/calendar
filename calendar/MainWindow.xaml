@@ -7,6 +7,13 @@
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
     mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="DayCellTemplate">
+            
+        </ControlTemplate>
+    </Window.Resources>
+
     <Border Padding="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -73,95 +80,41 @@
                         <RowDefinition Height="*"></RowDefinition>
 
                     </Grid.RowDefinitions>
+                    <local:DayCell DayNumber="1" Grid.Column="0" Grid.Row="0"></local:DayCell>
+                    <local:DayCell DayNumber="2" Grid.Column="1" Grid.Row="0"></local:DayCell>
+                    <local:DayCell DayNumber="3" Grid.Column="2" Grid.Row="0"></local:DayCell>
+                    <local:DayCell DayNumber="4" Grid.Column="3" Grid.Row="0"></local:DayCell>
+                    <local:DayCell DayNumber="5" Grid.Column="4" Grid.Row="0"></local:DayCell>
+                    <local:DayCell DayNumber="6" Grid.Column="5" Grid.Row="0"></local:DayCell>
+                    <local:DayCell DayNumber="7" Grid.Column="6" Grid.Row="0"></local:DayCell>
 
-                    <Border BorderBrush="Black" Grid.Row="0" Grid.Column="0" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="0" Grid.Column="1" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="0" Grid.Column="2" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="0" Grid.Column="3" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="0" Grid.Column="4" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="0" Grid.Column="5" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="0" Grid.Column="6" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="1" Grid.Column="0" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="1" Grid.Column="1" BorderThickness="0,0,1,1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="4*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="6"></TextBlock>
-                                <Button Name="NewTaskButton" Grid.Column="1" Content="Přidat..." Margin="2" Click="NewTaskButton_Click"></Button>
-                            </Grid>
-                            <ListBox Name="TaskListLB" Grid.Row="1" ItemsSource="{Binding Path=CurrentMonth.DayCells[0].Tasks}" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                            </ListBox>
-                        </Grid>
-                    </Border>
-                    <Border BorderBrush="Black" Grid.Row="1" Grid.Column="2" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="1" Grid.Column="3" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="1" Grid.Column="4" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="1" Grid.Column="5" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="1" Grid.Column="6" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="2" Grid.Column="0" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="2" Grid.Column="1" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="2" Grid.Column="2" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="2" Grid.Column="3" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="2" Grid.Column="4" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="2" Grid.Column="5" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="2" Grid.Column="6" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="3" Grid.Column="0" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="3" Grid.Column="1" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="3" Grid.Column="2" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="3" Grid.Column="3" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="3" Grid.Column="4" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="3" Grid.Column="5" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="3" Grid.Column="6" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="4" Grid.Column="0" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="4" Grid.Column="1" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="4" Grid.Column="2" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="4" Grid.Column="3" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="4" Grid.Column="4" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="4" Grid.Column="5" BorderThickness="0,0,1,1"></Border>
-                    <Border BorderBrush="Black" Grid.Row="4" Grid.Column="6" BorderThickness="0,0,1,1"></Border>
+                    <local:DayCell DayNumber="8" Grid.Column="0" Grid.Row="1"></local:DayCell>
+                    <local:DayCell DayNumber="9" Grid.Column="1" Grid.Row="1"></local:DayCell>
+                    <local:DayCell DayNumber="10" Grid.Column="2" Grid.Row="1"></local:DayCell>
+                    <local:DayCell DayNumber="11" Grid.Column="3" Grid.Row="1"></local:DayCell>
+                    <local:DayCell DayNumber="12" Grid.Column="4" Grid.Row="1"></local:DayCell>
+                    <local:DayCell DayNumber="13" Grid.Column="5" Grid.Row="1"></local:DayCell>
+                    <local:DayCell DayNumber="14" Grid.Column="6" Grid.Row="1"></local:DayCell>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text=""></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text=""></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text=""></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="3" Text="1"></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="4" Text="2"></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="5" Text="3"></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="6" Text="4"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="5"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="7"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="3" Text="8"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="4" Text="9"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="5" Text="10"></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="6" Text="11"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="12"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="1" Text="13"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="2" Text="14"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="3" Text="15"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="4" Text="16"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="5" Text="17"></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="6" Text="18"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="19"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Text="20"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="2" Text="21"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="3" Text="22"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="4" Text="23"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="5" Text="24"></TextBlock>
-                    <TextBlock Grid.Row="3" Grid.Column="6" Text="25"></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="26"></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="1" Text="27"></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="2" Text="28"></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="3" Text="29"></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="4" Text="30"></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="5" Text="31"></TextBlock>
-                    <TextBlock Grid.Row="4" Grid.Column="6" Text=""></TextBlock>
-                </Grid>
+                    <local:DayCell DayNumber="15" Grid.Column="0" Grid.Row="2"></local:DayCell>
+                    <local:DayCell DayNumber="16" Grid.Column="1" Grid.Row="2"></local:DayCell>
+                    <local:DayCell DayNumber="17" Grid.Column="2" Grid.Row="2"></local:DayCell>
+                    <local:DayCell DayNumber="18" Grid.Column="3" Grid.Row="2"></local:DayCell>
+                    <local:DayCell DayNumber="19" Grid.Column="4" Grid.Row="2"></local:DayCell>
+                    <local:DayCell DayNumber="20" Grid.Column="5" Grid.Row="2"></local:DayCell>
+                    <local:DayCell DayNumber="21" Grid.Column="6" Grid.Row="2"></local:DayCell>
+
+                    <local:DayCell DayNumber="22" Grid.Column="0" Grid.Row="3"></local:DayCell>
+                    <local:DayCell DayNumber="23" Grid.Column="1" Grid.Row="3"></local:DayCell>
+                    <local:DayCell DayNumber="24" Grid.Column="2" Grid.Row="3"></local:DayCell>
+                    <local:DayCell DayNumber="25" Grid.Column="3" Grid.Row="3"></local:DayCell>
+                    <local:DayCell DayNumber="26" Grid.Column="4" Grid.Row="3"></local:DayCell>
+                    <local:DayCell DayNumber="27" Grid.Column="5" Grid.Row="3"></local:DayCell>
+                    <local:DayCell DayNumber="28" Grid.Column="6" Grid.Row="3"></local:DayCell>
+
+                    <local:DayCell DayNumber="29" Grid.Column="0" Grid.Row="4"></local:DayCell>
+                    <local:DayCell DayNumber="30" Grid.Column="1" Grid.Row="4"></local:DayCell>
+                    </Grid>
             </Grid>
         </Grid>
     </Border>

@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         <WrapPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Grid.Column="1" Text="Přidat novou událost dne " FontSize="16"></TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Day}" FontWeight="Bold" FontSize="16"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=DayNumber}" FontWeight="Bold" FontSize="16"></TextBlock>
         </WrapPanel>
         <WrapPanel Grid.Row="2" Grid.Column="1">
             <TextBlock Text="Název události:" HorizontalAlignment="Center" Margin="5"></TextBlock>

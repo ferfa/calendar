@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace calendar
 {
-    public class DayCell
+    public class Day
     {
-        public int Day { get; } = 0;
+        public int DayNumber { get; } = 0;
+
         public ObservableCollection<Task> Tasks { get; } = new ObservableCollection<Task>();
 
-        public DayCell(DateTime DT)
+        public Day(DateTime DT)
         {
-            Day = DT.Day;
+            DayNumber = DT.Day;
         }
     }
 }

@@ -17,11 +17,11 @@ namespace calendar
     /// </summary>
     public partial class NewTaskWindow : Window
     {
-        public int Day { get; } = 0;
+        public int DayNumber { get; }
 
         public NewTaskWindow(int day)
         {
-            Day = day;
+            DayNumber = day;
 
             InitializeComponent();
             DataContext = this;
@@ -29,8 +29,8 @@ namespace calendar
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.CurrentMonth.DayCells[0].Tasks.Add(new Task(NewTaskNameTB.Text));
-            this.Close();
+            MonthGrid.Days[DayNumber].Tasks.Add(new Task(NewTaskNameTB.Text));
+            Close();
         }
     }
 }

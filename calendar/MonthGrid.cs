@@ -7,11 +7,14 @@ namespace calendar
 {
     public class MonthGrid
     {
-        public List<DayCell> DayCells { get; } = new List<DayCell>();
+        public static List<Day> Days { get; } = new List<Day>();
 
         public MonthGrid()
         {
-            DayCells.Add(new DayCell(new DateTime(2001, 11, 6)));
+            for (int i = 1; i <= 30; i++)
+            {
+                Days.Add(new Day(new DateTime(2001, 11, i)));
+            }
             /*for (int day = 1; day <= DateTime.DaysInMonth(year, month); day++)
             {
                 DayCells.Add(new DayCell(new DateTime(year, month, day)));

@@ -31,12 +31,5 @@ namespace calendar
             InitializeComponent();
             DataContext = this;
         }
-
-        private void NewTaskButton_Click(object sender, RoutedEventArgs e)
-        {
-            new NewTaskWindow(6).Show();
-
-            Console.WriteLine(sender);
-        }
     }
 }
