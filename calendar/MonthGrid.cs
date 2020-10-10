@@ -11,6 +11,8 @@ namespace calendar
 
         public MonthGrid()
         {
+            Days.Add(new Day(new DateTime()));
+
             for (int i = 1; i <= 30; i++)
             {
                 Days.Add(new Day(new DateTime(2001, 11, i)));
