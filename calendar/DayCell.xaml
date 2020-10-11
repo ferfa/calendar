@@ -18,9 +18,9 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=DayNumber}"></TextBlock>
-                <Button Grid.Column="1" Margin="2" Content="+" Click="Button_Click"></Button>
+                <Button Name="NewTaskButton" Grid.Column="1" Margin="2" Content="+" Click="NewTaskButton_Click"></Button>
             </Grid>
-            <ListBox Grid.Row="1" ItemsSource="{Binding Path=Tasks}"></ListBox>
+            <ListBox Name="TasksLB" Grid.Row="1" ItemsSource="{Binding Path=Tasks}" DisplayMemberPath="Name" MouseDoubleClick="TasksLB_MouseDoubleClick"></ListBox>
         </Grid>
     </Border>
 </UserControl>

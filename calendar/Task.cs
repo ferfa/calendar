@@ -1,20 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace calendar
 {
-    public class Task
+    public class Task : INotifyPropertyChanged
     {
-        public string Name { get; set; } = "";
-        public Task(string name)
+
+        private string name;
+        public string Name
         {
-            Name = name;
+            get => name;
+            set
+            {
+                name = value; OnPropertyChanged();
+            }
         }
 
-        public override string ToString()
+        private string details;
+        public string Details
         {
-            return Name;
+            get => details;
+            set
+            {
+                details = value; OnPropertyChanged();
+            }
+        }
+
+        public Task()
+        {
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string callerName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerName));
         }
     }
 }

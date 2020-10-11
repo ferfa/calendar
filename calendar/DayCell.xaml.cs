@@ -44,9 +44,17 @@ namespace calendar
             DataContext = this;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NewTaskButton_Click(object sender, RoutedEventArgs e)
         {
             new NewTaskWindow(DayNumber).Show();
+        }
+
+        private void TasksLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (TasksLB.SelectedItem != null)
+            {
+                new TaskDetailsWindow((Task)TasksLB.SelectedItem).Show();
+            }
         }
     }
 }

@@ -13,15 +13,14 @@ using System.Windows.Shapes;
 namespace calendar
 {
     /// <summary>
-    /// Interaction logic for NewTaskWindow.xaml
+    /// Interaction logic for TaskDetailsWindow.xaml
     /// </summary>
-    public partial class NewTaskWindow : Window
+    public partial class TaskDetailsWindow : Window
     {
-        public int DayNumber { get; }
-
-        public NewTaskWindow(int day)
+        public Task EditingTask { get; }
+        public TaskDetailsWindow(Task task)
         {
-            DayNumber = day;
+            EditingTask = task;
 
             InitializeComponent();
             DataContext = this;
@@ -29,13 +28,9 @@ namespace calendar
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            MonthGrid.Days[DayNumber].Tasks.Add(new Task()
-            {
-                Name = NewTaskNameTB.Text,
-                Details = NewTaskDetailsTB.Text
-            });
-
+            EditingTask.Name = TaskNameTB.Text;
             Close();
         }
     }
+
 }
