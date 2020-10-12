@@ -32,6 +32,11 @@ namespace calendar
             EditingTask.Details = TaskDetailsTB.Text;
             Close();
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 
 }
