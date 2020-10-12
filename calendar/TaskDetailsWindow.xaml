@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calendar"
         mc:Ignorable="d"
-        Title="Podrobnosti události" Width="650" Height="200">
+        Title="Podrobnosti události" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -18,11 +18,15 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" Width="500" Margin="30">
+            <WrapPanel>
+                <TextBlock Text="Upravujete událost " FontSize="16"></TextBlock>
+                <TextBlock Grid.Column="1" Text="{Binding Path=EditingTask.Name}" FontWeight="Bold" FontSize="16"></TextBlock>
+            </WrapPanel>
             <TextBlock Text="Název události"></TextBlock>
             <TextBox Name="TaskNameTB" Text="{Binding Path=EditingTask.Name, Mode=OneTime}" Margin="0, 0, 0, 10"></TextBox>
             <TextBlock Text="Popis"></TextBlock>
             <TextBox Name ="TaskDetailsTB" Text="{Binding Path=EditingTask.Details, Mode=OneTime}"></TextBox>
-            <Button Name="OkButton" Content="OK" Width="50" IsDefault="True" Click="OkButton_Click"></Button>
+            <Button Name="OkButton" Content="Ok" Width="50" Margin="10" IsDefault="True" Click="OkButton_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>
