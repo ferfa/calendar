@@ -6,48 +6,6 @@
         xmlns:local="clr-namespace:calendar"
         mc:Ignorable="d"
         Title="Přidat novou událost...">
-    <!-- <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <WrapPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Grid.Column="1" Text="Přidat novou událost dne " FontSize="16"></TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=DayNumber}" FontWeight="Bold" FontSize="16"></TextBlock>
-        </WrapPanel>
-        <WrapPanel Grid.Row="2" Grid.Column="1">
-            <TextBlock Text="Název události:" HorizontalAlignment="Center" Margin="5"></TextBlock>
-            <TextBox Name="NewTaskNameTB" Width="200" Margin="5"></TextBox>
-            <Button Name="SubmitButton" Click="SubmitButton_Click" IsDefault="True" Content="Přidat" Width="50" Margin="5"></Button>
-        </WrapPanel>
-    </Grid>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Grid.Column="1" Width="500" Margin="30">
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=DayNumber}" FontWeight="Bold" FontSize="16"></TextBlock>
-            <TextBlock Text="Název události"></TextBlock>
-            <TextBox Name="TaskNameTB" Text="{Binding Path=EditingTask.Name, Mode=OneTime, UpdateSourceTrigger=PropertyChanged}" Margin="0, 0, 0, 10"></TextBox>
-            <TextBlock Text="Popis"></TextBlock>
-            <TextBox Text="{Binding Path=CurrentTask.Details}"></TextBox>
-            <Button Name="OkButton" Content="OK" Width="50" IsDefault="True" Click="OkButton_Click"></Button>
-        </StackPanel>
-    </Grid> -->
     <StackPanel Width="500" Margin="30">
         <TextBlock Text="Přidáváte událost dne " FontSize="16"></TextBlock>
         <TextBlock Grid.Column="1" Text="{Binding Path=DayNumber}" FontWeight="Bold" FontSize="16"></TextBlock>

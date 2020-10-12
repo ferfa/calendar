@@ -29,6 +29,7 @@ namespace calendar
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             EditingTask.Name = TaskNameTB.Text;
+            EditingTask.Details = TaskDetailsTB.Text;
             Close();
         }
     }
