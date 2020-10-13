@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -55,6 +56,25 @@ namespace calendar
             {
                 new TaskDetailsWindow((Task)TasksLB.SelectedItem).Show();
             }
+        }
+
+        private void PopupShow(object sender, MouseEventArgs e)
+        {
+            FrameworkElement el = sender as FrameworkElement;
+            Popup popup = (Popup)((Panel)el).Children[1];
+            popup.IsOpen = true;
+        }
+
+        private void PopupHide(object sender, MouseEventArgs e)
+        {
+            FrameworkElement el = sender as FrameworkElement;
+            Popup popup = (Popup)((Panel)el).Children[1];
+            popup.IsOpen = false;
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            new TaskDetailsWindow((Task)TasksLB.SelectedItem).Show();
         }
     }
 }

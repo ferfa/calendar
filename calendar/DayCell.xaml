@@ -20,7 +20,22 @@
                 <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=DayNumber}"></TextBlock>
                 <Button Name="NewTaskButton" Grid.Column="1" Margin="2" Content="+" Click="NewTaskButton_Click"></Button>
             </Grid>
-            <ListBox Name="TasksLB" Grid.Row="1" ItemsSource="{Binding Path=Tasks}" DisplayMemberPath="Name" MouseDoubleClick="TasksLB_MouseDoubleClick"></ListBox>
+            <ListBox Name="TasksLB" Grid.Row="1" ItemsSource="{Binding Path=Tasks}" MouseDoubleClick="TasksLB_MouseDoubleClick" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Name="SelectedSP" MouseEnter="PopupShow" MouseLeave="PopupHide">
+                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                            <Popup Name="OverviewPopup" IsOpen="False" PlacementTarget="{Binding RelativeSource={RelativeSource AncestorType=StackPanel}}">
+                                <StackPanel Background="LightGray">
+                                    <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" Margin="10"></TextBlock>
+                                    <TextBlock Text="{Binding Path=Details}" FontStyle="Italic" Margin="10"></TextBlock>
+                                    <Button Name="EditButton" Content="Upravit..." Click="EditButton_Click" Margin="10"></Button>
+                                </StackPanel>
+                            </Popup>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Border>
 </UserControl>
