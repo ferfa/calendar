@@ -23,14 +23,16 @@
             <ListBox Name="TasksLB" Grid.Row="1" ItemsSource="{Binding Path=Tasks}" MouseDoubleClick="TasksLB_MouseDoubleClick" HorizontalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Name="SelectedSP" MouseEnter="PopupShow" MouseLeave="PopupHide">
+                        <StackPanel Name="SelectedSP" MouseEnter="SelectedSP_MouseEnter" MouseLeave="SelectedSP_MouseLeave">
                             <TextBlock Text="{Binding Path=Name}"></TextBlock>
                             <Popup Name="OverviewPopup" IsOpen="False" PlacementTarget="{Binding RelativeSource={RelativeSource AncestorType=StackPanel}}">
-                                <StackPanel Background="LightGray">
-                                    <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" Margin="10"></TextBlock>
-                                    <TextBlock Text="{Binding Path=Details}" FontStyle="Italic" Margin="10"></TextBlock>
-                                    <Button Name="EditButton" Content="Upravit..." Click="EditButton_Click" Margin="10"></Button>
-                                </StackPanel>
+                                <Border BorderThickness="1">
+                                    <StackPanel Background="LightGray">
+                                        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" Margin="10"></TextBlock>
+                                        <TextBlock Text="{Binding Path=Details}" FontStyle="Italic" Margin="10"></TextBlock>
+                                        <Button Name="EditButton" Content="Upravit..." Click="EditButton_Click" Margin="10"></Button>
+                                    </StackPanel>
+                                </Border>
                             </Popup>
                         </StackPanel>
                     </DataTemplate>
