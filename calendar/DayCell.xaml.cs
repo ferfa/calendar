@@ -105,7 +105,6 @@ namespace calendar
         private void SelectedSP_MouseEnter(object sender, MouseEventArgs e)
         {
             FrameworkElement el = sender as FrameworkElement;
-            //Popup popup = (Popup)((Panel)el).Children[1];
             Popup popup = (Popup)el.FindName("OverviewPopup");
 
             var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.2) };
@@ -124,7 +123,6 @@ namespace calendar
         private void SelectedSP_MouseLeave(object sender, MouseEventArgs e)
         {
             FrameworkElement el = sender as FrameworkElement;
-            //Popup popup = (Popup)((Panel)el).Children[1];
             Popup popup = (Popup)el.FindName("OverviewPopup");
 
             var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(0.5) };
@@ -144,7 +142,8 @@ namespace calendar
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            new TaskDetailsWindow((Task)TasksLB.SelectedItem).Show();
+            FrameworkElement element = sender as FrameworkElement;
+            new TaskDetailsWindow((Task)element.DataContext).Show();
         }
 
     }
