@@ -6,38 +6,36 @@
              xmlns:local="clr-namespace:calendar"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200">
-    <Border BorderBrush="Black" BorderThickness="1">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="4*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=DayNumber}"></TextBlock>
-                <Button Name="NewTaskButton" Grid.Column="1" Margin="2" Content="+" Click="NewTaskButton_Click"></Button>
-            </Grid>
-            <ListBox Name="TasksLB" Grid.Row="1" ItemsSource="{Binding Path=Tasks}" MouseDoubleClick="TasksLB_MouseDoubleClick" HorizontalContentAlignment="Stretch">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Name="SelectedSP" MouseEnter="SelectedSP_MouseEnter" MouseLeave="SelectedSP_MouseLeave">
-                            <TextBlock Text="{Binding Path=Name}"></TextBlock>
-                            <Popup Name="OverviewPopup" IsOpen="False" PlacementTarget="{Binding RelativeSource={RelativeSource AncestorType=StackPanel}}" HorizontalOffset="{Binding ElementName=SelectedSP, Path=ActualWidth}" VerticalOffset="-20">
-                                <Border BorderThickness="1">
-                                    <StackPanel Background="BlanchedAlmond">
-                                        <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" Margin="10"></TextBlock>
-                                        <TextBlock Text="{Binding Path=Details}" FontStyle="Italic" Margin="10"></TextBlock>
-                                        <Button Name="EditButton" Content="Upravit..." Click="EditButton_Click" Margin="10"></Button>
-                                    </StackPanel>
-                                </Border>
-                            </Popup>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
-    </Border>
+    <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"></RowDefinition>
+        <RowDefinition Height="4*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=DayNumber}"></TextBlock>
+        <Button Name="NewTaskButton" Grid.Column="1" Margin="2" Content="+" Click="NewTaskButton_Click"></Button>
+    </Grid>
+    <ListBox Name="TasksLB" Grid.Row="1" ItemsSource="{Binding Path=Tasks}" MouseDoubleClick="TasksLB_MouseDoubleClick" HorizontalContentAlignment="Stretch">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Name="SelectedSP" MouseEnter="SelectedSP_MouseEnter" MouseLeave="SelectedSP_MouseLeave">
+                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                    <Popup Name="OverviewPopup" IsOpen="False" PlacementTarget="{Binding RelativeSource={RelativeSource AncestorType=StackPanel}}" HorizontalOffset="{Binding ElementName=SelectedSP, Path=ActualWidth}" VerticalOffset="-20">
+                            <Border BorderThickness="1" MouseEnter="SelectedSP_MouseEnter" MouseLeave="SelectedSP_MouseLeave">
+                                <StackPanel Background="BlanchedAlmond">
+                                <TextBlock Text="{Binding Path=Name}" FontWeight="Bold" Margin="10"></TextBlock>
+                                <TextBlock Text="{Binding Path=Details}" FontStyle="Italic" Margin="10"></TextBlock>
+                                <Button Name="EditButton" Content="Upravit..." Click="EditButton_Click" Margin="10"></Button>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    </Grid>
 </UserControl>

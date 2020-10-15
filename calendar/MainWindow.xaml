@@ -34,7 +34,7 @@
                     <RowDefinition Height="15*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1,1,0,0"></Border>
+                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1"></Border>
 
 
                 <!-- Days of week -->
