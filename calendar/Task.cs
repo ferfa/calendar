@@ -7,6 +7,7 @@ namespace calendar
 {
     public class Task : INotifyPropertyChanged
     {
+        public Guid GetGuid { get; } = Guid.NewGuid();
 
         private string name;
         public string Name
@@ -30,6 +31,7 @@ namespace calendar
 
         public Task()
         {
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

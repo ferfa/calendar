@@ -138,8 +138,6 @@ namespace calendar
             };
         }
 
-
-
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = sender as FrameworkElement;
