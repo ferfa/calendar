@@ -9,7 +9,7 @@ namespace calendar
 {
     public class Day
     {
-        public int DayNumber { get; } = 0;
+        public int DayNumber { get; }
 
         public ObservableCollection<Task> Tasks { get; } = new ObservableCollection<Task>();
 

@@ -23,14 +23,43 @@ namespace calendar
     /// </summary>
     public partial class DayCell : UserControl
     {
-        public static readonly DependencyProperty DayNumberProperty = DependencyProperty.Register("DayNumber", typeof(int), typeof(DayCell));
+        //public static readonly DependencyProperty DayNumberProperty = DependencyProperty.Register("DayNumber", typeof(int), typeof(DayCell));
+
+        //public int DayNumber {
+        //    get {
+        //        return (int)GetValue(DayNumberProperty);
+        //    }
+        //    set {
+        //        SetValue(DayNumberProperty, value);
+        //    }
+        //}
+
+
+        public static readonly DependencyProperty CellIDProperty = DependencyProperty.Register("CellID", typeof(int), typeof(DayCell));
+
+        public int CellID
+        {
+            get
+            {
+                return (int)GetValue(CellIDProperty);
+            }
+            set
+            {
+                SetValue(CellIDProperty, value);
+            }
+        }
+
+        public Day DayInThisCell { get; set; }
 
         public int DayNumber {
-            get {
-                return (int)GetValue(DayNumberProperty);
-            }
-            set {
-                SetValue(DayNumberProperty, value);
+            get
+            {
+                if (DayInThisCell == null)
+                {
+                    return 0;
+                }
+
+                return DayInThisCell.DayNumber;
             }
         }
 
@@ -38,19 +67,29 @@ namespace calendar
         {
             get
             {
-                return MonthGrid.Days[DayNumber].Tasks;
+                if (DayInThisCell == null)
+                {
+                    return null;
+                }
+
+                return DayInThisCell.Tasks;
             }
         }
 
+
         public DayCell()
         {
+            MonthGrid.DayCells.Add(this);
+            Visibility = Visibility.Hidden;
+
             InitializeComponent();
             DataContext = this;
         }
 
+
         private void NewTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            new NewTaskWindow(DayNumber).Show();
+            new NewTaskWindow(DayInThisCell).Show();
         }
 
         private void TasksLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -23,13 +23,14 @@ namespace calendar
 
     public partial class MainWindow : Window
     {
-        public static MonthGrid CurrentMonth { get; } = new MonthGrid();
-        
+        public static MonthGrid CurrentMonth { get; set; } = new MonthGrid(2001, 11);
+
         public MainWindow()
         {
-
             InitializeComponent();
             DataContext = this;
+
+            CurrentMonth.Init();
         }
     }
 }

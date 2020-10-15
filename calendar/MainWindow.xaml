@@ -80,41 +80,46 @@
                         <RowDefinition Height="*"></RowDefinition>
 
                     </Grid.RowDefinitions>
-                    <local:DayCell DayNumber="1" Grid.Column="0" Grid.Row="0"></local:DayCell>
-                    <local:DayCell DayNumber="2" Grid.Column="1" Grid.Row="0"></local:DayCell>
-                    <local:DayCell DayNumber="3" Grid.Column="2" Grid.Row="0"></local:DayCell>
-                    <local:DayCell DayNumber="4" Grid.Column="3" Grid.Row="0"></local:DayCell>
-                    <local:DayCell DayNumber="5" Grid.Column="4" Grid.Row="0"></local:DayCell>
-                    <local:DayCell DayNumber="6" Grid.Column="5" Grid.Row="0"></local:DayCell>
-                    <local:DayCell DayNumber="7" Grid.Column="6" Grid.Row="0"></local:DayCell>
-
-                    <local:DayCell DayNumber="8" Grid.Column="0" Grid.Row="1"></local:DayCell>
-                    <local:DayCell DayNumber="9" Grid.Column="1" Grid.Row="1"></local:DayCell>
-                    <local:DayCell DayNumber="10" Grid.Column="2" Grid.Row="1"></local:DayCell>
-                    <local:DayCell DayNumber="11" Grid.Column="3" Grid.Row="1"></local:DayCell>
-                    <local:DayCell DayNumber="12" Grid.Column="4" Grid.Row="1"></local:DayCell>
-                    <local:DayCell DayNumber="13" Grid.Column="5" Grid.Row="1"></local:DayCell>
-                    <local:DayCell DayNumber="14" Grid.Column="6" Grid.Row="1"></local:DayCell>
-
-                    <local:DayCell DayNumber="15" Grid.Column="0" Grid.Row="2"></local:DayCell>
-                    <local:DayCell DayNumber="16" Grid.Column="1" Grid.Row="2"></local:DayCell>
-                    <local:DayCell DayNumber="17" Grid.Column="2" Grid.Row="2"></local:DayCell>
-                    <local:DayCell DayNumber="18" Grid.Column="3" Grid.Row="2"></local:DayCell>
-                    <local:DayCell DayNumber="19" Grid.Column="4" Grid.Row="2"></local:DayCell>
-                    <local:DayCell DayNumber="20" Grid.Column="5" Grid.Row="2"></local:DayCell>
-                    <local:DayCell DayNumber="21" Grid.Column="6" Grid.Row="2"></local:DayCell>
-
-                    <local:DayCell DayNumber="22" Grid.Column="0" Grid.Row="3"></local:DayCell>
-                    <local:DayCell DayNumber="23" Grid.Column="1" Grid.Row="3"></local:DayCell>
-                    <local:DayCell DayNumber="24" Grid.Column="2" Grid.Row="3"></local:DayCell>
-                    <local:DayCell DayNumber="25" Grid.Column="3" Grid.Row="3"></local:DayCell>
-                    <local:DayCell DayNumber="26" Grid.Column="4" Grid.Row="3"></local:DayCell>
-                    <local:DayCell DayNumber="27" Grid.Column="5" Grid.Row="3"></local:DayCell>
-                    <local:DayCell DayNumber="28" Grid.Column="6" Grid.Row="3"></local:DayCell>
-
-                    <local:DayCell DayNumber="29" Grid.Column="0" Grid.Row="4"></local:DayCell>
-                    <local:DayCell DayNumber="30" Grid.Column="1" Grid.Row="4"></local:DayCell>
-                    </Grid>
+                    <local:DayCell CellID="0" Grid.Column="0" Grid.Row="0"></local:DayCell>
+                    <local:DayCell CellID="1" Grid.Column="1" Grid.Row="0"></local:DayCell>
+                    <local:DayCell CellID="2" Grid.Column="2" Grid.Row="0"></local:DayCell>
+                    <local:DayCell CellID="3" Grid.Column="3" Grid.Row="0"></local:DayCell>
+                    <local:DayCell CellID="4" Grid.Column="4" Grid.Row="0"></local:DayCell>
+                    <local:DayCell CellID="5" Grid.Column="5" Grid.Row="0"></local:DayCell>
+                    <local:DayCell CellID="6" Grid.Column="6" Grid.Row="0"></local:DayCell>
+                                           
+                    <local:DayCell CellID="7" Grid.Column="0" Grid.Row="1"></local:DayCell>
+                    <local:DayCell CellID="8" Grid.Column="1" Grid.Row="1"></local:DayCell>
+                    <local:DayCell CellID="9" Grid.Column="2" Grid.Row="1"></local:DayCell>
+                    <local:DayCell CellID="10" Grid.Column="3" Grid.Row="1"></local:DayCell>
+                    <local:DayCell CellID="11" Grid.Column="4" Grid.Row="1"></local:DayCell>
+                    <local:DayCell CellID="12" Grid.Column="5" Grid.Row="1"></local:DayCell>
+                    <local:DayCell CellID="13" Grid.Column="6" Grid.Row="1"></local:DayCell>
+                                              
+                    <local:DayCell CellID="14" Grid.Column="0" Grid.Row="2"></local:DayCell>
+                    <local:DayCell CellID="15" Grid.Column="1" Grid.Row="2"></local:DayCell>
+                    <local:DayCell CellID="16" Grid.Column="2" Grid.Row="2"></local:DayCell>
+                    <local:DayCell CellID="17" Grid.Column="3" Grid.Row="2"></local:DayCell>
+                    <local:DayCell CellID="18" Grid.Column="4" Grid.Row="2"></local:DayCell>
+                    <local:DayCell CellID="19" Grid.Column="5" Grid.Row="2"></local:DayCell>
+                    <local:DayCell CellID="20" Grid.Column="6" Grid.Row="2"></local:DayCell>
+                                             
+                    <local:DayCell CellID="21" Grid.Column="0" Grid.Row="3"></local:DayCell>
+                    <local:DayCell CellID="22" Grid.Column="1" Grid.Row="3"></local:DayCell>
+                    <local:DayCell CellID="23" Grid.Column="2" Grid.Row="3"></local:DayCell>
+                    <local:DayCell CellID="24" Grid.Column="3" Grid.Row="3"></local:DayCell>
+                    <local:DayCell CellID="25" Grid.Column="4" Grid.Row="3"></local:DayCell>
+                    <local:DayCell CellID="26" Grid.Column="5" Grid.Row="3"></local:DayCell>
+                    <local:DayCell CellID="27" Grid.Column="6" Grid.Row="3"></local:DayCell>
+                                              
+                    <local:DayCell CellID="28" Grid.Column="0" Grid.Row="4"></local:DayCell>
+                    <local:DayCell CellID="29" Grid.Column="1" Grid.Row="4"></local:DayCell>
+                    <local:DayCell CellID="30" Grid.Column="2" Grid.Row="4"></local:DayCell>
+                    <local:DayCell CellID="31" Grid.Column="3" Grid.Row="4"></local:DayCell>
+                    <local:DayCell CellID="32" Grid.Column="4" Grid.Row="4"></local:DayCell>
+                    <local:DayCell CellID="33" Grid.Column="5" Grid.Row="4"></local:DayCell>
+                    <local:DayCell CellID="34" Grid.Column="6" Grid.Row="4"></local:DayCell>
+                </Grid>                    
             </Grid>
         </Grid>
     </Border>

@@ -19,9 +19,9 @@ namespace calendar
     {
         public int DayNumber { get; }
 
-        public NewTaskWindow(int day)
+        public NewTaskWindow(Day day)
         {
-            DayNumber = day;
+            DayNumber = day.DayNumber;
 
             InitializeComponent();
             DataContext = this;
