@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
+using System.Linq;
+using System.ComponentModel;
 
 namespace calendar
 {
@@ -11,11 +14,15 @@ namespace calendar
     {
         public int DayNumber { get; }
 
-        public ObservableCollection<Task> Tasks { get; } = new ObservableCollection<Task>();
+        public IEnumerable<Task> Tasks { get; private set; }
 
         public Day(DateTime DT)
         {
             DayNumber = DT.Day;
+
+            Tasks = from task in TaskManager.Tasks
+                    where task.Date.Day == DayNumber
+                    select task;
         }
     }
 }

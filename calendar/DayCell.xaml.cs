@@ -63,7 +63,7 @@ namespace calendar
             }
         }
 
-        public ObservableCollection<Task> Tasks
+        public IEnumerable<Task> Tasks
         {
             get
             {
@@ -79,17 +79,28 @@ namespace calendar
 
         public DayCell()
         {
-            MonthGrid.DayCells.Add(this);
+            DayManager.DayCells.Add(this);
             Visibility = Visibility.Hidden;
 
             InitializeComponent();
             DataContext = this;
+
+            TaskManager.UpdateDayCell += TaskManager_UpdateDayCell;
         }
 
+        private void TaskManager_UpdateDayCell(Task task)
+        {
+            if (DayInThisCell?.Tasks != null)
+            {
+                TasksLB.ItemsSource = new ObservableCollection<Task>(DayInThisCell.Tasks);
+            }
+            //System.Windows.MessageBox.Show($"{this}.TaskManager_UpdateDayCell(): {DayManager.Days[task.Date.Day].Tasks}");
+        }
 
         private void NewTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            new NewTaskWindow(DayInThisCell).Show();
+            //new AddTaskWindow(DayInThisCell).Show();
+            TasksLB.ItemsSource = DayInThisCell.Tasks;
         }
 
         private void TasksLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -143,6 +154,5 @@ namespace calendar
             FrameworkElement element = sender as FrameworkElement;
             new TaskDetailsWindow((Task)element.DataContext).Show();
         }
-
     }
 }

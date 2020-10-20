@@ -8,7 +8,7 @@ using System.Text;
 
 namespace calendar
 {
-    public class MonthGrid
+    public static class DayManager
     {
         //public static List<Day> Days { get; } = new List<Day>();
         public static List<DayCell> DayCells { get; } = new List<DayCell>();
@@ -26,14 +26,11 @@ namespace calendar
             }
         }
 
-        public MonthGrid(int year, int month)
+        public static void Init(int year, int month)
         {
             Year = year;
             Month = month;
-        }
 
-        public void Init()
-        {
             //...each DayCell adds itself to DayCells<>...
 
             Days.Add(null); //Day no. 0
@@ -47,7 +44,7 @@ namespace calendar
             }
         }
 
-        public int FindCellID(int dayNumber)
+        public static int FindCellID(int dayNumber)
         {
             int cellID = dayNumber + FirstDay - 1;
             return cellID;

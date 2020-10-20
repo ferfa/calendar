@@ -15,12 +15,14 @@ namespace calendar
     /// <summary>
     /// Interaction logic for NewTaskWindow.xaml
     /// </summary>
-    public partial class NewTaskWindow : Window
+    public partial class AddTaskWindow : Window
     {
         public int DayNumber { get; }
 
-        public NewTaskWindow()
+        public AddTaskWindow(Day day)
         {
+            DayNumber = day.DayNumber;
+
             InitializeComponent();
             DataContext = this;
         }
@@ -29,10 +31,10 @@ namespace calendar
         {
             TaskManager.AddTask(new Task()
             {
-                Date = new DateTime(2020, 10, int.Parse(NewTaskDateTB.Text)),
+                Date = new DateTime(2020, 10, DayNumber),
                 Name = NewTaskNameTB.Text,
                 Details = NewTaskDetailsTB.Text
-            });
+            }); 
 
             Close();
         }

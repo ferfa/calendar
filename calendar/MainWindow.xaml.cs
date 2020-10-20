@@ -23,14 +23,17 @@ namespace calendar
 
     public partial class MainWindow : Window
     {
-        public static MonthGrid CurrentMonth { get; set; } = new MonthGrid(2001, 11);
-
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
 
-            CurrentMonth.Init();
+            DayManager.Init(2020, 10);
+        }
+
+        private void NewTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            new NewTaskWindow().Show();
         }
     }
 }

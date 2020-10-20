@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace calendar
@@ -26,6 +27,26 @@ namespace calendar
             set
             {
                 details = value; OnPropertyChanged();
+            }
+        }
+
+        private DateTime _date;
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                _date = value; OnPropertyChanged();
+            }
+        }
+
+        private DateTime _time;
+        public DateTime Time
+        {
+            get => _time;
+            set
+            {
+                _time = value; OnPropertyChanged();
             }
         }
 
