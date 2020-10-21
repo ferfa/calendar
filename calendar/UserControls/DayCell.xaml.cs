@@ -11,6 +11,8 @@ namespace calendar
     /// <summary>
     /// Interaction logic for DayCell.xaml
     /// </summary>
+    
+    // TODO: add a (custom) date selector
     public partial class DayCell : UserControl
     {
         public Day DayInThisCell { get; set; }
