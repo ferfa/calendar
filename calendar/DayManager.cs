@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
-using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace calendar
 {
     public static class DayManager
     {
-        //public static List<Day> Days { get; } = new List<Day>();
         public static List<DayCell> DayCells { get; } = new List<DayCell>();
         public static List<Day> Days { get; } = new List<Day>();
-
         public static int Year { get; set; }
         public static int Month { get; set; }
 
         public static int FirstDay
         {
             get
-            {
+            {   // shift the DayOfWeek enum so that Monday is the first day of week
                 DayOfWeek dayOfWeek = new DateTime(Year, Month, 1).DayOfWeek;
-                return ((int)dayOfWeek + 6) % 7; //shift the DayOfWeek enum so that Monday is the first day of week
+                return ((int)dayOfWeek + 6) % 7; 
             }
         }
 
@@ -31,10 +24,11 @@ namespace calendar
             Year = year;
             Month = month;
 
-            //...each DayCell adds itself to DayCells<>...
+            // ...each DayCell adds itself to DayCells<>...
 
-            Days.Add(null); //Day no. 0
+            Days.Add(null); // Day no. 0 (invalid Day)
 
+            // Add actual Days to DayCells and make the DayCells visible
             for (int i = 0; i < DateTime.DaysInMonth(Year, Month); i++)
             {
                 Day day = new Day(new DateTime(Year, Month, i + 1));
@@ -42,12 +36,6 @@ namespace calendar
                 DayCells[i + FirstDay].Visibility = System.Windows.Visibility.Visible;
                 Days.Add(day);
             }
-        }
-
-        public static int FindCellID(int dayNumber)
-        {
-            int cellID = dayNumber + FirstDay - 1;
-            return cellID;
         }
     }
 }

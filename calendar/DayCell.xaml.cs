@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Threading;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace calendar
@@ -23,86 +13,38 @@ namespace calendar
     /// </summary>
     public partial class DayCell : UserControl
     {
-        //public static readonly DependencyProperty DayNumberProperty = DependencyProperty.Register("DayNumber", typeof(int), typeof(DayCell));
-
-        //public int DayNumber {
-        //    get {
-        //        return (int)GetValue(DayNumberProperty);
-        //    }
-        //    set {
-        //        SetValue(DayNumberProperty, value);
-        //    }
-        //}
-
-
-        public static readonly DependencyProperty CellIDProperty = DependencyProperty.Register("CellID", typeof(int), typeof(DayCell));
-
-        public int CellID
-        {
-            get
-            {
-                return (int)GetValue(CellIDProperty);
-            }
-            set
-            {
-                SetValue(CellIDProperty, value);
-            }
-        }
-
         public Day DayInThisCell { get; set; }
 
-        public int DayNumber {
-            get
-            {
-                if (DayInThisCell == null)
-                {
-                    return 0;
-                }
-
-                return DayInThisCell.DayNumber;
-            }
-        }
-
-        public IEnumerable<Task> Tasks
+        // Used to be displayed on the cell
+        public int? DayNumber
         {
             get
             {
-                if (DayInThisCell == null)
-                {
-                    return null;
-                }
-
-                return DayInThisCell.Tasks;
+                return DayInThisCell?.DayNumber ?? null;
             }
         }
-
 
         public DayCell()
         {
             DayManager.DayCells.Add(this);
-            Visibility = Visibility.Hidden;
+            Visibility = Visibility.Hidden; // Cells occupied by actual Days will be made visible by DayManager
+
+            TaskManager.UpdateDayCells += TaskManager_UpdateDayCell;
 
             InitializeComponent();
             DataContext = this;
-
-            TaskManager.UpdateDayCell += TaskManager_UpdateDayCell;
         }
 
-        private void TaskManager_UpdateDayCell(Task task)
+        // Updates the Tasks ListBox
+        private void TaskManager_UpdateDayCell()
         {
             if (DayInThisCell?.Tasks != null)
             {
                 TasksLB.ItemsSource = new ObservableCollection<Task>(DayInThisCell.Tasks);
-            }
-            //System.Windows.MessageBox.Show($"{this}.TaskManager_UpdateDayCell(): {DayManager.Days[task.Date.Day].Tasks}");
+            }   
         }
 
-        private void NewTaskButton_Click(object sender, RoutedEventArgs e)
-        {
-            //new AddTaskWindow(DayInThisCell).Show();
-            TasksLB.ItemsSource = DayInThisCell.Tasks;
-        }
-
+        // Occurs when a Task item is double clicked on
         private void TasksLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (TasksLB.SelectedItem != null)
@@ -111,8 +53,13 @@ namespace calendar
             }
         }
 
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = sender as FrameworkElement;
+            new TaskDetailsWindow((Task)element.DataContext).Show();
+        }
 
-
+        // Popup mouse enter/leave delay
         private void SelectedSP_MouseEnter(object sender, MouseEventArgs e)
         {
             FrameworkElement el = sender as FrameworkElement;
@@ -147,12 +94,6 @@ namespace calendar
                     popup.IsOpen = false;
                 }
             };
-        }
-
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            FrameworkElement element = sender as FrameworkElement;
-            new TaskDetailsWindow((Task)element.DataContext).Show();
         }
     }
 }

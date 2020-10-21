@@ -13,13 +13,11 @@
     </Grid.RowDefinitions>
     <Grid Grid.Row="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=DayNumber}"></TextBlock>
-        <Button Name="NewTaskButton" Grid.Column="1" Margin="2" Content="+" Click="NewTaskButton_Click"></Button>
     </Grid>
-    <ListBox Name="TasksLB" Grid.Row="1" ItemsSource="{Binding Path=Tasks}" MouseDoubleClick="TasksLB_MouseDoubleClick" HorizontalContentAlignment="Stretch">
+    <ListBox Name="TasksLB" Grid.Row="1" MouseDoubleClick="TasksLB_MouseDoubleClick" HorizontalContentAlignment="Stretch">
         <ListBox.ItemTemplate>
             <DataTemplate>
                 <StackPanel Name="SelectedSP" MouseEnter="SelectedSP_MouseEnter" MouseLeave="SelectedSP_MouseLeave">

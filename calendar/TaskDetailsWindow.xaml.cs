@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace calendar
 {
+    // TODO: make New Task & Task Details windows more similar (inheritance?)
     /// <summary>
     /// Interaction logic for TaskDetailsWindow.xaml
     /// </summary>
     public partial class TaskDetailsWindow : Window
     {
         public Task EditingTask { get; }
+
         public TaskDetailsWindow(Task task)
         {
             EditingTask = task;
@@ -28,8 +20,7 @@ namespace calendar
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            EditingTask.Name = TaskNameTB.Text;
-            EditingTask.Details = TaskDetailsTB.Text;
+            TaskManager.ModifyTask(EditingTask, TaskNameTB.Text, TaskDetailsTB.Text, EditingTask.Date);
             Close();
         }
 
@@ -38,5 +29,4 @@ namespace calendar
             Close();
         }
     }
-
 }

@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace calendar
 {
-    delegate void Del(Task task);
+    delegate void UpdateDayCellsHandler();
 
-    class TaskManager
+    static class TaskManager
     {
-        public static Del UpdateDayCell;
-
+        public static UpdateDayCellsHandler UpdateDayCells;
         public static List<Task> Tasks { get; set; } = new List<Task>();
 
-        public static void AddTask(Task task)
+        public static void AddTask(string name, string details, DateTime dateAndTime)
         {
-            Tasks.Add(task);
-            UpdateDayCell(task);
+            Tasks.Add(new Task(name, details, dateAndTime));
+            UpdateDayCells();
+        }
+
+        public static void ModifyTask(Task task, string name, string details, DateTime date)
+        {
+            task.Name = name;
+            task.Details = details;
+            task.Date = date;
+            UpdateDayCells();
         }
     }
 }
