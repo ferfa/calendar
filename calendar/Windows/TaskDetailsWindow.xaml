@@ -1,41 +1,17 @@
-﻿<Window x:Class="calendar.TaskDetailsWindow"
+﻿<Window x:Class="calendar.Windows.TaskDetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calendar"
+        xmlns:uc="clr-namespace:calendar.UserControls"
         mc:Ignorable="d"
         Title="Podrobnosti události" SizeToContent="WidthAndHeight">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions> 
-        <StackPanel Grid.Row="1" Grid.Column="1" Width="500" Margin="30">
-            <WrapPanel>
-                <TextBlock Text="Upravujete událost " FontSize="16"></TextBlock>
-                <TextBlock Grid.Column="1" Text="{Binding Path=EditingTask.Name}" FontWeight="Bold" FontSize="16"></TextBlock>
-            </WrapPanel>
-            <TextBlock Text="Název události"></TextBlock>
-            <TextBox Name="TaskNameTB" Text="{Binding Path=EditingTask.Name, Mode=OneTime}" Margin="0, 0, 0, 10"></TextBox>
-            <TextBlock Text="Popis"></TextBlock>
-            <TextBox
-                Name ="TaskDetailsTB"
-                Text="{Binding Path=EditingTask.Details, Mode=OneTime}"
-                TextWrapping="Wrap"
-                AcceptsReturn="True"
-                VerticalScrollBarVisibility="Visible"
-                Height="200"></TextBox>
-            <WrapPanel>
-                <Button Name="OkButton" Content="Ok" Width="50" Margin="2, 10" IsDefault="True" Click="OkButton_Click"></Button>
-                <Button Name="CancelButton" Content="Storno" Width="50" Margin="2 ,10" Click="CancelButton_Click"></Button>
-            </WrapPanel>
-        </StackPanel>
-    </Grid>
+    <StackPanel>
+        <uc:TaskDetails x:Name="TaskDetailsUC"></uc:TaskDetails>
+        <WrapPanel>
+            <Button Name="OkButton" Content="Ok" Width="50" Margin="2, 10" IsDefault="True" Click="OkButton_Click"></Button>
+            <Button Name="CancelButton" Content="Storno" Width="50" Margin="2 ,10" Click="CancelButton_Click"></Button>
+        </WrapPanel>
+    </StackPanel>
 </Window>

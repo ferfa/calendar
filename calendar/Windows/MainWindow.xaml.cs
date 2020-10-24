@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace calendar
+namespace calendar.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

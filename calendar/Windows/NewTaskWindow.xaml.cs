@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace calendar
+namespace calendar.Windows
 {
     /// <summary>
     /// Interaction logic for NewTaskWindow.xaml
@@ -17,9 +17,9 @@ namespace calendar
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             TaskManager.AddTask(
-                NewTaskNameTB.Text,
-                NewTaskDetailsTB.Text,
-                new DateTime(DayManager.Year, DayManager.Month, int.Parse(NewTaskDateTB.Text))
+                TaskDetailsUC.TaskNameTB.Text,
+                TaskDetailsUC.TaskDetailsTB.Text,
+                TaskDetailsUC.SelectedDate
             );
 
             Close();

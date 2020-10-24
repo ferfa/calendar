@@ -6,7 +6,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-namespace calendar
+namespace calendar.UserControls
 {
     /// <summary>
     /// Interaction logic for DayCell.xaml
@@ -51,14 +51,14 @@ namespace calendar
         {
             if (TasksLB.SelectedItem != null)
             {
-                new TaskDetailsWindow((Task)TasksLB.SelectedItem).Show();
+                new Windows.TaskDetailsWindow((Task)TasksLB.SelectedItem).Show();
             }
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = sender as FrameworkElement;
-            new TaskDetailsWindow((Task)element.DataContext).Show();
+            new Windows.TaskDetailsWindow((Task)element.DataContext).Show();
         }
 
         // Popup mouse enter/leave delay
