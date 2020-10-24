@@ -9,13 +9,13 @@
     <Grid>
     <Grid.RowDefinitions>
         <RowDefinition Height="*"></RowDefinition>
-        <RowDefinition Height="4*"></RowDefinition>
+        <RowDefinition Height="3*"></RowDefinition>
     </Grid.RowDefinitions>
     <Grid Grid.Row="0">
         <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Margin="5" Text="{Binding Path=DayNumber}"></TextBlock>
+        <TextBlock Name="DayNumberTB" Grid.Column="0" Margin="5" Text="{Binding Path=DayNumber, UpdateSourceTrigger=Explicit}"></TextBlock>
     </Grid>
     <ListBox Name="TasksLB" Grid.Row="1" MouseDoubleClick="TasksLB_MouseDoubleClick" HorizontalContentAlignment="Stretch">
         <ListBox.ItemTemplate>

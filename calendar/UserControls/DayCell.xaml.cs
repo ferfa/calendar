@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -22,7 +23,7 @@ namespace calendar.UserControls
         {
             get
             {
-                return DayInThisCell?.DayNumber ?? null;
+                return DayInThisCell?.Date.Day ?? null;
             }
         }
 
@@ -35,6 +36,19 @@ namespace calendar.UserControls
 
             InitializeComponent();
             DataContext = this;
+        }
+
+        public void Disable()
+        {
+            Visibility = Visibility.Hidden;
+            DayInThisCell = null;
+        }
+
+        // Binds
+        public void Rebind()
+        {
+            DayNumberTB.Text = DayNumber.ToString();
+            TasksLB.ItemsSource = DayInThisCell?.Tasks;
         }
 
         // Updates the Tasks ListBox

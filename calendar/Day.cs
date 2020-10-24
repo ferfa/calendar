@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,15 +7,17 @@ namespace calendar
 {
     public class Day
     {
-        public int DayNumber { get; }
         public IEnumerable<Task> Tasks { get; }
-
+        public DateTime Date { get; }
+        
         public Day(DateTime DT)
         {
-            DayNumber = DT.Day;
+            Date = DT;
 
             Tasks = from task in TaskManager.Tasks
-                    where task.Date.Day == DayNumber
+                    where task.Date.Year == Date.Year
+                    && task.Date.Month == Date.Month
+                    && task.Date.Day == Date.Day
                     select task;
         }
     }

@@ -3,7 +3,6 @@ using System.Windows;
 
 namespace calendar.Windows
 {
-    // TODO: make New Task & Task Details windows more similar
     /// <summary>
     /// Interaction logic for TaskDetailsWindow.xaml
     /// </summary>
