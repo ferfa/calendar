@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using calendar.Utilities;
 
 namespace calendar
 {
@@ -7,5 +9,9 @@ namespace calendar
     /// </summary>
     public partial class App : Application
     {
+        internal App()
+        {
+            DayManager.Init(DateTime.Now.Year, DateTime.Now.Month);
+        }
     }
 }

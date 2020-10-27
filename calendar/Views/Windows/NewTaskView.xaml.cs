@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows;
+using calendar.Utilities;
+using calendar.Models;
 
-namespace calendar.Windows
+namespace calendar.Views
 {
     /// <summary>
     /// Interaction logic for NewTaskWindow.xaml
@@ -16,13 +18,7 @@ namespace calendar.Windows
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            TaskManager.AddTask(
-                TaskDetailsUC.TaskNameTB.Text,
-                TaskDetailsUC.TaskDetailsTB.Text,
-                TaskDetailsUC.SelectedDate
-            );
-
-            Close();
+            TaskManager.AddTask("název", "detaily", DateTime.Now, DateTime.Now.TimeOfDay);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
