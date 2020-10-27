@@ -6,6 +6,7 @@ namespace calendar.Models
 {
     public class DayModel
     {
-        public DateTime Day { get; set; }
+        public DateTime Date { get; set; }
+        public List<TaskModel> Tasks { get; set; }
     }
 }

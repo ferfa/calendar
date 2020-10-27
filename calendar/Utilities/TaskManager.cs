@@ -10,6 +10,8 @@ namespace calendar.Utilities
 {
     public static class TaskManager
     {
+        public static event Action TasksModified;
+
         public static List<TaskModel> Tasks { get; } = new List<TaskModel>();
 
         public static void AddTask(string name, string details, DateTime date, TimeSpan time)
@@ -23,6 +25,19 @@ namespace calendar.Utilities
             });
         }
 
+        public static void AddTestTask()
+        {
+            Tasks.Add(new TaskModel()
+            {
+                Name = "test",
+                Details = "details",
+                Date = DateTime.Now.Date,
+                Time = DateTime.Now.TimeOfDay
+            });
+
+            OnTasksModified();
+        }
+
         public static List<TaskModel> GetTasksByDate(DateTime date)
         {
             var query = from task in Tasks
@@ -32,6 +47,9 @@ namespace calendar.Utilities
             return new List<TaskModel>(query);
         }
 
-
+        public static void OnTasksModified()
+        {
+            TasksModified?.Invoke();
+        }
     }
 }

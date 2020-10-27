@@ -25,7 +25,7 @@ namespace calendar.Models
                 }
                 else
                 {
-                    throw new ReadOnlyException("Task GUID can only be set once (at initialization)");
+                    //throw new ReadOnlyException("Task GUID can only be set once (at initialization)");
                 }
             }
         }

@@ -8,6 +8,7 @@ using System.Net.WebSockets;
 using System.Collections.Specialized;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using calendar.ViewModels.Commands;
 
 namespace calendar.ViewModels
 {
@@ -45,6 +46,8 @@ namespace calendar.ViewModels
         //    };
         //}
 
+        public NewTaskCommand NewTask { get; private set; } = new NewTaskCommand(TaskManager.AddTestTask);
+
         public Visibility Visibility
         {
             get
@@ -62,11 +65,11 @@ namespace calendar.ViewModels
         {
             get
             {
-                return _date;
+                return _dayModel.Date;
             }
             set
             {
-                _date = value;
+                _dayModel.Date = value;
                 OnPropertyChanged();
                 OnPropertyChanged("Tasks");
             }
@@ -76,15 +79,34 @@ namespace calendar.ViewModels
         {
             get
             {
-                if (Date != null)
-                {
-                    return TaskManager.GetTasksByDate(Date);
-                }
-                return null;
+                return _dayModel.Tasks;
+            }
+            set
+            {
+                _dayModel.Tasks = value;
+                OnPropertyChanged();
             }
         }
 
-        private DateTime _date;
+        public DayViewModel()
+        {
+            _dayModel = new DayModel();
+            TaskManager.TasksModified += Query;
+        }
+
+        public void Query()
+        {
+            if (Date != null)
+            {
+                Tasks = TaskManager.GetTasksByDate(Date);
+            }
+            else
+            {
+                Tasks = null;
+            }
+        }
+
+        private DayModel _dayModel;
         private Visibility _visibility = Visibility.Hidden;
     }
 }

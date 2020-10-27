@@ -7,8 +7,12 @@
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
         xmlns:uc="clr-namespace:calendar.Views.UserControls"
         xmlns:util="clr-namespace:calendar.Utilities"
+        xmlns:viewmodels="clr-namespace:calendar.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewmodels:DayViewModel/>
+    </Window.DataContext>
 
     <Border Padding="10">
         <Grid>
@@ -20,7 +24,7 @@
 
             <WrapPanel Grid.Row="0">
                 <TextBlock Text="Kalendář" FontSize="24" Margin="0,0,0,20"/>
-                <Button Name="NewTaskButton" Content="Nová událost..." Margin="10,10,10,20"></Button>
+                <Button Name="NewTaskButton" Command="{Binding Path=NewTask}" Content="Nová událost..." Margin="10,10,10,20"></Button>
             </WrapPanel>
             <WrapPanel Grid.Row="1">
                 <Button Name="PreviousMonthButton" Content="&lt;"></Button>
@@ -65,7 +69,7 @@
 
                 <!-- Calendar grid  -->
 
-                <Border Grid.Column="1" Grid.Row="1">
+                <Border BorderBrush="Black" Grid.Column="1" Grid.Row="1">
                     <ItemsControl ItemsSource="{x:Static util:DayManager.Days}" Grid.Column="1" Grid.Row="1">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -74,20 +78,22 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Visibility="{Binding Path=Visibility}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"></RowDefinition>
-                                        <RowDefinition Height="3*"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="{Binding Path=Date.Day, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0"></TextBlock>
+                                <Border BorderBrush="Black">
+                                    <Grid Visibility="{Binding Path=Visibility}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="3*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Path=Date.Day, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0"></TextBlock>
                                         <ListBox ItemsSource="{Binding Path=Tasks, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </Grid>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
