@@ -19,13 +19,14 @@ namespace calendar.Models
             }
             set
             {
-                if (_guid == null)
+                if (_guid == Guid.Empty)
                 {
                     _guid = value;
+                    return;
                 }
                 else
                 {
-                    //throw new ReadOnlyException("Task GUID can only be set once (at initialization)");
+                    throw new ReadOnlyException("Task GUID can only be set once (at initialization)");
                 }
             }
         }
