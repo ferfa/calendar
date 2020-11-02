@@ -6,6 +6,8 @@ namespace calendar.ViewModels.Commands
 {
     public class ChangeViewCommand : ICommand
     {
+        private readonly Type _viewType;
+
         public event EventHandler CanExecuteChanged;
 
         public ChangeViewCommand(Type viewType)
@@ -19,7 +21,5 @@ namespace calendar.ViewModels.Commands
         {
             MainWindowViewModel.View = (View)Activator.CreateInstance(_viewType);
         }
-
-        private readonly Type _viewType;
     }
 }

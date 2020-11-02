@@ -21,7 +21,6 @@ namespace calendar.ViewModels
             _firstDay = ((int)(new DateTime(Year, Month, 1).DayOfWeek) + 6) % 7;
 
             NewTaskViewCommand = new ChangeViewCommand(typeof(NewTaskView));
-            TestTaskCommand = new NewTaskCommand();
 
             Days = new List<DayViewModel>();
 
@@ -39,9 +38,8 @@ namespace calendar.ViewModels
             }
         }
 
-        public NewTaskCommand TestTaskCommand { get; private set; }
-
         public ChangeViewCommand NewTaskViewCommand { get; private set; }
+
         public List<DayViewModel> Days { get; private set; }
         public int Year { get; private set; }
         public int Month { get; private set; }

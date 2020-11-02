@@ -11,14 +11,14 @@
     </UserControl.DataContext>
     <StackPanel>
         <TextBlock Text="Datum"/>
-        <TextBox/>
+        <DatePicker SelectedDate="{Binding Path=NewTaskDate}"/>
         <TextBlock Text="Název"/>
-        <TextBox/>
+        <TextBox Text="{Binding Path=NewTaskName}"/>
         <TextBlock Text="Popis"/>
-        <TextBox VerticalContentAlignment="Stretch"/>
+        <TextBox Text="{Binding Path=NewTaskDetails}" AcceptsReturn="True" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         <WrapPanel>
-            <Button Name="OkButton" Command="{Binding Path=NewTask_Submit}" Content="Ok" IsDefault="True" HorizontalAlignment="Left" Margin="0,0,4,0"></Button>
-            <Button Name="CancelButton" Command="{Binding Path=ChangeView_CalendarMonth}" Content="Storno" HorizontalAlignment="Left"></Button>
+            <Button Name="OkButton" Command="{Binding Path=Command_Submit, UpdateSourceTrigger=PropertyChanged}" Content="Ok" IsDefault="True" HorizontalAlignment="Left" Margin="0,0,4,0"></Button>
+            <Button Name="CancelButton" Command="{Binding Path=Command_Cancel, UpdateSourceTrigger=PropertyChanged}"  Content="Storno" HorizontalAlignment="Left"></Button>
         </WrapPanel>
     </StackPanel>
 </local:View>

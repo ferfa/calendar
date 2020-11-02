@@ -25,19 +25,6 @@ namespace calendar.Utilities
             });
         }
 
-        public static void AddTestTask()
-        {
-            Tasks.Add(new TaskModel()
-            {
-                Name = "test",
-                Details = "details",
-                Date = DateTime.Now.Date,
-                Time = DateTime.Now.TimeOfDay
-            });
-
-            OnTasksModified();
-        }
-
         public static List<TaskModel> GetTasksByDate(DateTime date)
         {
             var query = from task in Tasks
