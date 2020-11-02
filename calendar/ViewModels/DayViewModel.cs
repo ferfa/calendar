@@ -1,52 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using calendar.Models;
 using calendar.Utilities;
-using calendar.Models;
-using System.Collections.ObjectModel;
-using System.Net.WebSockets;
-using System.Collections.Specialized;
-using System.Runtime.CompilerServices;
-using System.Windows;
 using calendar.ViewModels.Commands;
+using System;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace calendar.ViewModels
 {
-    public class DayViewModel : ObservableObject
+    public class DayViewModel : ViewModel
     {
-        ////public IEnumerable<TaskViewModel> Tasks { get; }
-        ////public DateTime Date { get; }
-
-        ////public DayViewModel(DateTime DT)
-        ////{
-        ////    Date = DT;
-
-        ////    Tasks = from task in TaskManager.Tasks
-        ////            where task.Date.Year == Date.Year
-        ////            && task.Date.Month == Date.Month
-        ////            && task.Date.Day == Date.Day
-        ////            select task;
-        ////}
-
-        //public DayModel Day { get; }
-
-        //public DateTime Date
-        //{
-        //    get
-        //    {
-        //        return Day.Date;
-        //    }
-        //}
-
-        //public DayViewModel(DateTime date)
-        //{
-        //    Day = new DayModel()
-        //    {
-        //        Date = date
-        //    };
-        //}
-
-        public NewTaskCommand NewTask { get; private set; } = new NewTaskCommand(TaskManager.AddTestTask);
+        private DayModel _dayModel;
+        private Visibility _visibility = Visibility.Hidden;
+        
+        public DayViewModel()
+        {
+            _dayModel = new DayModel();
+            TaskManager.TasksModified += Query;
+        }
 
         public Visibility Visibility
         {
@@ -75,23 +45,20 @@ namespace calendar.ViewModels
             }
         }
 
+        private List<TaskModel> _tasks;
         public List<TaskModel> Tasks
         {
             get
             {
-                return _dayModel.Tasks;
+                //return _dayModel.Tasks;
+                return _tasks;
             }
             set
             {
-                _dayModel.Tasks = value;
+                //_dayModel.Tasks = value;
+                _tasks = value;
                 OnPropertyChanged();
             }
-        }
-
-        public DayViewModel()
-        {
-            _dayModel = new DayModel();
-            TaskManager.TasksModified += Query;
         }
 
         public void Query()
@@ -105,8 +72,5 @@ namespace calendar.ViewModels
                 Tasks = null;
             }
         }
-
-        private DayModel _dayModel;
-        private Visibility _visibility = Visibility.Hidden;
     }
 }

@@ -1,0 +1,24 @@
+﻿<local:View x:Class="calendar.Views.NewTaskView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:calendar.Views"
+            xmlns:viewmodels="clr-namespace:calendar.ViewModels"
+            mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewmodels:NewTaskViewModel/>
+    </UserControl.DataContext>
+    <StackPanel>
+        <TextBlock Text="Datum"/>
+        <TextBox/>
+        <TextBlock Text="Název"/>
+        <TextBox/>
+        <TextBlock Text="Popis"/>
+        <TextBox VerticalContentAlignment="Stretch"/>
+        <WrapPanel>
+            <Button Name="OkButton" Command="{Binding Path=NewTask_Submit}" Content="Ok" IsDefault="True" HorizontalAlignment="Left" Margin="0,0,4,0"></Button>
+            <Button Name="CancelButton" Command="{Binding Path=ChangeView_CalendarMonth}" Content="Storno" HorizontalAlignment="Left"></Button>
+        </WrapPanel>
+    </StackPanel>
+</local:View>

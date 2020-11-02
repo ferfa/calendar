@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Tracing;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Controls;
 
 namespace calendar
 {
@@ -14,5 +16,7 @@ namespace calendar
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
     }
 }

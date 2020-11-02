@@ -1,4 +1,5 @@
-﻿using System;
+﻿using calendar.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -9,13 +10,6 @@ namespace calendar.ViewModels.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        private Action _action;
-
-        public NewTaskCommand(Action action)
-        {
-            _action = action;
-        }
-
         public bool CanExecute(object parameter)
         {
             return true;
@@ -23,7 +17,7 @@ namespace calendar.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            _action.Invoke();
+            TaskManager.AddTestTask();
         }
     }
 }
