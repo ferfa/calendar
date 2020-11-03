@@ -11,7 +11,7 @@ namespace calendar.ViewModels
     {
         public NewTaskViewModel()
         {
-            Command_Close = new ChangeViewCommand(typeof(CalendarMonthViewModel));
+            Command_Close = new ChangeViewCommand<CalendarMonthViewModel>(DateTime.Now);
 
             Command_Submit = new CommandCombo(
                 new ICommand[] {
@@ -22,7 +22,7 @@ namespace calendar.ViewModels
             NewTaskDate = DateTime.Now;
         }
 
-        public ChangeViewCommand Command_Close { get; private set; }
+        public ChangeViewCommand<CalendarMonthViewModel> Command_Close { get; private set; }
         public CommandCombo Command_Submit { get; private set; }
 
         public string NewTaskName { get; set; }

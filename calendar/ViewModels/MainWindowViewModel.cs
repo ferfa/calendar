@@ -15,7 +15,7 @@ namespace calendar.ViewModels
 
         public MainWindowViewModel()
         {
-            _view = new CalendarMonthViewModel();
+            _view = new CalendarMonthViewModel(DateTime.Now);
         }
 
         public static event PropertyChangedEventHandler StaticPropertyChanged;

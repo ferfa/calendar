@@ -4,22 +4,29 @@ using calendar.Views;
 
 namespace calendar.ViewModels.Commands
 {
-    public class ChangeViewCommand : ICommand
+    public class ChangeViewCommand<T> : ICommand where T : ViewModel
     {
-        private readonly Type _viewModelType;
+        private DateTime _dateTimeParam;
 
         public event EventHandler CanExecuteChanged;
 
-        public ChangeViewCommand(Type viewModelType)
+        public ChangeViewCommand(DateTime dateTimeParam = new DateTime()) 
         {
-            _viewModelType = viewModelType;
+            _dateTimeParam = (DateTime)dateTimeParam;
         }
 
         public bool CanExecute(object parameter) => true;
 
         public void Execute(object parameter)
         {
-            MainWindowViewModel.ViewModel = (ViewModel)Activator.CreateInstance(_viewModelType);
+            if (typeof(T) == typeof(CalendarMonthViewModel))
+            {
+                MainWindowViewModel.ViewModel = (T)Activator.CreateInstance(typeof(T), _dateTimeParam);
+            }
+            else
+            {
+                MainWindowViewModel.ViewModel = (T)Activator.CreateInstance(typeof(T));
+            }
         }
     }
 }

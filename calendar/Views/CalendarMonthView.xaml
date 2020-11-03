@@ -9,11 +9,16 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Nová událost..." Command="{Binding Path=NewTaskViewCommand}" HorizontalAlignment="Left"/>
-        <ItemsControl ItemsSource="{Binding Path=Days}" Grid.Row="1">
+        <WrapPanel>
+            <Button Content="Nová událost..." Command="{Binding Path=NewTaskViewCommand}" HorizontalAlignment="Left" Margin="5"/>
+            <Button Content="&lt;" Command="{Binding Path=Command_PreviousMonth}" HorizontalAlignment="Left"/>
+            <Button Content="&gt;" Command="{Binding Path=Command_NextMonth}" HorizontalAlignment="Left"/>
+        </WrapPanel>
+        <ItemsControl ItemsSource="{Binding Path=Days}" Grid.Row="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="7" Rows="6"></UniformGrid>
