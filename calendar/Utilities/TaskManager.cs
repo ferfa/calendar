@@ -14,21 +14,20 @@ namespace calendar.Utilities
 
         public static List<TaskModel> Tasks { get; } = new List<TaskModel>();
 
-        public static void AddTask(string name, string details, DateTime date, TimeSpan time)
+        public static void AddTask(string name, string details, DateTime dateAndTime)
         {
             Tasks.Add(new TaskModel()
             {
                 Name = name,
                 Details = details,
-                Date = date,
-                Time = time
+                DateAndTime = dateAndTime,
             });
         }
 
         public static List<TaskModel> GetTasksByDate(DateTime date)
         {
             var query = from task in Tasks
-                        where task.Date == date.Date
+                        where task.DateAndTime.Date == date.Date
                         select task;
 
             return new List<TaskModel>(query);

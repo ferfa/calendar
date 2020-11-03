@@ -6,19 +6,16 @@
             xmlns:local="clr-namespace:calendar.Views"
             xmlns:viewmodels="clr-namespace:calendar.ViewModels"
             mc:Ignorable="d">
-    <UserControl.DataContext>
-        <viewmodels:NewTaskViewModel/>
-    </UserControl.DataContext>
     <StackPanel>
         <TextBlock Text="Datum"/>
-        <DatePicker SelectedDate="{Binding Path=NewTaskDate}"/>
+        <DatePicker SelectedDate="{Binding Path=NewTaskDate, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Název"/>
-        <TextBox Text="{Binding Path=NewTaskName}"/>
+        <TextBox Text="{Binding Path=NewTaskName, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBlock Text="Popis"/>
-        <TextBox Text="{Binding Path=NewTaskDetails}" AcceptsReturn="True" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <TextBox Text="{Binding Path=NewTaskDetails, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         <WrapPanel>
             <Button Name="OkButton" Command="{Binding Path=Command_Submit, UpdateSourceTrigger=PropertyChanged}" Content="Ok" IsDefault="True" HorizontalAlignment="Left" Margin="0,0,4,0"></Button>
-            <Button Name="CancelButton" Command="{Binding Path=Command_Cancel, UpdateSourceTrigger=PropertyChanged}"  Content="Storno" HorizontalAlignment="Left"></Button>
+            <Button Name="CancelButton" Command="{Binding Path=Command_Close, UpdateSourceTrigger=PropertyChanged}"  Content="Storno" HorizontalAlignment="Left"></Button>
         </WrapPanel>
     </StackPanel>
 </local:View>

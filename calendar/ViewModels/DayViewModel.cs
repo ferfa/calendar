@@ -9,7 +9,8 @@ namespace calendar.ViewModels
 {
     public class DayViewModel : ViewModel
     {
-        private DayModel _dayModel;
+        private readonly DayModel _dayModel;
+        private List<TaskModel> _tasks;
         private Visibility _visibility = Visibility.Hidden;
         
         public DayViewModel()
@@ -45,17 +46,15 @@ namespace calendar.ViewModels
             }
         }
 
-        private List<TaskModel> _tasks;
         public List<TaskModel> Tasks
         {
             get
             {
-                //return _dayModel.Tasks;
-                return _tasks;
+                return _dayModel.Tasks;
             }
             set
             {
-                //_dayModel.Tasks = value;
+                _dayModel.Tasks = value;
                 _tasks = value;
                 OnPropertyChanged();
             }

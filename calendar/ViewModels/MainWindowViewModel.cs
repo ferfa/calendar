@@ -11,16 +11,16 @@ namespace calendar.ViewModels
 {
     public class MainWindowViewModel : ViewModel
     {
-        private static View _view;
+        private static ViewModel _view;
 
         public MainWindowViewModel()
         {
-            _view = new CalendarMonthView();
+            _view = new CalendarMonthViewModel();
         }
 
         public static event PropertyChangedEventHandler StaticPropertyChanged;
 
-        public static View View
+        public static ViewModel ViewModel
         {
             get => _view;
             set

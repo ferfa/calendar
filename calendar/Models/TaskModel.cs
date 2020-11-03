@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 
 namespace calendar.Models
 {
@@ -7,8 +8,7 @@ namespace calendar.Models
     {
         public string Name { get; set; }
         public string Details { get; set; }
-        public DateTime Date { get; set; }
-        public TimeSpan Time { get; set; }
+        public DateTime DateAndTime { get; set; }
 
         private Guid _guid;
         public Guid Guid
@@ -34,6 +34,7 @@ namespace calendar.Models
         public TaskModel()
         {
             Guid = Guid.NewGuid();
+            Trace.WriteLine($"{ Name } created");
         }
 
     }
