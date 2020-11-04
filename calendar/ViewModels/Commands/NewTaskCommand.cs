@@ -1,4 +1,5 @@
-﻿using calendar.Utilities;
+﻿using calendar.Models;
+using calendar.Utilities;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -28,8 +29,13 @@ namespace calendar.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            TaskManager.AddTask(_newTaskViewModel.NewTaskName, _newTaskViewModel.NewTaskDetails, _newTaskViewModel.NewTaskDate);
             Trace.WriteLine($"task created ({ _newTaskViewModel.NewTaskName }, { _newTaskViewModel.NewTaskDetails }, { _newTaskViewModel.NewTaskDate })");
+            TaskManager.Tasks.Add(new TaskModel()
+            {
+                Name = _newTaskViewModel.NewTaskName,
+                Details = _newTaskViewModel.NewTaskDetails,
+                DateAndTime = _newTaskViewModel.NewTaskDate,
+            });
         }
     }
 }

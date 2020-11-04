@@ -10,7 +10,6 @@ namespace calendar.ViewModels
     public class DayViewModel : ViewModel
     {
         private readonly DayModel _dayModel;
-        private List<TaskModel> _tasks;
         private Visibility _visibility = Visibility.Hidden;
         
         public DayViewModel()
@@ -55,7 +54,6 @@ namespace calendar.ViewModels
             set
             {
                 _dayModel.Tasks = value;
-                _tasks = value;
                 OnPropertyChanged();
             }
         }

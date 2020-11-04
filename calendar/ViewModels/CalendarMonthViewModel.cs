@@ -19,9 +19,10 @@ namespace calendar.ViewModels
         {
             _yearAndMonth = yearAndMonth;
 
-            NewTaskViewCommand = new ChangeViewCommand<NewTaskViewModel>();
-            Command_PreviousMonth = new ChangeViewCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(-1));
-            Command_NextMonth = new ChangeViewCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(1));
+            Command_NewTaskDialog = new ChangeViewModelCommand<NewTaskViewModel>();
+            Command_CurrentMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(DateTime.Now);
+            Command_PreviousMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(-1));
+            Command_NextMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(1));
 
             // Makes Monday the first day of week and gets the day of week where the current month starts
             _firstDay = ((int)(new DateTime(Year, Month, 1).DayOfWeek) + 6) % 7;
@@ -41,6 +42,13 @@ namespace calendar.ViewModels
             }
         }
 
+        public ChangeViewModelCommand<NewTaskViewModel> Command_NewTaskDialog { get; private set; }
+        public ChangeViewModelCommand<CalendarMonthViewModel> Command_CurrentMonth { get; private set; }
+        public ChangeViewModelCommand<CalendarMonthViewModel> Command_PreviousMonth { get; private set; }
+        public ChangeViewModelCommand<CalendarMonthViewModel> Command_NextMonth { get; private set; }
+
+        public List<DayViewModel> Days { get; private set; }
+
         public int Year
         {
             get
@@ -57,10 +65,12 @@ namespace calendar.ViewModels
             }
         }
 
-        public ChangeViewCommand<NewTaskViewModel> NewTaskViewCommand { get; private set; }
-        public ChangeViewCommand<CalendarMonthViewModel> Command_PreviousMonth { get; private set; }
-        public ChangeViewCommand<CalendarMonthViewModel> Command_NextMonth { get; private set; }
-
-        public List<DayViewModel> Days { get; private set; }
+        public override void Update()
+        {
+            foreach (var day in Days)
+            {
+                day.Query();
+            }
+        }
     }
 }

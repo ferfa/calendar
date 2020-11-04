@@ -1,6 +1,7 @@
 ﻿using calendar.ViewModels.Commands;
 using calendar.Views;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -11,7 +12,7 @@ namespace calendar.ViewModels
     {
         public NewTaskViewModel()
         {
-            Command_Close = new ChangeViewCommand<CalendarMonthViewModel>(DateTime.Now);
+            Command_Close = new PreviousViewModelCommand();
 
             Command_Submit = new CommandCombo(
                 new ICommand[] {
@@ -22,7 +23,7 @@ namespace calendar.ViewModels
             NewTaskDate = DateTime.Now;
         }
 
-        public ChangeViewCommand<CalendarMonthViewModel> Command_Close { get; private set; }
+        public PreviousViewModelCommand Command_Close { get; private set; }
         public CommandCombo Command_Submit { get; private set; }
 
         public string NewTaskName { get; set; }

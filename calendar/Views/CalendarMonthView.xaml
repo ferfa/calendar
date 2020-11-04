@@ -13,11 +13,22 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <WrapPanel>
-            <Button Content="Nová událost..." Command="{Binding Path=NewTaskViewCommand}" HorizontalAlignment="Left" Margin="5"/>
-            <Button Content="&lt;" Command="{Binding Path=Command_PreviousMonth}" HorizontalAlignment="Left"/>
-            <Button Content="&gt;" Command="{Binding Path=Command_NextMonth}" HorizontalAlignment="Left"/>
-        </WrapPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Nová událost..." Command="{Binding Path=Command_NewTaskDialog}" HorizontalAlignment="Left" Margin="5"/>
+            <Button Content="&lt;" Command="{Binding Path=Command_PreviousMonth}" HorizontalAlignment="Left" Margin="5,5,0,5"/>
+            <Button Content="&gt;" Command="{Binding Path=Command_NextMonth}" HorizontalAlignment="Left" Margin="0,5,5,5"/>
+            <TextBlock FontSize="18" Margin="5">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} / {1}">
+                        <Binding Path="Month"/>
+                        <Binding Path="Year"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+                <TextBlock.InputBindings>
+                    <MouseBinding Command="{Binding Path=Command_CurrentMonth}" MouseAction="LeftClick"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
+        </StackPanel>
         <ItemsControl ItemsSource="{Binding Path=Days}" Grid.Row="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
