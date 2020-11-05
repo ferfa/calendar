@@ -32,25 +32,32 @@
         <ItemsControl ItemsSource="{Binding Path=Days}" Grid.Row="2">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Columns="7" Rows="6"></UniformGrid>
+                    <UniformGrid Columns="7" Rows="6"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black">
+                    <Border BorderThickness="1" BorderBrush="#FFB8B8B8">
                         <Grid Visibility="{Binding Path=Visibility}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="3*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <TextBlock Text="{Binding Path=Date.Day, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0"></TextBlock>
-                            <ListBox ItemsSource="{Binding Path=Tasks, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
-                                <ListBox.ItemTemplate>
+                            <ItemsControl ItemsSource="{Binding Path=Tasks, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
+                                <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <Border Margin="1"  BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178">
+                                            <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White"/>
+                                            <Border.InputBindings>
+                                                <MouseBinding MouseAction="LeftDoubleClick"
+                                                              Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:View}},Path=DataContext.Command_EditTaskDialog}"
+                                                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Border}, Path=DataContext}"/>
+                                            </Border.InputBindings>
+                                        </Border>
                                     </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Grid>
                     </Border>
                 </DataTemplate>

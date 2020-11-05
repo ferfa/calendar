@@ -7,10 +7,9 @@ namespace calendar.ViewModels.Commands
 {
     public class CommandCombo : ICommand
     {
-        // TODO: add parameter support
         private readonly ICommand[] _commands;
 
-        public CommandCombo(ICommand[] commands)
+        public CommandCombo(params ICommand[] commands)
         {
             _commands = commands;
         }

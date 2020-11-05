@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.DirectoryServices.ActiveDirectory;
-using System.Reflection;
-using System.Windows.Documents;
 using System.Windows.Input;
-using calendar.Views;
 
 namespace calendar.ViewModels.Commands
 {
@@ -13,7 +7,7 @@ namespace calendar.ViewModels.Commands
     {
         private object[] _viewModelParams;
 
-        public ChangeViewModelCommand(params object[] viewModelParams) 
+        public ChangeViewModelCommand(params object[] viewModelParams)
         {
             _viewModelParams = viewModelParams;
         }
@@ -28,7 +22,14 @@ namespace calendar.ViewModels.Commands
         public void Execute(object parameter)
         {
             PreviousViewModelCommand.PreviousViewModel = MainWindowViewModel.ViewModel;
-            MainWindowViewModel.ViewModel = (T)Activator.CreateInstance(typeof(T), _viewModelParams);
+            if (parameter == null)
+            {
+                MainWindowViewModel.ViewModel = (T)Activator.CreateInstance(typeof(T), _viewModelParams);
+            }
+            else
+            {
+                MainWindowViewModel.ViewModel = (T)Activator.CreateInstance(typeof(T), parameter);
+            }
         }
     }
 }

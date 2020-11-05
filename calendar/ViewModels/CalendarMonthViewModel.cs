@@ -19,7 +19,6 @@ namespace calendar.ViewModels
         {
             _yearAndMonth = yearAndMonth;
 
-            Command_NewTaskDialog = new ChangeViewModelCommand<NewTaskViewModel>();
             Command_CurrentMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(DateTime.Now);
             Command_PreviousMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(-1));
             Command_NextMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(1));
@@ -42,7 +41,8 @@ namespace calendar.ViewModels
             }
         }
 
-        public ChangeViewModelCommand<NewTaskViewModel> Command_NewTaskDialog { get; private set; }
+        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; private set; } = new ChangeViewModelCommand<TaskDetailsViewModel>();
+        public ChangeViewModelCommand<TaskDetailsViewModel> Command_EditTaskDialog { get; private set; } = new ChangeViewModelCommand<TaskDetailsViewModel>();
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_CurrentMonth { get; private set; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_PreviousMonth { get; private set; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_NextMonth { get; private set; }

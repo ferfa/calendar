@@ -18,6 +18,8 @@ namespace calendar.ViewModels
             TaskManager.TasksModified += Query;
         }
 
+        public ChangeViewModelCommand<TaskDetailsViewModel> Command_EditTaskDialog { get; set; }
+
         public Visibility Visibility
         {
             get
