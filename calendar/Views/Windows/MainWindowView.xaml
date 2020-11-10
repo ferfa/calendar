@@ -7,6 +7,7 @@
         xmlns:viewmodels="clr-namespace:calendar.ViewModels"
         mc:Ignorable="d"
         Title="Kalendář" Height="720" Width="1080" WindowStartupLocation="CenterScreen">
+
     <Window.DataContext>
         <viewmodels:MainWindowViewModel/>
     </Window.DataContext>
@@ -17,9 +18,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Kalendář" Grid.Row="0" FontSize="36" Margin="5,5,5,5"/>
+        <TextBlock Text="{Binding ElementName=ViewControl, Path=Content.DataContext.Title}" Grid.Row="0" FontSize="36" Margin="5,5,5,5"/>
 
-        <ContentControl Grid.Row="1">
+        <ContentControl x:Name="ViewControl" Grid.Row="1">
             <ContentPresenter Content="{Binding Path=ViewModel}" Margin="20"/>
         </ContentControl>
     </Grid>

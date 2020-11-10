@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace calendar.Views
 {
-    public class View : UserControl
+    public abstract class View : UserControl
     {
     }
 }

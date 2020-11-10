@@ -12,21 +12,34 @@ namespace calendar.ViewModels
     {
         private string _taskName;
         private string _taskDetails;
-        private DateTime _taskDateAndTime = DateTime.Now;
+        private DateTime _taskDate = DateTime.Now.Date;
+        private TimeSpan _taskTime = new TimeSpan(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
 
+        // TODO: fix time
+
+        /// <summary>
+        /// For creating a new TaskModel
+        /// </summary>
         public TaskDetailsViewModel()
         {
             Command_Submit = new CommandCombo(new TaskDetailsCommand(this), Command_Close);
         }
 
-        public TaskDetailsViewModel(TaskModel task)
+        /// <summary>
+        /// For editing existing <paramref name="taskModel"/>
+        /// </summary>
+        /// <param name="taskModel"></param>
+        public TaskDetailsViewModel(TaskModel taskModel)
         {
-            _taskName = task.Name;
-            _taskDetails = task.Details;
-            _taskDateAndTime = task.DateAndTime;
+            _taskName = taskModel.Name;
+            _taskDetails = taskModel.Details;
+            _taskDate = taskModel.DateAndTime.Date;
+            _taskTime = taskModel.DateAndTime.TimeOfDay;
 
-            Command_Submit = new CommandCombo(new TaskDetailsCommand(this, task), Command_Close);
+            Command_Submit = new CommandCombo(new TaskDetailsCommand(this, taskModel), Command_Close);
         }
+
+        public override string Title => "Podrobnosti události";
 
         public CommandCombo Command_Submit { get; private set; }
         public PreviousViewModelCommand Command_Close { get; private set; } = new PreviousViewModelCommand();
@@ -51,15 +64,29 @@ namespace calendar.ViewModels
             }
         }
 
-        public DateTime TaskDateAndTime
+        public DateTime TaskDate
         {
-            get => _taskDateAndTime;
+            get => _taskDate;
             set
             {
-                _taskDateAndTime = value;
+                _taskDate = value;
                 OnPropertyChanged();
             }
         }
 
+        public TimeSpan TaskTime
+        {
+            get => _taskTime;
+            set
+            {
+                _taskTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime TaskDateAndTime
+        {
+            get => _taskDate + _taskTime;
+        }
     }
 }

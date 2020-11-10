@@ -24,6 +24,11 @@ namespace calendar.Utilities
             });
         }
 
+        public static void AddTask(TaskModel taskModel)
+        {
+            Tasks.Add(taskModel);
+        }
+
         public static List<TaskModel> GetTasksByDate(DateTime date)
         {
             var query = from task in Tasks

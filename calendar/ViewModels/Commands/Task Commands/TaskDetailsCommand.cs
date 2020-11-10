@@ -34,20 +34,21 @@ namespace calendar.ViewModels.Commands
         {
             if (_task == null)
             {
-                Trace.WriteLine($"task created ({ _taskDetailsSource.TaskName }, { _taskDetailsSource.TaskDetails }, { _taskDetailsSource.TaskDateAndTime })");
-                TaskManager.Tasks.Add(new TaskModel()
+                TaskModel task = new TaskModel()
                 {
                     Name = _taskDetailsSource.TaskName,
                     Details = _taskDetailsSource.TaskDetails,
-                    DateAndTime = _taskDetailsSource.TaskDateAndTime,
-                });
+                    DateAndTime = _taskDetailsSource.TaskDate + _taskDetailsSource.TaskTime
+                };
+                Trace.WriteLine($"task created ({ task.Name }, { task.Details }, { task.DateAndTime.ToShortDateString() }, { task.DateAndTime.TimeOfDay}, GUID: { task.Guid })");
+                TaskManager.AddTask(task);
             }
             else
             {
-                Trace.WriteLine($"task modified ({ _taskDetailsSource.TaskName }, { _taskDetailsSource.TaskDetails }, { _taskDetailsSource.TaskDateAndTime })");
                 _task.Name = _taskDetailsSource.TaskName;
                 _task.Details = _taskDetailsSource.TaskDetails;
-                _task.DateAndTime = _taskDetailsSource.TaskDateAndTime;
+                _task.DateAndTime = _taskDetailsSource.TaskDate.Date + _taskDetailsSource.TaskTime;
+                Trace.WriteLine($"task modified ({ _task.Name }, { _task.Details }, { _task.DateAndTime.ToShortDateString() }, { _task.DateAndTime.TimeOfDay }, GUID: { _task.Guid })");
             }
         }
     }

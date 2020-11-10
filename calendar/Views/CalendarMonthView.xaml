@@ -48,7 +48,10 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Margin="1"  BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178">
-                                            <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White"/>
+                                            <DockPanel>
+                                                <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" DockPanel.Dock="Left"/>
+                                                <TextBlock Text="{Binding Path=DateAndTime, UpdateSourceTrigger=PropertyChanged, StringFormat=H:mm}" Foreground="White" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+                                            </DockPanel>
                                             <Border.InputBindings>
                                                 <MouseBinding MouseAction="LeftDoubleClick"
                                                               Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type local:View}},Path=DataContext.Command_EditTaskDialog}"

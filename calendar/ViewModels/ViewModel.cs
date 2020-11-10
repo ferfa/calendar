@@ -9,5 +9,7 @@ namespace calendar.ViewModels
         public virtual void Update()
         {
         }
+
+        public virtual string Title { get; } = "Kalendář";
     }
 }

@@ -41,6 +41,8 @@ namespace calendar.ViewModels
             }
         }
 
+        public override string Title => $"Kalendář / { Month } { Year }";
+
         public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; private set; } = new ChangeViewModelCommand<TaskDetailsViewModel>();
         public ChangeViewModelCommand<TaskDetailsViewModel> Command_EditTaskDialog { get; private set; } = new ChangeViewModelCommand<TaskDetailsViewModel>();
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_CurrentMonth { get; private set; }
