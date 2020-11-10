@@ -29,6 +29,12 @@ namespace calendar.Utilities
             Tasks.Add(taskModel);
         }
 
+        public static void DeleteTask(TaskModel taskModel)
+        {
+            Tasks.Remove(taskModel);
+            OnTasksModified();
+        }
+
         public static List<TaskModel> GetTasksByDate(DateTime date)
         {
             var query = from task in Tasks
