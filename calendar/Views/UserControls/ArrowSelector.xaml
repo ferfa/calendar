@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="calendar.Views.UserControls.ArrowSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:calendar.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="16"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Text="{Binding RelativeSource={RelativeSource AncestorType=UserControl}, Path=Time, StringFormat=\{0:h\\:mm\}}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" VerticalContentAlignment="Center"/>
+        <Button x:Name="ButtonUp" Click="ButtonUp_Click" Content="▲" FontSize="5" Grid.Column="1" Grid.Row="0"/>
+        <Button x:Name="ButtonDown" Click="ButtonDown_Click" Content="▼" FontSize="5" Grid.Column="1" Grid.Row="1"/>
+    </Grid>
+</UserControl>
