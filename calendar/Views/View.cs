@@ -6,9 +6,5 @@ namespace calendar.Views
 {
     public class View : UserControl
     {
-        public View()
-        {
-
-        }
     }
 }

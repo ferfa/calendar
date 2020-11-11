@@ -1,15 +1,11 @@
-﻿using System;
-using System.Windows;
-using calendar.Utilities;
-using calendar.ViewModels;
-using calendar.Views;
+﻿using System.Windows;
 
 namespace calendar
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
     }
 }

@@ -1,5 +1,4 @@
-﻿using calendar.Models;
-using calendar.Utilities;
+﻿using calendar.Utilities;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;

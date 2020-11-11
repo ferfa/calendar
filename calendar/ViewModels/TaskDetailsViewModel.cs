@@ -1,10 +1,5 @@
-﻿using calendar.Models;
-using calendar.ViewModels.Commands;
+﻿using calendar.ViewModels.Commands;
 using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Windows.Input;
 
 namespace calendar.ViewModels
 {

@@ -1,11 +1,8 @@
-﻿using System;
+﻿using calendar.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using calendar.Models;
-using calendar.ViewModels;
 
 namespace calendar.Utilities
 {
@@ -42,6 +39,7 @@ namespace calendar.Utilities
         {
             var query = from task in Tasks
                         where task.DateAndTime.Date == date.Date
+                        orderby task.DateAndTime.TimeOfDay
                         select task;
 
             return new List<TaskViewModel>(query);

@@ -1,7 +1,6 @@
 ﻿using calendar.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace calendar.Models
 {

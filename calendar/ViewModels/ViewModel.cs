@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace calendar.ViewModels
+﻿namespace calendar.ViewModels
 {
     public abstract class ViewModel : ObservableObject
     {

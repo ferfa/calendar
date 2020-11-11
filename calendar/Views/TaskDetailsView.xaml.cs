@@ -3,7 +3,7 @@
     /// <summary>
     /// Interaction logic for TaskDetailsView.xaml
     /// </summary>
-    public partial class TaskDetailsView : View
+    public partial class TaskDetailsView
     {
         public TaskDetailsView()
         {
