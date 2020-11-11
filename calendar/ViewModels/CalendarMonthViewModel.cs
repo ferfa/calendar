@@ -1,6 +1,5 @@
 ﻿using calendar.Models;
 using calendar.ViewModels.Commands;
-using calendar.ViewModels.Commands.Task_Commands;
 using calendar.Views;
 using System;
 using System.Collections.Generic;
@@ -45,8 +44,6 @@ namespace calendar.ViewModels
         public override string Title => $"Kalendář / { Month } { Year }";
 
         public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new ChangeViewModelCommand<TaskDetailsViewModel>();
-        public ChangeViewModelCommand<TaskDetailsViewModel> Command_EditTaskDialog { get; } = new ChangeViewModelCommand<TaskDetailsViewModel>();
-        public DeleteTaskCommand Command_DeleteTask { get; } = new DeleteTaskCommand();
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_CurrentMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_PreviousMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_NextMonth { get; }

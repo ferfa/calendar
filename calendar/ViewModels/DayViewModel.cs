@@ -47,7 +47,7 @@ namespace calendar.ViewModels
             }
         }
 
-        public List<TaskModel> Tasks
+        public List<TaskViewModel> Tasks
         {
             get
             {

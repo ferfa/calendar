@@ -9,7 +9,7 @@ namespace calendar.ViewModels.Commands
     public class TaskDetailsCommand : ICommand
     {
         private readonly TaskDetailsViewModel _taskDetailsSource;
-        private readonly TaskModel _task;
+        private readonly TaskViewModel _task;
 
         public event EventHandler CanExecuteChanged;
 
@@ -19,7 +19,7 @@ namespace calendar.ViewModels.Commands
         /// </summary>
         /// <param name="task"></param>
         /// <param name="taskDetailsSource"></param>
-        public TaskDetailsCommand(TaskDetailsViewModel taskDetailsSource, TaskModel task = null)
+        public TaskDetailsCommand(TaskDetailsViewModel taskDetailsSource, TaskViewModel task = null)
         {
             _taskDetailsSource = taskDetailsSource;
             _task = task;
@@ -34,7 +34,7 @@ namespace calendar.ViewModels.Commands
         {
             if (_task == null)
             {
-                TaskModel task = new TaskModel()
+                TaskViewModel task = new TaskViewModel()
                 {
                     Name = _taskDetailsSource.TaskName,
                     Details = _taskDetailsSource.TaskDetails,

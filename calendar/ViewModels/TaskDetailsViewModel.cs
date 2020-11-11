@@ -26,17 +26,17 @@ namespace calendar.ViewModels
         }
 
         /// <summary>
-        /// For editing existing <paramref name="taskModel"/>
+        /// For editing existing <paramref name="taskViewModel"/>
         /// </summary>
-        /// <param name="taskModel"></param>
-        public TaskDetailsViewModel(TaskModel taskModel)
+        /// <param name="taskViewModel"></param>
+        public TaskDetailsViewModel(TaskViewModel taskViewModel)
         {
-            _taskName = taskModel.Name;
-            _taskDetails = taskModel.Details;
-            _taskDate = taskModel.DateAndTime.Date;
-            _taskTime = taskModel.DateAndTime.TimeOfDay;
+            _taskName = taskViewModel.Name;
+            _taskDetails = taskViewModel.Details;
+            _taskDate = taskViewModel.DateAndTime.Date;
+            _taskTime = taskViewModel.DateAndTime.TimeOfDay;
 
-            Command_Submit = new CommandCombo(new TaskDetailsCommand(this, taskModel), Command_Close);
+            Command_Submit = new CommandCombo(new TaskDetailsCommand(this, taskViewModel), Command_Close);
         }
 
         public override string Title => "Podrobnosti události";
