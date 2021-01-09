@@ -8,12 +8,12 @@ namespace calendar.ViewModels
     {
         private TaskViewModel _taskViewModel;
 
-        public event EventHandler CanExecuteChanged;
-
         public DeleteTaskCommand(TaskViewModel taskViewModel)
         {
             _taskViewModel = taskViewModel;
         }
+
+        public event EventHandler CanExecuteChanged { add { } remove { } }
 
         public bool CanExecute(object parameter)
         {

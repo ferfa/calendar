@@ -10,7 +10,7 @@ namespace calendar.ViewModels.Commands
         private readonly TaskDetailsViewModel _taskDetailsSource;
         private readonly TaskViewModel _task;
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged { add { } remove { } }
 
         /// <summary>
         /// Creates a new task with details provided by <paramref name="taskDetailsSource"/>

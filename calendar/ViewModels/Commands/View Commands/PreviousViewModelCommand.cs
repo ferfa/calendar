@@ -1,4 +1,5 @@
-﻿using System;
+﻿using calendar.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -7,7 +8,7 @@ namespace calendar.ViewModels.Commands
 {
     public class PreviousViewModelCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged { add { } remove { } }
 
         public bool CanExecute(object parameter)
         {
@@ -16,7 +17,7 @@ namespace calendar.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            PreviousViewModel.Update();
+            TaskManager.OnTasksModified();
             MainWindowViewModel.ViewModel = PreviousViewModel;
         }
 

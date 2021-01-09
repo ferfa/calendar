@@ -1,4 +1,5 @@
-﻿using calendar.ViewModels.Commands;
+﻿using calendar.Models;
+using calendar.ViewModels.Commands;
 using System;
 
 namespace calendar.ViewModels
@@ -8,9 +9,7 @@ namespace calendar.ViewModels
         private string _taskName;
         private string _taskDetails;
         private DateTime _taskDate = DateTime.Now.Date;
-        private TimeSpan _taskTime = new TimeSpan(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
-
-        // TODO: fix time
+        private TimeSpan _taskTime = new(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
 
         /// <summary>
         /// For creating a new TaskModel
@@ -37,7 +36,7 @@ namespace calendar.ViewModels
         public override string Title => "Podrobnosti události";
 
         public CommandCombo Command_Submit { get; private set; }
-        public PreviousViewModelCommand Command_Close { get; private set; } = new PreviousViewModelCommand();
+        public PreviousViewModelCommand Command_Close { get; private set; } = new();
 
         public string TaskName
         {

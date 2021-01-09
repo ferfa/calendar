@@ -9,13 +9,12 @@ namespace calendar.ViewModels
 {
     public class DayViewModel : ViewModel
     {
-        private readonly DayModel _dayModel;
+        private readonly DayModel _dayModel = new();
         private Visibility _visibility = Visibility.Hidden;
         
         public DayViewModel()
         {
-            _dayModel = new DayModel();
-            TaskManager.TasksModified += Query;
+            TaskManager.TasksModified += QueryTasks;
         }
 
         public ChangeViewModelCommand<TaskDetailsViewModel> Command_EditTaskDialog { get; set; }
@@ -60,16 +59,9 @@ namespace calendar.ViewModels
             }
         }
 
-        public void Query()
+        public void QueryTasks()
         {
-            if (Date != null)
-            {
-                Tasks = TaskManager.GetTasksByDate(Date);
-            }
-            else
-            {
-                Tasks = null;
-            }
+            Tasks = TaskManager.GetTasksByDate(Date);
         }
     }
 }
