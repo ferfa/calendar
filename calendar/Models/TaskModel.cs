@@ -4,19 +4,16 @@ using System.Diagnostics;
 
 namespace calendar.Models
 {
-    public class TaskModel
+    public class TaskModel : ObservableObject
     {
-        public string Name { get; set; }
-        public string Details { get; set; }
-        public DateTime DateAndTime { get; set; }
-
         private Guid _guid;
+        private string _name;
+        private string _details;
+        private DateTime _dateAndTime;
+
         public Guid Guid
         {
-            get
-            {
-                return _guid;
-            }
+            get => _guid;
             set
             {
                 if (_guid == Guid.Empty)
@@ -31,11 +28,50 @@ namespace calendar.Models
             }
         }
 
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Details
+        {
+            get => _details;
+            set
+            {
+                _details = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime DateAndTime
+        {
+            get => _dateAndTime;
+            set
+            {
+                _dateAndTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Repeat Repeating { get; } = Repeat.None;
+
         public TaskModel()
         {
             Guid = Guid.NewGuid();
-            Trace.WriteLine($"{ Name } created");
+            Trace.WriteLine($"{ Name } created ({ Guid })");
         }
+    }
 
+    public enum Repeat
+    {
+        None,
+        Daily,
+        Weekly,
+        Monthly
     }
 }

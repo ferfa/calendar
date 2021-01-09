@@ -48,7 +48,7 @@
                             <ItemsControl ItemsSource="{Binding Path=Tasks, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Margin="1"  BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178">
+                                        <Border Margin="1"  BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178" Cursor="Hand">
                                             <DockPanel>
                                                 <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" DockPanel.Dock="Left"/>
                                                 <TextBlock Text="{Binding Path=DateAndTime, UpdateSourceTrigger=PropertyChanged, StringFormat=H:mm}" Foreground="White" HorizontalAlignment="Right" DockPanel.Dock="Right"/>

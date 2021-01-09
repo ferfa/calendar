@@ -1,4 +1,5 @@
-﻿using System;
+﻿using calendar.ViewModels.Commands;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -14,6 +15,9 @@ namespace calendar.ViewModels
         }
 
         public static event PropertyChangedEventHandler StaticPropertyChanged;
+
+        public ChangeViewModelCommand<CalendarMonthViewModel> Command_ViewMonth { get; } = new(DateTime.Now);
+        public ChangeViewModelCommand<CalendarWeekViewModel> Command_ViewWeek { get; } = new(DateTime.Now);
 
         public static ViewModel ViewModel
         {

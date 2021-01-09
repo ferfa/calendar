@@ -8,11 +8,14 @@
              ShutdownMode="OnMainWindowClose">
     
     <Application.Resources>
+        <DataTemplate DataType="{x:Type viewmodels:TaskDetailsViewModel}">
+            <views:TaskDetailsView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:CalendarMonthViewModel}">
             <views:CalendarMonthView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodels:TaskDetailsViewModel}">
-            <views:TaskDetailsView/>
+        <DataTemplate DataType="{x:Type viewmodels:CalendarWeekViewModel}">
+            <views:CalendarWeekView/>
         </DataTemplate>
     </Application.Resources>
     

@@ -6,12 +6,12 @@ namespace calendar.ViewModels
 {
     public class TaskViewModel : ViewModel
     {
-        private readonly TaskModel _task = new TaskModel();
+        private readonly TaskModel _task = new();
 
         public TaskViewModel()
         {
-            Command_EditTaskDialog = new ChangeViewModelCommand<TaskDetailsViewModel>(this);
-            Command_DeleteTask = new DeleteTaskCommand(this);
+            Command_EditTaskDialog = new(this);
+            Command_DeleteTask = new(this);
         }
 
         public ChangeViewModelCommand<TaskDetailsViewModel> Command_EditTaskDialog { get; }
@@ -48,5 +48,10 @@ namespace calendar.ViewModels
         }
 
         public Guid Guid => _task.Guid;
+
+        public Repeat Repeating
+        {
+            get => _task.Repeating;
+        }
     }
 }

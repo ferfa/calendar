@@ -8,7 +8,7 @@ namespace calendar.ViewModels
     public class CalendarMonthViewModel : ViewModel
     {
         private readonly DateTime _yearAndMonth;
-        private readonly int _firstDay;
+        private readonly int _firstDayOfWeek;
 
         public CalendarMonthViewModel(DateTime yearAndMonth)
         {
@@ -19,7 +19,7 @@ namespace calendar.ViewModels
             Command_NextMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(1));
 
             // Makes Monday the first day of week and gets the day of week where the current month starts
-            _firstDay = ((int)(new DateTime(Year, Month, 1).DayOfWeek) + 6) % 7;
+            _firstDayOfWeek = ((int)(new DateTime(Year, Month, 1).DayOfWeek) + 6) % 7;
 
             Days = new List<DayViewModel>();
             for (int i = 0; i < 42; i++)
@@ -27,18 +27,18 @@ namespace calendar.ViewModels
                 Days.Add(new DayViewModel());
             }
 
-            // Makes DayCellViews that correspond to actual days of month visible
+            // Makes DayViews that correspond to actual days of month visible
             for (int i = 0; i < DateTime.DaysInMonth(Year, Month); i++)
             {
-                Days[i + _firstDay].Date = new DateTime(Year, Month, i + 1);
-                Days[i + _firstDay].Query();
-                Days[i + _firstDay].Visibility = Visibility.Visible;
+                Days[i + _firstDayOfWeek].Date = new DateTime(Year, Month, i + 1);
+                Days[i + _firstDayOfWeek].QueryTasks();
+                Days[i + _firstDayOfWeek].Visibility = Visibility.Visible;
             }
         }
 
-        public override string Title => $"Kalendář / { Month } { Year }";
+        public override string Title => "Kalendář / měsíc";
 
-        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new ChangeViewModelCommand<TaskDetailsViewModel>();
+        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new();
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_CurrentMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_PreviousMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_NextMonth { get; }
@@ -61,12 +61,12 @@ namespace calendar.ViewModels
             }
         }
 
-        public override void Update()
-        {
-            foreach (var day in Days)
-            {
-                day.Query();
-            }
-        }
+        //public override void Update()
+        //{
+        //    foreach (var day in Days)
+        //    {
+        //        day.QueryTasks();
+        //    }
+        //}
     }
 }

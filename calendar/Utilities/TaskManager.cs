@@ -8,19 +8,19 @@ namespace calendar.Utilities
 {
     public static class TaskManager
     {
+        public static List<TaskViewModel> Tasks { get; } = new();
+
         public static event Action TasksModified;
 
-        public static List<TaskViewModel> Tasks { get; } = new List<TaskViewModel>();
-
-        public static void AddTask(string name, string details, DateTime dateAndTime)
-        {
-            Tasks.Add(new TaskViewModel()
-            {
-                Name = name,
-                Details = details,
-                DateAndTime = dateAndTime,
-            });
-        }
+        //public static void AddTask(string name, string details, DateTime dateAndTime)
+        //{
+        //    Tasks.Add(new TaskViewModel()
+        //    {
+        //        Name = name,
+        //        Details = details,
+        //        DateAndTime = dateAndTime,
+        //    });
+        //}
 
         public static void AddTask(TaskViewModel taskViewModel)
         {
