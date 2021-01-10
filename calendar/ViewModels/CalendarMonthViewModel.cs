@@ -60,6 +60,15 @@ namespace calendar.ViewModels
             }
         }
 
+        public string MonthString
+        {
+            get
+            {
+                var culture = new System.Globalization.CultureInfo("cs");
+                return culture.DateTimeFormat.GetMonthName(Month);
+            }
+        }
+
         //public override void Update()
         //{
         //    foreach (var day in Days)

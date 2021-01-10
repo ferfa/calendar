@@ -17,6 +17,9 @@
         <DataTemplate DataType="{x:Type viewmodels:CalendarWeekViewModel}">
             <views:CalendarWeekView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:CalendarDayViewModel}">
+            <views:CalendarDayView/>
+        </DataTemplate>
     </Application.Resources>
     
 </Application>

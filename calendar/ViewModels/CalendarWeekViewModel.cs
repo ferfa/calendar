@@ -1,6 +1,7 @@
 ﻿using calendar.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,24 @@ namespace calendar.ViewModels
             get
             {
                 return FirstDay.AddDays(6).Date;
+            }
+        }
+
+        public string FirstDayString
+        {
+            get
+            {
+                CultureInfo culture = new CultureInfo("cs");
+                return FirstDay.ToString(culture.DateTimeFormat.LongDatePattern, culture);
+            }
+        }
+
+        public string LastDayString
+        {
+            get
+            {
+                CultureInfo culture = new CultureInfo("cs");
+                return FirstDay.ToString(culture.DateTimeFormat.LongDatePattern, culture);
             }
         }
     }
