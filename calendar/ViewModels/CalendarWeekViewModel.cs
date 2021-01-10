@@ -25,7 +25,6 @@ namespace calendar.ViewModels
             {
                 DayViewModel day = new();
                 day.Date = FirstDay.AddDays(i);
-                day.QueryTasks();
                 day.Visibility = Visibility.Visible;
                 Days.Add(day);
             }
@@ -44,7 +43,7 @@ namespace calendar.ViewModels
         {
             get
             {
-                return _date.AddDays(-(int)_date.DayOfWeek + 1).Date;
+                return _date.AddDays(-((int)_date.DayOfWeek + 6)).Date;
             }
         }
 

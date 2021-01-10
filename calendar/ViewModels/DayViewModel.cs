@@ -41,8 +41,9 @@ namespace calendar.ViewModels
             set
             {
                 _dayModel.Date = value;
+                QueryTasks();
                 OnPropertyChanged();
-                OnPropertyChanged("Tasks");
+                //OnPropertyChanged("Tasks");
             }
         }
 

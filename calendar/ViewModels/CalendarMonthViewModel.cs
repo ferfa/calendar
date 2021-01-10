@@ -31,7 +31,6 @@ namespace calendar.ViewModels
             for (int i = 0; i < DateTime.DaysInMonth(Year, Month); i++)
             {
                 Days[i + _firstDayOfWeek].Date = new DateTime(Year, Month, i + 1);
-                Days[i + _firstDayOfWeek].QueryTasks();
                 Days[i + _firstDayOfWeek].Visibility = Visibility.Visible;
             }
         }
