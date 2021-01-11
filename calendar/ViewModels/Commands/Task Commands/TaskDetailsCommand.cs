@@ -1,4 +1,5 @@
-﻿using calendar.Utilities;
+﻿using calendar.Models;
+using calendar.Utilities;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -8,9 +9,7 @@ namespace calendar.ViewModels.Commands
     public class TaskDetailsCommand : ICommand
     {
         private readonly TaskDetailsViewModel _taskDetailsSource;
-        private readonly TaskViewModel _task;
-
-        public event EventHandler CanExecuteChanged { add { } remove { } }
+        private readonly TaskModel _task;
 
         /// <summary>
         /// Creates a new task with details provided by <paramref name="taskDetailsSource"/>
@@ -18,11 +17,13 @@ namespace calendar.ViewModels.Commands
         /// </summary>
         /// <param name="task"></param>
         /// <param name="taskDetailsSource"></param>
-        public TaskDetailsCommand(TaskDetailsViewModel taskDetailsSource, TaskViewModel task = null)
+        public TaskDetailsCommand(TaskDetailsViewModel taskDetailsSource, TaskModel task = null)
         {
             _taskDetailsSource = taskDetailsSource;
             _task = task;
         }
+
+        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
@@ -33,7 +34,7 @@ namespace calendar.ViewModels.Commands
         {
             if (_task == null)
             {
-                TaskViewModel task = new TaskViewModel()
+                TaskModel task = new TaskModel()
                 {
                     Name = _taskDetailsSource.TaskName,
                     Details = _taskDetailsSource.TaskDetails,

@@ -21,13 +21,10 @@ namespace calendar.ViewModels
             Command_PreviousWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(-7));
             Command_NextWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(7));
 
-            Days = new();
+            DayCells = new();
             for (int i = 0; i < 7; i++)
             {
-                DayViewModel day = new();
-                day.Date = FirstDay.AddDays(i);
-                day.Visibility = Visibility.Visible;
-                Days.Add(day);
+                DayCells.Add(new DayCellViewModel(FirstDay.AddDays(i)));
             }
         }
 
@@ -38,7 +35,7 @@ namespace calendar.ViewModels
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_PreviousWeek { get; }
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_NextWeek { get; }
 
-        public List<DayViewModel> Days { get; private set; }
+        public List<DayCellViewModel> DayCells { get; }
 
         public DateTime FirstDay
         {
