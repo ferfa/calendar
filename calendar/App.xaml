@@ -11,6 +11,9 @@
         <DataTemplate DataType="{x:Type viewmodels:TaskDetailsViewModel}">
             <views:TaskDetailsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:DayCellViewModel}">
+            <views:DayCellView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:CalendarMonthViewModel}">
             <views:CalendarMonthView/>
         </DataTemplate>

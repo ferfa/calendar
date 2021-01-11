@@ -1,4 +1,6 @@
-﻿using System;
+﻿using calendar.ViewModels;
+using calendar.ViewModels.Commands;
+using System;
 using System.Data;
 using System.Diagnostics;
 
@@ -10,6 +12,18 @@ namespace calendar.Models
         private string _name;
         private string _details;
         private DateTime _dateAndTime;
+
+        public TaskModel()
+        {
+            Command_EditTaskDialog = new(this);
+            Command_DeleteTask = new(this);
+
+            Guid = Guid.NewGuid();
+            Trace.WriteLine($"{ Name } created ({ Guid })");
+        }
+
+        public ChangeViewModelCommand<TaskDetailsViewModel> Command_EditTaskDialog { get; }
+        public DeleteTaskCommand Command_DeleteTask { get; }
 
         public Guid Guid
         {
@@ -57,21 +71,5 @@ namespace calendar.Models
                 OnPropertyChanged();
             }
         }
-
-        public Repeat Repeating { get; } = Repeat.None;
-
-        public TaskModel()
-        {
-            Guid = Guid.NewGuid();
-            Trace.WriteLine($"{ Name } created ({ Guid })");
-        }
-    }
-
-    public enum Repeat
-    {
-        None,
-        Daily,
-        Weekly,
-        Monthly
     }
 }

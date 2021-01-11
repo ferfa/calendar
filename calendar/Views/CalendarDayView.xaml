@@ -25,45 +25,7 @@
                     </TextBlock.InputBindings>
                 </TextBlock>
             </StackPanel>
-            <ContentPresenter Content="{Binding Path=Day}" Grid.Row="2">
-                <ContentPresenter.ContentTemplate>
-                    <DataTemplate>
-                        <Border BorderThickness="1" BorderBrush="#FFB8B8B8">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                    <RowDefinition Height="3*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding Path=Date.Day, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0"></TextBlock>
-                                <ItemsControl ItemsSource="{Binding Path=Tasks, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border Margin="1" BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178" Cursor="Hand">
-                                                <DockPanel>
-                                                    <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" DockPanel.Dock="Left"/>
-                                                    <TextBlock Text="{Binding Path=DateAndTime, UpdateSourceTrigger=PropertyChanged, StringFormat=H:mm}" Foreground="White" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
-                                                </DockPanel>
-                                                <Border.InputBindings>
-                                                    <MouseBinding MouseAction="LeftDoubleClick"
-                                                              Command="{Binding Path=Command_EditTaskDialog}"/>
-                                                </Border.InputBindings>
-                                                <Border.ContextMenu>
-                                                    <ContextMenu >
-                                                        <MenuItem Header="Upravit..."
-                                                              Command="{Binding Path=Command_EditTaskDialog}"/>
-                                                        <MenuItem Header="Odstranit"
-                                                              Command="{Binding Path=Command_DeleteTask}"/>
-                                                    </ContextMenu>
-                                                </Border.ContextMenu>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ContentPresenter.ContentTemplate>
-            </ContentPresenter>
+            <ContentPresenter Content="{Binding Path=DayCell}" Grid.Row="2"/>
         </Grid>
     </Grid>
 </local:View>

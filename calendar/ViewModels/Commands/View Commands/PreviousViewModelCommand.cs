@@ -8,7 +8,7 @@ namespace calendar.ViewModels.Commands
 {
     public class PreviousViewModelCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged { add { } remove { } }
+        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
