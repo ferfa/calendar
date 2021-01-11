@@ -12,7 +12,7 @@ namespace calendar.ViewModels
         private TimeSpan _taskTime = new(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
 
         /// <summary>
-        /// For creating a new TaskModel
+        /// Creates a new <typeparamref name="TaskModel"/>.
         /// </summary>
         public TaskDetailsViewModel()
         {
@@ -20,20 +20,20 @@ namespace calendar.ViewModels
         }
 
         /// <summary>
-        /// For editing existing <paramref name="taskViewModel"/>
+        /// Edits an existing <paramref name="taskModel"/>.
         /// </summary>
-        /// <param name="taskViewModel"></param>
-        public TaskDetailsViewModel(TaskViewModel taskViewModel)
+        /// <param name="taskModel"></param>
+        public TaskDetailsViewModel(TaskModel taskModel)
         {
-            _taskName = taskViewModel.Name;
-            _taskDetails = taskViewModel.Details;
-            _taskDate = taskViewModel.DateAndTime.Date;
-            _taskTime = taskViewModel.DateAndTime.TimeOfDay;
+            _taskName = taskModel.Name;
+            _taskDetails = taskModel.Details;
+            _taskDate = taskModel.DateAndTime.Date;
+            _taskTime = taskModel.DateAndTime.TimeOfDay;
 
-            Command_Submit = new CommandCombo(new TaskDetailsCommand(this, taskViewModel), Command_Close);
+            Command_Submit = new CommandCombo(new TaskDetailsCommand(this, taskModel), Command_Close);
         }
 
-        public override string Title => "Podrobnosti události";
+        public override string Title => $"Podrobnosti události { TaskName }";
 
         public CommandCombo Command_Submit { get; private set; }
         public PreviousViewModelCommand Command_Close { get; private set; } = new();

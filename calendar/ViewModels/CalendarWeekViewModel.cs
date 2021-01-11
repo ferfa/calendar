@@ -1,6 +1,7 @@
 ﻿using calendar.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,14 +21,10 @@ namespace calendar.ViewModels
             Command_PreviousWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(-7));
             Command_NextWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(7));
 
-            Days = new();
+            DayCells = new();
             for (int i = 0; i < 7; i++)
             {
-                DayViewModel day = new();
-                day.Date = FirstDay.AddDays(i);
-                day.QueryTasks();
-                day.Visibility = Visibility.Visible;
-                Days.Add(day);
+                DayCells.Add(new DayCellViewModel(FirstDay.AddDays(i)));
             }
         }
 
@@ -38,13 +35,13 @@ namespace calendar.ViewModels
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_PreviousWeek { get; }
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_NextWeek { get; }
 
-        public List<DayViewModel> Days { get; private set; }
+        public List<DayCellViewModel> DayCells { get; }
 
         public DateTime FirstDay
         {
             get
             {
-                return _date.AddDays(-(int)_date.DayOfWeek + 1).Date;
+                return _date.AddDays(-((int)_date.DayOfWeek + 6)).Date;
             }
         }
 
@@ -53,6 +50,24 @@ namespace calendar.ViewModels
             get
             {
                 return FirstDay.AddDays(6).Date;
+            }
+        }
+
+        public string FirstDayString
+        {
+            get
+            {
+                CultureInfo culture = new CultureInfo("cs");
+                return FirstDay.ToString(culture.DateTimeFormat.LongDatePattern, culture);
+            }
+        }
+
+        public string LastDayString
+        {
+            get
+            {
+                CultureInfo culture = new CultureInfo("cs");
+                return FirstDay.ToString(culture.DateTimeFormat.LongDatePattern, culture);
             }
         }
     }

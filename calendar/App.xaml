@@ -11,11 +11,17 @@
         <DataTemplate DataType="{x:Type viewmodels:TaskDetailsViewModel}">
             <views:TaskDetailsView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:DayCellViewModel}">
+            <views:DayCellView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:CalendarMonthViewModel}">
             <views:CalendarMonthView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:CalendarWeekViewModel}">
             <views:CalendarWeekView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:CalendarDayViewModel}">
+            <views:CalendarDayView/>
         </DataTemplate>
     </Application.Resources>
     

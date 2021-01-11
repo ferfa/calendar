@@ -1,4 +1,5 @@
-﻿using calendar.ViewModels;
+﻿using calendar.Models;
+using calendar.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +9,7 @@ namespace calendar.Utilities
 {
     public static class TaskManager
     {
-        public static List<TaskViewModel> Tasks { get; } = new();
+        public static List<TaskModel> Tasks { get; } = new();
 
         public static event Action TasksModified;
 
@@ -22,27 +23,27 @@ namespace calendar.Utilities
         //    });
         //}
 
-        public static void AddTask(TaskViewModel taskViewModel)
+        public static void AddTask(TaskModel taskModel)
         {
-            Tasks.Add(taskViewModel);
-            Trace.WriteLine($"Task created: { taskViewModel.Name } ({ taskViewModel.Guid })");
+            Tasks.Add(taskModel);
+            Trace.WriteLine($"Task created: { taskModel.Name } ({ taskModel.Guid })");
         }
 
-        public static void DeleteTask(TaskViewModel taskViewModel)
+        public static void DeleteTask(TaskModel taskModel)
         {
-            Tasks.Remove(taskViewModel);
-            Trace.WriteLine($"Task deleted: { taskViewModel.Name } ({ taskViewModel.Guid })");
+            Tasks.Remove(taskModel);
+            Trace.WriteLine($"Task deleted: { taskModel.Name } ({ taskModel.Guid })");
             OnTasksModified();
         }
 
-        public static List<TaskViewModel> GetTasksByDate(DateTime date)
+        public static List<TaskModel> GetTasksByDate(DateTime date)
         {
             var query = from task in Tasks
                         where task.DateAndTime.Date == date.Date
                         orderby task.DateAndTime.TimeOfDay
                         select task;
 
-            return new List<TaskViewModel>(query);
+            return new List<TaskModel>(query);
         }
 
         public static void OnTasksModified()

@@ -8,7 +8,6 @@ namespace calendar.ViewModels
     public class CalendarMonthViewModel : ViewModel
     {
         private readonly DateTime _yearAndMonth;
-        private readonly int _firstDayOfWeek;
 
         public CalendarMonthViewModel(DateTime yearAndMonth)
         {
@@ -19,20 +18,12 @@ namespace calendar.ViewModels
             Command_NextMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(1));
 
             // Makes Monday the first day of week and gets the day of week where the current month starts
-            _firstDayOfWeek = ((int)(new DateTime(Year, Month, 1).DayOfWeek) + 6) % 7;
+            FirstDayOfWeek = ((int)(new DateTime(Year, Month, 1).DayOfWeek) + 6) % 7;
 
-            Days = new List<DayViewModel>();
-            for (int i = 0; i < 42; i++)
-            {
-                Days.Add(new DayViewModel());
-            }
-
-            // Makes DayViews that correspond to actual days of month visible
+            DayCells = new();
             for (int i = 0; i < DateTime.DaysInMonth(Year, Month); i++)
             {
-                Days[i + _firstDayOfWeek].Date = new DateTime(Year, Month, i + 1);
-                Days[i + _firstDayOfWeek].QueryTasks();
-                Days[i + _firstDayOfWeek].Visibility = Visibility.Visible;
+                DayCells.Add(new DayCellViewModel(new DateTime(Year, Month, i + 1)) { Visibility = Visibility.Visible });
             }
         }
 
@@ -43,7 +34,9 @@ namespace calendar.ViewModels
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_PreviousMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_NextMonth { get; }
 
-        public List<DayViewModel> Days { get; private set; }
+        public List<DayCellViewModel> DayCells { get; private set; }
+
+        public int FirstDayOfWeek { get; }
 
         public int Year
         {
@@ -61,12 +54,13 @@ namespace calendar.ViewModels
             }
         }
 
-        //public override void Update()
-        //{
-        //    foreach (var day in Days)
-        //    {
-        //        day.QueryTasks();
-        //    }
-        //}
+        public string MonthString
+        {
+            get
+            {
+                var culture = new System.Globalization.CultureInfo("cs");
+                return culture.DateTimeFormat.GetMonthName(Month);
+            }
+        }
     }
 }

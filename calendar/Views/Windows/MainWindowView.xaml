@@ -22,7 +22,8 @@
         <TextBlock Text="{Binding ElementName=ViewControl, Path=Content.DataContext.Title}" Grid.Row="0" FontSize="36" Margin="5,5,5,5"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Content="Měsíc" Command="{Binding Path=Command_ViewMonth}" Margin="25,5,0,5"/>
-            <Button Content="Týden" Command="{Binding Path=Command_ViewWeek}" Margin="5,5,5,5"/>
+            <Button Content="Týden" Command="{Binding Path=Command_ViewWeek}" Margin="5,5,0,5"/>
+            <Button Content="Den" Command="{Binding Path=Command_ViewDay}" Margin="5,5,5,5"/>
         </StackPanel>
 
         <ContentControl x:Name="ViewControl" Grid.Row="2">
