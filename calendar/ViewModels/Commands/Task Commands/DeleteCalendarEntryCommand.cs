@@ -5,16 +5,16 @@ using System.Windows.Input;
 
 namespace calendar.ViewModels
 {
-    public class DeleteTaskCommand : ICommand
+    public class DeleteCalendarEntryCommand : ICommand
     {
-        private readonly TaskModel _taskModel;
+        private readonly CalendarEntry _taskModel;
 
-        public DeleteTaskCommand(TaskModel task)
+        public DeleteCalendarEntryCommand(CalendarEntry task)
         {
             _taskModel = task;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged { add { } remove { } }
 
         public bool CanExecute(object parameter)
         {
@@ -23,7 +23,7 @@ namespace calendar.ViewModels
 
         public void Execute(object parameter)
         {
-            TaskManager.DeleteTask(_taskModel);
+            EntryManager.DeleteEntry(_taskModel);
         }
     }
 }

@@ -9,12 +9,12 @@ namespace calendar.Models
     public class DayModel : ObservableObject
     {
         private DateTime _date;
-        private List<TaskModel> _tasks;
+        private List<CalendarEntry> _entries;
 
         public DayModel(DateTime date)
         {
             Date = date;
-            TaskManager.TasksModified += QueryTasks;
+            EntryManager.TasksModified += QueryTasks;
         }
 
         public DateTime Date
@@ -31,15 +31,15 @@ namespace calendar.Models
             }
         }
 
-        public List<TaskModel> Tasks
+        public List<CalendarEntry> Entries
         {
             get
             {
-                return _tasks;
+                return _entries;
             }
             set
             {
-                _tasks = value;
+                _entries = value;
                 OnPropertyChanged();
             }
         }
@@ -47,7 +47,7 @@ namespace calendar.Models
         // TODO: replace with OnPropertyChanged()
         public void QueryTasks()
         {
-            Tasks = TaskManager.GetTasksByDate(Date);
+            Entries = EntryManager.GetEntriesByDate(typeof(TaskModel), Date);
         }
     }
 }

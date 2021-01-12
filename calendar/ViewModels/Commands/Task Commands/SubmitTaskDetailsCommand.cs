@@ -6,10 +6,10 @@ using System.Windows.Input;
 
 namespace calendar.ViewModels.Commands
 {
-    public class TaskDetailsCommand : ICommand
+    public class SubmitTaskDetailsCommand : ICommand
     {
         private readonly TaskDetailsViewModel _taskDetailsSource;
-        private readonly TaskModel _task;
+        private readonly Models.TaskModel _task;
 
         /// <summary>
         /// Creates a new task with details provided by <paramref name="taskDetailsSource"/>
@@ -17,13 +17,13 @@ namespace calendar.ViewModels.Commands
         /// </summary>
         /// <param name="task"></param>
         /// <param name="taskDetailsSource"></param>
-        public TaskDetailsCommand(TaskDetailsViewModel taskDetailsSource, TaskModel task = null)
+        public SubmitTaskDetailsCommand(TaskDetailsViewModel taskDetailsSource, TaskModel task = null)
         {
             _taskDetailsSource = taskDetailsSource;
             _task = task;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged { add { } remove { } }
 
         public bool CanExecute(object parameter)
         {
@@ -34,21 +34,21 @@ namespace calendar.ViewModels.Commands
         {
             if (_task == null)
             {
-                TaskModel task = new TaskModel()
+                TaskModel task = new()
                 {
                     Name = _taskDetailsSource.TaskName,
                     Details = _taskDetailsSource.TaskDetails,
                     DateAndTime = _taskDetailsSource.TaskDate + _taskDetailsSource.TaskTime
                 };
-                Trace.WriteLine($"task created ({ task.Name }, { task.Details }, { task.DateAndTime.ToShortDateString() }, { task.DateAndTime.TimeOfDay}, GUID: { task.Guid })");
-                TaskManager.AddTask(task);
+                //Trace.WriteLine($"task created ({ task.Name }, { task.Details }, { task.DateAndTime.ToShortDateString() }, { task.DateAndTime.TimeOfDay}, GUID: { task.Guid })");
+                EntryManager.AddEntry(task);
             }
             else
             {
                 _task.Name = _taskDetailsSource.TaskName;
                 _task.Details = _taskDetailsSource.TaskDetails;
                 _task.DateAndTime = _taskDetailsSource.TaskDate.Date + _taskDetailsSource.TaskTime;
-                Trace.WriteLine($"task modified ({ _task.Name }, { _task.Details }, { _task.DateAndTime.ToShortDateString() }, { _task.DateAndTime.TimeOfDay }, GUID: { _task.Guid })");
+                //Trace.WriteLine($"task modified ({ _task.Name }, { _task.Details }, { _task.DateAndTime.ToShortDateString() }, { _task.DateAndTime.TimeOfDay }, GUID: { _task.Guid })");
             }
         }
     }

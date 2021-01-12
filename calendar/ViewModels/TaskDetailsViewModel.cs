@@ -16,7 +16,7 @@ namespace calendar.ViewModels
         /// </summary>
         public TaskDetailsViewModel()
         {
-            Command_Submit = new CommandCombo(new TaskDetailsCommand(this), Command_Close);
+            Command_Submit = new CommandCombo(new SubmitTaskDetailsCommand(this), Command_Close);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace calendar.ViewModels
             _taskDate = taskModel.DateAndTime.Date;
             _taskTime = taskModel.DateAndTime.TimeOfDay;
 
-            Command_Submit = new CommandCombo(new TaskDetailsCommand(this, taskModel), Command_Close);
+            Command_Submit = new CommandCombo(new SubmitTaskDetailsCommand(this, taskModel), Command_Close);
         }
 
         public override string Title => $"Podrobnosti události { TaskName }";

@@ -17,7 +17,7 @@
             
             <TextBlock Text="{Binding Path=Day.Date.Day}" Grid.Row="0" Margin="2"/>
 
-            <ItemsControl ItemsSource="{Binding Path=Day.Tasks, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Path=Day.Entries, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Margin="1" BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178" Cursor="Hand">
@@ -27,14 +27,14 @@
                             </DockPanel>
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftDoubleClick"
-                                          Command="{Binding Path=Command_EditTaskDialog}"/>
+                                          Command="{Binding Path=Command_Edit}"/>
                             </Border.InputBindings>
                             <Border.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Upravit..."
-                                          Command="{Binding Path=Command_EditTaskDialog}"/>
+                                          Command="{Binding Path=Command_Edit}"/>
                                     <MenuItem Header="Odstranit"
-                                          Command="{Binding Path=Command_DeleteTask}"/>
+                                          Command="{Binding Path=Command_Delete}"/>
                                 </ContextMenu>
                             </Border.ContextMenu>
                         </Border>
