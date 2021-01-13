@@ -14,17 +14,19 @@ namespace calendar.Models
         private DateTime _startDate;
         private DateTime _endDate;
 
-        public RepeatingTaskModel(DateTime startDate, DateTime endDate)
+        public RepeatingTaskModel(DateTime startDate = new DateTime(), DateTime endDate = new DateTime())
         {
             _startDate = startDate;
             _endDate = endDate;
 
             Command_Delete = new DeleteCalendarEntryCommand(this);
-            Command_Edit = new ChangeViewModelCommand<TaskDetailsViewModel>();
+            Command_Edit = new ChangeViewModelCommand<EntryDetailsViewModel>(this);
         }
 
         public override ICommand Command_Edit { get; protected set; }
         public override ICommand Command_Delete { get; protected set; }
+
+        public DayOfWeek RepeatingDayOfWeek { get; set; }
         
         public DateTime StartDate
         {
@@ -41,6 +43,5 @@ namespace calendar.Models
                 return _endDate;
             }
         }
-
     }
 }

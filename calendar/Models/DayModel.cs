@@ -47,7 +47,7 @@ namespace calendar.Models
         // TODO: replace with OnPropertyChanged()
         public void QueryTasks()
         {
-            Entries = EntryManager.GetEntriesByDate(typeof(TaskModel), Date);
+            Entries = EntryManager.GetEntriesByDate(Date);
         }
     }
 }

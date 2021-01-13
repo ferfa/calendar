@@ -23,7 +23,7 @@ namespace calendar.ViewModels
 
         public override string Title => "Kalendář / den";
 
-        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new();
+        public ChangeViewModelCommand<EntryDetailsViewModel> Command_NewTaskDialog { get; } = new();
         public ChangeViewModelCommand<CalendarDayViewModel> Command_CurrentDay { get; }
         public ChangeViewModelCommand<CalendarDayViewModel> Command_PreviousDay { get; }
         public ChangeViewModelCommand<CalendarDayViewModel> Command_NextDay { get; }

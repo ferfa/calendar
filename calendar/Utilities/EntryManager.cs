@@ -25,12 +25,13 @@ namespace calendar.Utilities
             OnTasksModified();
         }
 
-        public static List<CalendarEntry> GetEntriesByDate(Type type, DateTime date)
+        public static List<CalendarEntry> GetEntriesByDate(DateTime date)
         {
-            var query = from task in Entries
-                        where task.DateAndTime.Date == date.Date
-                        orderby task.DateAndTime.TimeOfDay
-                        select task;
+            var query = from entry in Entries
+                    where (entry is TaskModel task && task.DateAndTime.Date == date)
+                    || (entry is RepeatingTaskModel repeatingTask && repeatingTask.RepeatingDayOfWeek == date.DayOfWeek)
+                    orderby (entry as TaskModel)?.DateAndTime.TimeOfDay
+                    select entry;
 
             return new List<CalendarEntry>(query);
         }

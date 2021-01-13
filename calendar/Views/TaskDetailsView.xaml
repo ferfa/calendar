@@ -17,23 +17,25 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Datum"/>
-                    <DatePicker x:Name="DatePicker" SelectedDate="{Binding Path=TaskDate, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DatePicker x:Name="DatePicker" SelectedDate="{Binding Path=Entry_Date, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Width="70" Margin="10,0,0,0">
+                <StackPanel Orientation="Vertical" Width="auto" Margin="10,0,0,0">
                     <TextBlock Text="Čas"/>
-                    <uc:ArrowSelector Time="{Binding Path=TaskTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="{Binding ElementName=DatePicker, Path=ActualHeight}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <uc:ArrowSelector Time="{Binding Path=Entry_Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="{Binding ElementName=DatePicker, Path=ActualHeight}"/>
+                        <CheckBox Content="Opakuje se" IsChecked="{Binding Path=Entry_IsRepeating}" Margin="16, 0"/>
+                        <ComboBox ItemsSource="{Binding Path=DaysOfWeek}" SelectedItem="{Binding Path=RepeatingTask_DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
             <TextBlock Text="Název"/>
-            <TextBox Text="{Binding Path=TaskName, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Path=Entry_Name, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Popis"/>
-            <TextBox Text="{Binding Path=TaskDetails, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="100"/>
+            <TextBox Text="{Binding Path=Task_Details, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="100"/>
             <WrapPanel>
                 <Button Name="OkButton" Command="{Binding Path=Command_Submit, UpdateSourceTrigger=PropertyChanged}" Content="Ok" IsDefault="True" HorizontalAlignment="Left" Margin="0,0,4,0"></Button>
                 <Button Name="CancelButton" Command="{Binding Path=Command_Close, UpdateSourceTrigger=PropertyChanged}" Content="Storno" HorizontalAlignment="Left"></Button>
             </WrapPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
         </StackPanel>
     </Grid>
 </local:View>

@@ -10,10 +10,11 @@ namespace calendar.Models
     public class TaskModel : CalendarEntry
     {
         private string _details;
+        private DateTime _dateAndTime;
 
         public TaskModel()
         {
-            Command_Edit = new ChangeViewModelCommand<TaskDetailsViewModel>(this);
+            Command_Edit = new ChangeViewModelCommand<EntryDetailsViewModel>(this);
             Command_Delete = new DeleteCalendarEntryCommand(this);
 
             Guid = Guid.NewGuid();
@@ -30,6 +31,16 @@ namespace calendar.Models
             set
             {
                 _details = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime DateAndTime
+        {
+            get => _dateAndTime;
+            set
+            {
+                _dateAndTime = value;
                 OnPropertyChanged();
             }
         }

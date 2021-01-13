@@ -8,19 +8,27 @@ namespace calendar.ViewModels.Commands
 {
     public class SubmitTaskDetailsCommand : ICommand
     {
-        private readonly TaskDetailsViewModel _taskDetailsSource;
-        private readonly Models.TaskModel _task;
+        private readonly EntryDetailsViewModel _entryDetailsSource;
+        private readonly CalendarEntry _entry;
 
         /// <summary>
-        /// Creates a new task with details provided by <paramref name="taskDetailsSource"/>
-        /// or edits an existing <paramref name="task"/> with details provided by <paramref name="taskDetailsSource"/>.
+        /// Creates a new task with details provided by <paramref name="entryDetailsSource"/>.
         /// </summary>
-        /// <param name="task"></param>
-        /// <param name="taskDetailsSource"></param>
-        public SubmitTaskDetailsCommand(TaskDetailsViewModel taskDetailsSource, TaskModel task = null)
+        /// <param name="entryDetailsSource"></param>
+        public SubmitTaskDetailsCommand(EntryDetailsViewModel entryDetailsSource)
         {
-            _taskDetailsSource = taskDetailsSource;
-            _task = task;
+            _entryDetailsSource = entryDetailsSource;
+        }
+
+        /// <summary>
+        /// Edits an existing <paramref name="entry"/> with details provided by <paramref name="entryDetailsSource"/>.
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <param name="entryDetailsSource"></param>
+        public SubmitTaskDetailsCommand(EntryDetailsViewModel entryDetailsSource, CalendarEntry entry)
+        {
+            _entryDetailsSource = entryDetailsSource;
+            _entry = entry;
         }
 
         public event EventHandler CanExecuteChanged { add { } remove { } }
@@ -32,23 +40,42 @@ namespace calendar.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            if (_task == null)
+            if (_entry == null)
             {
-                TaskModel task = new()
+
+
+                if (_entryDetailsSource.Entry_IsRepeating == false)
                 {
-                    Name = _taskDetailsSource.TaskName,
-                    Details = _taskDetailsSource.TaskDetails,
-                    DateAndTime = _taskDetailsSource.TaskDate + _taskDetailsSource.TaskTime
-                };
-                //Trace.WriteLine($"task created ({ task.Name }, { task.Details }, { task.DateAndTime.ToShortDateString() }, { task.DateAndTime.TimeOfDay}, GUID: { task.Guid })");
-                EntryManager.AddEntry(task);
+                    EntryManager.AddEntry(new TaskModel()
+                    {
+                        Name = _entryDetailsSource.Entry_Name,
+                        DateAndTime = _entryDetailsSource.Entry_DateAndTime,
+                        Details = _entryDetailsSource.Task_Details
+                    });
+                }
+
+                if (_entryDetailsSource.Entry_IsRepeating)
+                {
+                    EntryManager.AddEntry(new RepeatingTaskModel()
+                    {
+                        Name = _entryDetailsSource.Entry_Name,
+                        RepeatingDayOfWeek = _entryDetailsSource.RepeatingTask_DayOfWeek
+                    });
+                }
             }
             else
             {
-                _task.Name = _taskDetailsSource.TaskName;
-                _task.Details = _taskDetailsSource.TaskDetails;
-                _task.DateAndTime = _taskDetailsSource.TaskDate.Date + _taskDetailsSource.TaskTime;
-                //Trace.WriteLine($"task modified ({ _task.Name }, { _task.Details }, { _task.DateAndTime.ToShortDateString() }, { _task.DateAndTime.TimeOfDay }, GUID: { _task.Guid })");
+                _entry.Name = _entryDetailsSource.Entry_Name;
+
+                if (_entry is TaskModel task)
+                {
+                    task.DateAndTime = _entryDetailsSource.Entry_DateAndTime;
+                    task.Details = _entryDetailsSource.Task_Details;
+                }
+                if (_entry is RepeatingTaskModel repeatingTask)
+                {
+                    repeatingTask.RepeatingDayOfWeek = _entryDetailsSource.RepeatingTask_DayOfWeek;
+                }
             }
         }
     }

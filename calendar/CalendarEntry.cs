@@ -13,7 +13,6 @@ namespace calendar
     public abstract class CalendarEntry : ObservableObject
     {
         private string _name;
-        private DateTime _dateAndTime;
 
         public CalendarEntry()
         {
@@ -26,16 +25,6 @@ namespace calendar
             set
             {
                 _name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DateTime DateAndTime
-        {
-            get => _dateAndTime;
-            set
-            {
-                _dateAndTime = value;
                 OnPropertyChanged();
             }
         }
