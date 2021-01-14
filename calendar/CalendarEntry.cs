@@ -19,6 +19,8 @@ namespace calendar
             Trace.WriteLine($"{ GetType() } : CalendarEntry { Name } created.");
         }
 
+        public virtual object SortBy { get; protected set; }
+
         public string Name
         {
             get => _name;

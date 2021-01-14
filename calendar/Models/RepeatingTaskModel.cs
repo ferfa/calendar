@@ -13,6 +13,7 @@ namespace calendar.Models
     {
         private DateTime _startDate;
         private DateTime _endDate;
+        private TimeSpan _time;
 
         public RepeatingTaskModel(DateTime startDate = new DateTime(), DateTime endDate = new DateTime())
         {
@@ -43,5 +44,16 @@ namespace calendar.Models
                 return _endDate;
             }
         }
+
+        public TimeSpan Time
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+                OnPropertyChanged();
+            }
+        }
+
     }
 }

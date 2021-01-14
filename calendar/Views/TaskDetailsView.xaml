@@ -22,7 +22,7 @@
                 <StackPanel Orientation="Vertical" Width="auto" Margin="10,0,0,0">
                     <TextBlock Text="Čas"/>
                     <StackPanel Orientation="Horizontal">
-                        <uc:ArrowSelector Time="{Binding Path=Entry_Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="{Binding ElementName=DatePicker, Path=ActualHeight}"/>
+                        <uc:ArrowSelector Time="{Binding Path=Task_Time, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="{Binding ElementName=DatePicker, Path=ActualHeight}"/>
                         <CheckBox Content="Opakuje se" IsChecked="{Binding Path=Entry_IsRepeating}" Margin="16, 0"/>
                         <ComboBox ItemsSource="{Binding Path=DaysOfWeek}" SelectedItem="{Binding Path=RepeatingTask_DayOfWeek, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>

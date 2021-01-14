@@ -39,6 +39,7 @@ namespace calendar.ViewModels
 
             if (calendarEntryModel is RepeatingTaskModel repeatingTask) {
                 Entry_IsRepeating = true;
+                _task_Time = repeatingTask.Time;
                 _repeatingTask_RepeatingDayOfWeek = repeatingTask.RepeatingDayOfWeek;
             }
 
@@ -81,7 +82,7 @@ namespace calendar.ViewModels
             }
         }
 
-        public TimeSpan Entry_Time
+        public TimeSpan Task_Time
         {
             get => _task_Time;
             set
@@ -91,7 +92,7 @@ namespace calendar.ViewModels
             }
         }
 
-        public DateTime Entry_DateAndTime
+        public DateTime Task_DateAndTime
         {
             get => _task_Date + _task_Time;
         }

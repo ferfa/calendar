@@ -49,7 +49,7 @@ namespace calendar.ViewModels.Commands
                     EntryManager.AddEntry(new TaskModel()
                     {
                         Name = _entryDetailsSource.Entry_Name,
-                        DateAndTime = _entryDetailsSource.Entry_DateAndTime,
+                        DateAndTime = _entryDetailsSource.Task_DateAndTime,
                         Details = _entryDetailsSource.Task_Details
                     });
                 }
@@ -59,8 +59,9 @@ namespace calendar.ViewModels.Commands
                     EntryManager.AddEntry(new RepeatingTaskModel()
                     {
                         Name = _entryDetailsSource.Entry_Name,
+                        Time = _entryDetailsSource.Task_Time,
                         RepeatingDayOfWeek = _entryDetailsSource.RepeatingTask_DayOfWeek
-                    });
+                    }) ;
                 }
             }
             else
@@ -69,11 +70,12 @@ namespace calendar.ViewModels.Commands
 
                 if (_entry is TaskModel task)
                 {
-                    task.DateAndTime = _entryDetailsSource.Entry_DateAndTime;
+                    task.DateAndTime = _entryDetailsSource.Task_DateAndTime;
                     task.Details = _entryDetailsSource.Task_Details;
                 }
                 if (_entry is RepeatingTaskModel repeatingTask)
                 {
+                    repeatingTask.Time = _entryDetailsSource.Task_Time;
                     repeatingTask.RepeatingDayOfWeek = _entryDetailsSource.RepeatingTask_DayOfWeek;
                 }
             }
