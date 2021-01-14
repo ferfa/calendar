@@ -9,7 +9,7 @@ namespace calendar.Models
     public class DayModel : ObservableObject
     {
         private DateTime _date;
-        private List<CalendarEntry> _entries;
+        private List<EntryModel> _entries;
 
         public DayModel(DateTime date)
         {
@@ -31,7 +31,7 @@ namespace calendar.Models
             }
         }
 
-        public List<CalendarEntry> Entries
+        public List<EntryModel> Entries
         {
             get
             {

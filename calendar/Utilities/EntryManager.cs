@@ -9,31 +9,30 @@ namespace calendar.Utilities
 {
     public static class EntryManager
     {
-        public static List<CalendarEntry> Entries { get; } = new();
+        public static List<EntryModel> Entries { get; } = new();
 
         public static event Action TasksModified;
 
-        public static void AddEntry(CalendarEntry taskModel)
+        public static void AddEntry(EntryModel entryModel)
         {
-            Entries.Add(taskModel);
+            Entries.Add(entryModel);
         }
 
         // TODO: replace OnTasksModified with ObservableCollection
-        public static void DeleteEntry(CalendarEntry taskModel)
+        public static void DeleteEntry(EntryModel entryModel)
         {
-            Entries.Remove(taskModel);
+            Entries.Remove(entryModel);
             OnTasksModified();
         }
 
-        public static List<CalendarEntry> GetEntriesByDate(DateTime date)
+        public static List<EntryModel> GetEntriesByDate(DateTime date)
         {
             var query = from entry in Entries
-                    where (entry is TaskModel task && task.DateAndTime.Date == date)
-                    || (entry is RepeatingTaskModel repeatingTask && repeatingTask.RepeatingDayOfWeek == date.DayOfWeek)
-                    orderby (entry as TaskModel)?.DateAndTime.TimeOfDay
-                    select entry;
+                        where (entry.CheckDay(date) == true)
+                        orderby entry.DateAndTime
+                        select entry;
 
-            return new List<CalendarEntry>(query);
+            return new List<EntryModel>(query);
         }
 
         public static void OnTasksModified()

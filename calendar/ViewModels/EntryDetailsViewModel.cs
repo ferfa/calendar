@@ -7,13 +7,10 @@ namespace calendar.ViewModels
     public class EntryDetailsViewModel : ViewModel
     {
         private string _entry_Name;
-
-        private DateTime _task_Date = DateTime.Now.Date;
-        private TimeSpan _task_Time = new(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
-        private string _task_Details;
-
-        private bool _entry_isRepeating;
-        private DayOfWeek _repeatingTask_RepeatingDayOfWeek = DayOfWeek.Monday;
+        private string _entry_Description;
+        private DateTime _entry_Date = DateTime.Now.Date;
+        private TimeSpan _entry_Time = new(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
+        private EntryModel.Repeat _entry_RepeatRule;
 
         /// <summary>
         /// Creates a new <typeparamref name="CalendarEntry"/>.
@@ -24,43 +21,24 @@ namespace calendar.ViewModels
         }
 
         /// <summary>
-        /// Edits an existing <paramref name="calendarEntryModel"/>.
+        /// Edits an existing <paramref name="entryModel"/>.
         /// </summary>
-        /// <param name="calendarEntryModel"></param>
-        public EntryDetailsViewModel(CalendarEntry calendarEntryModel)
+        /// <param name="entryModel"></param>
+        public EntryDetailsViewModel(EntryModel entryModel)
         {
-            _entry_Name = calendarEntryModel.Name;
+            Entry_Name = entryModel.Name;
+            Entry_Description = entryModel.Description;
+            Entry_Date = entryModel.DateAndTime.Date;
+            Entry_Time = entryModel.DateAndTime.TimeOfDay;
+            Entry_RepeatRule = entryModel.RepeatRule;
 
-            if (calendarEntryModel is TaskModel task) {
-                _task_Date = task.DateAndTime.Date;
-                _task_Time = task.DateAndTime.TimeOfDay;
-                _task_Details = task.Details;
-            }
-
-            if (calendarEntryModel is RepeatingTaskModel repeatingTask) {
-                Entry_IsRepeating = true;
-                _task_Time = repeatingTask.Time;
-                _repeatingTask_RepeatingDayOfWeek = repeatingTask.RepeatingDayOfWeek;
-            }
-
-            
-            Command_Submit = new CommandCombo(new SubmitTaskDetailsCommand(this, calendarEntryModel), Command_Close);
+            Command_Submit = new CommandCombo(new SubmitTaskDetailsCommand(this, entryModel), Command_Close);
         }
 
         public override string Title => $"Podrobnosti události { Entry_Name }";
 
         public CommandCombo Command_Submit { get; private set; }
         public PreviousViewModelCommand Command_Close { get; private set; } = new();
-
-        public bool Entry_IsRepeating
-        {
-            get => _entry_isRepeating;
-            set
-            {
-                _entry_isRepeating = value;
-                OnPropertyChanged();
-            }
-        }
 
         public string Entry_Name
         {
@@ -72,56 +50,51 @@ namespace calendar.ViewModels
             }
         }
 
+        public string Entry_Description
+        {
+            get => _entry_Description;
+            set
+            {
+                _entry_Description = value;
+                OnPropertyChanged();
+            }
+        }
+
         public DateTime Entry_Date
         {
-            get => _task_Date;
+            get => _entry_Date;
             set
             {
-                _task_Date = value;
+                _entry_Date = value;
                 OnPropertyChanged();
             }
         }
 
-        public TimeSpan Task_Time
+        public TimeSpan Entry_Time
         {
-            get => _task_Time;
+            get => _entry_Time;
             set
             {
-                _task_Time = value;
+                _entry_Time = value;
                 OnPropertyChanged();
             }
         }
 
-        public DateTime Task_DateAndTime
+        public EntryModel.Repeat Entry_RepeatRule
         {
-            get => _task_Date + _task_Time;
-        }
-
-        public string Task_Details
-        {
-            get => _task_Details;
+            get => _entry_RepeatRule;
             set
             {
-                _task_Details = value;
+                _entry_RepeatRule = value;
                 OnPropertyChanged();
             }
         }
 
-        public DayOfWeek RepeatingTask_DayOfWeek
-        {
-            get => _repeatingTask_RepeatingDayOfWeek;
-            set
-            {
-                _repeatingTask_RepeatingDayOfWeek = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DayOfWeek[] DaysOfWeek
+        public EntryModel.Repeat[] Repeat
         {
             get
             {
-                return (DayOfWeek[])Enum.GetValues(typeof(DayOfWeek));
+                return (EntryModel.Repeat[])Enum.GetValues(typeof(EntryModel.Repeat));
             }
         }
     }

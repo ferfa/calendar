@@ -9,7 +9,7 @@ namespace calendar.ViewModels.Commands
     public class SubmitTaskDetailsCommand : ICommand
     {
         private readonly EntryDetailsViewModel _entryDetailsSource;
-        private readonly CalendarEntry _entry;
+        private EntryModel _entry;
 
         /// <summary>
         /// Creates a new task with details provided by <paramref name="entryDetailsSource"/>.
@@ -25,7 +25,7 @@ namespace calendar.ViewModels.Commands
         /// </summary>
         /// <param name="entry"></param>
         /// <param name="entryDetailsSource"></param>
-        public SubmitTaskDetailsCommand(EntryDetailsViewModel entryDetailsSource, CalendarEntry entry)
+        public SubmitTaskDetailsCommand(EntryDetailsViewModel entryDetailsSource, EntryModel entry)
         {
             _entryDetailsSource = entryDetailsSource;
             _entry = entry;
@@ -40,44 +40,24 @@ namespace calendar.ViewModels.Commands
 
         public void Execute(object parameter)
         {
+            EntryModel entry = new()
+            {
+                Name = _entryDetailsSource.Entry_Name,
+                Description = _entryDetailsSource.Entry_Description,
+                DateAndTime = _entryDetailsSource.Entry_Date + _entryDetailsSource.Entry_Time,
+                RepeatRule = _entryDetailsSource.Entry_RepeatRule
+            };
+
             if (_entry == null)
             {
-
-
-                if (_entryDetailsSource.Entry_IsRepeating == false)
-                {
-                    EntryManager.AddEntry(new TaskModel()
-                    {
-                        Name = _entryDetailsSource.Entry_Name,
-                        DateAndTime = _entryDetailsSource.Task_DateAndTime,
-                        Details = _entryDetailsSource.Task_Details
-                    });
-                }
-
-                if (_entryDetailsSource.Entry_IsRepeating)
-                {
-                    EntryManager.AddEntry(new RepeatingTaskModel()
-                    {
-                        Name = _entryDetailsSource.Entry_Name,
-                        Time = _entryDetailsSource.Task_Time,
-                        RepeatingDayOfWeek = _entryDetailsSource.RepeatingTask_DayOfWeek
-                    }) ;
-                }
+                EntryManager.AddEntry(entry);
             }
             else
             {
                 _entry.Name = _entryDetailsSource.Entry_Name;
-
-                if (_entry is TaskModel task)
-                {
-                    task.DateAndTime = _entryDetailsSource.Task_DateAndTime;
-                    task.Details = _entryDetailsSource.Task_Details;
-                }
-                if (_entry is RepeatingTaskModel repeatingTask)
-                {
-                    repeatingTask.Time = _entryDetailsSource.Task_Time;
-                    repeatingTask.RepeatingDayOfWeek = _entryDetailsSource.RepeatingTask_DayOfWeek;
-                }
+                _entry.Description = _entryDetailsSource.Entry_Description;
+                _entry.DateAndTime = _entryDetailsSource.Entry_Date + _entryDetailsSource.Entry_Time;
+                _entry.RepeatRule = _entryDetailsSource.Entry_RepeatRule;
             }
         }
     }
