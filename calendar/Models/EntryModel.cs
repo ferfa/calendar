@@ -2,6 +2,7 @@
 using calendar.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace calendar.Models
         private string _description;
         private DateTime _dateAndTime;
         private Repeat _repeatRule = Repeat.Never;
+        private ObservableCollection<DateTime> _deleted = new();
 
         public EntryModel()
         {
@@ -72,6 +74,16 @@ namespace calendar.Models
             Daily,
             Weekly,
             Monthly
+        }
+
+        public ObservableCollection<DateTime> Deleted
+        {
+            get => _deleted;
+            set
+            {
+                _deleted = value;
+                OnPropertyChanged();
+            }
         }
 
         public bool CheckDay(DateTime date)

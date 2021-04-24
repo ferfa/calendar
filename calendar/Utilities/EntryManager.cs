@@ -19,7 +19,13 @@ namespace calendar.Utilities
         }
 
         // TODO: replace OnTasksModified with ObservableCollection
-        public static void DeleteEntry(EntryModel entryModel)
+        public static void DeleteEntry(EntryModel entryModel, DateTime date)
+        {
+            entryModel.Deleted.Add(date);
+            OnTasksModified();
+        }
+
+        public static void DeleteAllEntries(EntryModel entryModel)
         {
             Entries.Remove(entryModel);
             OnTasksModified();
@@ -28,7 +34,7 @@ namespace calendar.Utilities
         public static List<EntryModel> GetEntriesByDate(DateTime date)
         {
             var query = from entry in Entries
-                        where (entry.CheckDay(date) == true)
+                        where (entry.CheckDay(date) == true) && (entry.Deleted.Contains(date) == false)
                         orderby entry.DateAndTime
                         select entry;
 

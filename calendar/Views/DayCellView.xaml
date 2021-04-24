@@ -20,7 +20,7 @@
             <ItemsControl ItemsSource="{Binding Path=Day.Entries, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Margin="1" BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178" Cursor="Hand">
+                        <Border Margin="1" BorderBrush="#FF002A42" BorderThickness="1" Background="#FF005178" Cursor="Hand" Tag="{Binding RelativeSource={RelativeSource x:AncestorType=ItemsControl}}">
                             <DockPanel>
                                 <TextBlock Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" DockPanel.Dock="Left"/>
                                 <TextBlock Text="{Binding Path=DateAndTime.TimeOfDay, UpdateSourceTrigger=PropertyChanged, StringFormat=h\\:mm}" Foreground="White" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
@@ -34,6 +34,9 @@
                                     <MenuItem Header="Upravit..."
                                           Command="{Binding Path=Command_Edit}"/>
                                     <MenuItem Header="Odstranit"
+                                          Command="{Binding Path=Command_Delete}"
+                                          CommandParameter="{Binding Path=PlacementTarget.Tag.DataContext.Day.Date, RelativeSource={RelativeSource Mode=FindAncestor, x:AncestorType=ContextMenu}}"/>
+                                    <MenuItem Header="Odstranit všechny"
                                           Command="{Binding Path=Command_Delete}"/>
                                 </ContextMenu>
                             </Border.ContextMenu>

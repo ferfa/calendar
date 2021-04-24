@@ -23,7 +23,14 @@ namespace calendar.ViewModels
 
         public void Execute(object parameter)
         {
-            EntryManager.DeleteEntry(_entry);
+            if (parameter == null)
+            {
+                EntryManager.DeleteAllEntries(_entry);
+            }
+            else
+            {
+                EntryManager.DeleteEntry(_entry, (DateTime)parameter);
+            }
         }
     }
 }
