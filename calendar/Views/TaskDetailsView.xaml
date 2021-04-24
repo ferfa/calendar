@@ -27,6 +27,10 @@
                     <TextBlock Text="Opakovat"/>
                     <ComboBox ItemsSource="{Binding Path=Repeat}" SelectedItem="{Binding Path=Entry_RepeatRule, UpdateSourceTrigger=PropertyChanged}" Width="auto" Height="{Binding ElementName=DatePicker, Path=ActualHeight}"/>
                 </StackPanel>
+                <StackPanel Orientation="Vertical" Width="auto" Margin="10,0,0,0" Visibility="{Binding Path=EndDatePickerVisibility}">
+                    <TextBlock Text="Opakovat do"/>
+                    <DatePicker x:Name="EndDatePicker" SelectedDate="{Binding Path=Entry_EndDate, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
             </StackPanel>
             <TextBlock Text="Název"/>
             <TextBox Text="{Binding Path=Entry_Name, UpdateSourceTrigger=PropertyChanged}"/>

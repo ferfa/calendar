@@ -45,6 +45,7 @@ namespace calendar.ViewModels.Commands
                 Name = _entryDetailsSource.Entry_Name,
                 Description = _entryDetailsSource.Entry_Description,
                 DateAndTime = _entryDetailsSource.Entry_Date + _entryDetailsSource.Entry_Time,
+                EndDate = _entryDetailsSource.Entry_EndDate,
                 RepeatRule = _entryDetailsSource.Entry_RepeatRule
             };
 
@@ -57,6 +58,7 @@ namespace calendar.ViewModels.Commands
                 _entry.Name = _entryDetailsSource.Entry_Name;
                 _entry.Description = _entryDetailsSource.Entry_Description;
                 _entry.DateAndTime = _entryDetailsSource.Entry_Date + _entryDetailsSource.Entry_Time;
+                _entry.EndDate = _entryDetailsSource.Entry_EndDate;
                 _entry.RepeatRule = _entryDetailsSource.Entry_RepeatRule;
             }
         }

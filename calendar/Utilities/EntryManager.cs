@@ -34,7 +34,7 @@ namespace calendar.Utilities
         public static List<EntryModel> GetEntriesByDate(DateTime date)
         {
             var query = from entry in Entries
-                        where (entry.CheckDay(date) == true) && (entry.Deleted.Contains(date) == false)
+                        where (entry.CheckDay(date) == true)
                         orderby entry.DateAndTime
                         select entry;
 

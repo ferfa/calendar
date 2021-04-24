@@ -14,6 +14,7 @@ namespace calendar.Models
         private string _name;
         private string _description;
         private DateTime _dateAndTime;
+        private DateTime _endDate;
         private Repeat _repeatRule = Repeat.Never;
         private ObservableCollection<DateTime> _deleted = new();
 
@@ -58,6 +59,16 @@ namespace calendar.Models
             }
         }
 
+        public DateTime EndDate
+        {
+            get => _endDate;
+            set
+            {
+                _endDate = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Repeat RepeatRule
         {
             get => _repeatRule;
@@ -88,11 +99,16 @@ namespace calendar.Models
 
         public bool CheckDay(DateTime date)
         {
+            if (Deleted.Contains(date))
+            {
+                return false;
+            }
+
             if (RepeatRule == Repeat.Never && DateAndTime.Date == date.Date)
             {
                 return true;
             }
-            else if (DateAndTime.Date <= date.Date)
+            else if (DateAndTime.Date <= date.Date && EndDate.Date >= date.Date)
             {
                 switch (RepeatRule)
                 {

@@ -1,6 +1,7 @@
 ﻿using calendar.Models;
 using calendar.ViewModels.Commands;
 using System;
+using System.Windows;
 
 namespace calendar.ViewModels
 {
@@ -9,6 +10,7 @@ namespace calendar.ViewModels
         private string _entry_Name;
         private string _entry_Description;
         private DateTime _entry_Date = DateTime.Now.Date;
+        private DateTime _entry_EndDate = DateTime.Now.Date;
         private TimeSpan _entry_Time = new(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
         private EntryModel.Repeat _entry_RepeatRule;
 
@@ -29,6 +31,7 @@ namespace calendar.ViewModels
             Entry_Name = entryModel.Name;
             Entry_Description = entryModel.Description;
             Entry_Date = entryModel.DateAndTime.Date;
+            Entry_EndDate = entryModel.EndDate;
             Entry_Time = entryModel.DateAndTime.TimeOfDay;
             Entry_RepeatRule = entryModel.RepeatRule;
 
@@ -86,7 +89,29 @@ namespace calendar.ViewModels
             set
             {
                 _entry_RepeatRule = value;
+                OnPropertyChanged("EndDatePickerVisibility");
+            }
+        }
+
+        public DateTime Entry_EndDate
+        {
+            get => _entry_EndDate;
+            set
+            {
+                _entry_EndDate = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public Visibility EndDatePickerVisibility
+        {
+            get
+            {
+                if (Entry_RepeatRule == EntryModel.Repeat.Never)
+                {
+                    return Visibility.Hidden;
+                }
+                return Visibility.Visible;
             }
         }
 
