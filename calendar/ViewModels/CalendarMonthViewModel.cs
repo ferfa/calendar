@@ -29,7 +29,7 @@ namespace calendar.ViewModels
 
         public override string Title => "Kalendář / měsíc";
 
-        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new();
+        public ChangeViewModelCommand<EntryDetailsViewModel> Command_NewTaskDialog { get; } = new();
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_CurrentMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_PreviousMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_NextMonth { get; }

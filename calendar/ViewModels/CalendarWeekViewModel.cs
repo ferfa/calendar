@@ -30,7 +30,7 @@ namespace calendar.ViewModels
 
         public override string Title => "Kalendář / týden";
 
-        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new();
+        public ChangeViewModelCommand<EntryDetailsViewModel> Command_NewTaskDialog { get; } = new();
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_CurrentWeek { get; }
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_PreviousWeek { get; }
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_NextWeek { get; }
