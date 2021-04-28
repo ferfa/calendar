@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Windows.Data;
 
 namespace calendar.Models
 {
@@ -16,6 +18,7 @@ namespace calendar.Models
         private DateTime _dateAndTime;
         private DateTime _endDate;
         private Repeat _repeatRule = Repeat.Never;
+        private ObservableCollection<DateTime> _completed = new();
         private ObservableCollection<DateTime> _deleted = new();
 
         public EntryModel()
@@ -87,6 +90,16 @@ namespace calendar.Models
             Monthly
         }
 
+        public ObservableCollection<DateTime> Completed
+        {
+            get => _completed;
+            set
+            {
+                _completed = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<DateTime> Deleted
         {
             get => _deleted;
@@ -122,6 +135,25 @@ namespace calendar.Models
             }
 
             return false;
+        }
+
+        public bool IsCompleted(DateTime date)
+        {
+            if (Completed.Contains(date))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void Complete(DateTime date)
+        {
+            Completed.Add(date);
+        }
+
+        public void Uncomplete(DateTime date)
+        {
+            Completed.Remove(date);
         }
     }
 }
