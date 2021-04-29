@@ -41,7 +41,7 @@ namespace calendar.ViewModels
         {
             get
             {
-                return _date.AddDays(-((int)_date.DayOfWeek + 6 - 7)).Date;
+                return _date.AddDays(-((int)_date.DayOfWeek + 6) % 7).Date;
             }
         }
 
