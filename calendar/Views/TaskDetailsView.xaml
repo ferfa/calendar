@@ -5,9 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:calendar.Views"
              xmlns:viewmodels="clr-namespace:calendar.ViewModels"
+             xmlns:converters="clr-namespace:calendar.ViewModels.Converters"
              xmlns:uc="clr-namespace:calendar.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <local:View.Resources>
+        <converters:RepeatRuleConverter x:Key="RepeatRuleConverter"/>
+    </local:View.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -25,7 +31,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="auto" Margin="10,0,0,0">
                     <TextBlock Text="Opakovat"/>
-                    <ComboBox ItemsSource="{Binding Path=Repeat}" SelectedItem="{Binding Path=Entry_RepeatRule, UpdateSourceTrigger=PropertyChanged}" Width="auto" Height="{Binding ElementName=DatePicker, Path=ActualHeight}"/>
+                    <ComboBox ItemsSource="{Binding Path=Repeat, Converter={StaticResource RepeatRuleConverter}, Mode=OneWay}" SelectedItem="{Binding Path=Entry_RepeatRule, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RepeatRuleConverter}}" Width="auto" Height="{Binding ElementName=DatePicker, Path=ActualHeight}"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="auto" Margin="10,0,0,0" Visibility="{Binding Path=EndDatePickerVisibility}">
                     <TextBlock Text="Opakovat do"/>
