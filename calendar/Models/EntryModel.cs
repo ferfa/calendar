@@ -6,7 +6,9 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows.Data;
 
 namespace calendar.Models
@@ -29,8 +31,10 @@ namespace calendar.Models
 
             Trace.WriteLine($"Entry { Name } created.");
         }
-
+        
+        [JsonIgnore]
         public ChangeViewModelCommand<EntryDetailsViewModel> Command_Edit { get; }
+        [JsonIgnore]
         public DeleteEntryCommand Command_Delete { get; }
 
         public string Name
@@ -138,6 +142,7 @@ namespace calendar.Models
             return false;
         }
 
+        [JsonIgnore]
         public int Count
         {
             get
