@@ -10,7 +10,7 @@ using System.Windows.Data;
 
 namespace calendar.ViewModels.Converters
 {
-    class CBToCompletedConverter : IMultiValueConverter
+    public class CBToCompletedConverter : IMultiValueConverter
     {
         private EntryModel _entry;
         private DateTime _date;

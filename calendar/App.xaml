@@ -23,6 +23,9 @@
         <DataTemplate DataType="{x:Type viewmodels:CalendarDayViewModel}">
             <views:CalendarDayView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:StatsViewModel}">
+            <views:StatsView/>
+        </DataTemplate>
     </Application.Resources>
     
 </Application>

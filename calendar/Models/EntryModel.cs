@@ -137,6 +137,23 @@ namespace calendar.Models
             return false;
         }
 
+        public int Count
+        {
+            get
+            {
+                switch (RepeatRule)
+                {
+                    case Repeat.Never:
+                        return 1;
+                    case Repeat.Daily:
+                        return (EndDate - DateAndTime.Date).Days - Deleted.Count + 1;
+                    case Repeat.Weekly:
+                        return (EndDate - DateAndTime.Date).Days / 7 - Deleted.Count + 1;
+                }
+                return 0;
+            }
+        }
+
         public bool IsCompleted(DateTime date)
         {
             if (Completed.Contains(date))

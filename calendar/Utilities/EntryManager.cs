@@ -22,6 +22,7 @@ namespace calendar.Utilities
         public static void DeleteEntry(EntryModel entryModel, DateTime date)
         {
             entryModel.Deleted.Add(date);
+            entryModel.Completed.Remove(date);
             OnTasksModified();
         }
 
