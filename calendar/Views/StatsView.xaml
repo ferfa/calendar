@@ -31,7 +31,7 @@
                                     </TextBlock.Text>
                                 </TextBlock>
                                 <Border BorderBrush="Black" BorderThickness="1">
-                                    <Rectangle Fill="#FF005178" Height="50" HorizontalAlignment="Left">
+                                    <Rectangle Fill="#5EB67E" Height="50" HorizontalAlignment="Left">
                                         <Rectangle.Width>
                                             <MultiBinding Mode="OneWay" Converter="{StaticResource BarWidthConverter}">
                                                 <Binding RelativeSource="{RelativeSource AncestorType={x:Type Border}}" Path="ActualWidth"/>

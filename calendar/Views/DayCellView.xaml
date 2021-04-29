@@ -11,24 +11,25 @@
 
     <local:View.Resources>
         <converters:CBToColorConverter x:Key="CBToColorConverter"/>
+        <converters:CBToCrossedConverter x:Key="CBToCrossedConverter"/>
     </local:View.Resources>
-    
-    <Border BorderThickness="1" BorderBrush="#FFB8B8B8">
-        <Grid>
+
+    <Border BorderThickness="1" SnapsToDevicePixels="True" BorderBrush="#999999" Margin="1,1,0,0">
+        <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{Binding Path=Day.Date.Day}" Grid.Row="0" Margin="2"/>
+            <TextBlock Text="{Binding Path=Day.Date.Day}" Grid.Row="0" Margin="2" FontSize="14"/>
             <ItemsControl x:Name="ic" ItemsSource="{Binding Path=Day.Entries, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border x:Name="bdr" Margin="1" BorderBrush="#FF002A42" BorderThickness="1" Background="{Binding ElementName=cb, Path=IsChecked, Converter={StaticResource CBToColorConverter}, Mode=OneWay}" Cursor="Hand" Tag="{Binding RelativeSource={RelativeSource x:AncestorType=ItemsControl}}">
+                        <Border x:Name="bdr" Margin="1" BorderBrush="#1D686A" BorderThickness="1" Background="{Binding ElementName=cb, Path=IsChecked, Converter={StaticResource CBToColorConverter}, Mode=OneWay}" Cursor="Hand" Tag="{Binding RelativeSource={RelativeSource x:AncestorType=ItemsControl}}">
                             <DockPanel>
-                                <TextBlock x:Name="tb" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" DockPanel.Dock="Left"/>
+                                <TextBlock x:Name="tb" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" DockPanel.Dock="Left" TextDecorations="{Binding ElementName=cb, Path=IsChecked, Converter={StaticResource CBToCrossedConverter}}"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
-                                    <TextBlock Text="{Binding Path=DateAndTime.TimeOfDay, UpdateSourceTrigger=PropertyChanged, StringFormat=h\\:mm}" Foreground="White" />
+                                    <TextBlock Text="{Binding Path=DateAndTime.TimeOfDay, UpdateSourceTrigger=PropertyChanged, StringFormat=h\\:mm}" Foreground="White" TextDecorations="{Binding ElementName=cb, Path=IsChecked, Converter={StaticResource CBToCrossedConverter}}"/>
                                     <CheckBox x:Name="cb">
                                         <CheckBox.Resources>
                                             <converters:CBToCompletedConverter x:Key="CBToCompletedConverter"/>

@@ -4,20 +4,20 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace calendar.ViewModels.Converters
 {
-    public class CBToColorConverter : IValueConverter
+    public class CBToCrossedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch ((bool)value)
+            if ((bool)value == true)
             {
-                case false:
-                    return "#2B907C";
+                return TextDecorations.Strikethrough;
             }
-            return "#A4DA77";
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
