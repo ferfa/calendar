@@ -20,9 +20,8 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <TextBlock Text="{Binding Path=Day.Date.Day}" Grid.Row="0" Margin="2"/>
 
+            <TextBlock Text="{Binding Path=Day.Date.Day}" Grid.Row="0" Margin="2"/>
             <ItemsControl x:Name="ic" ItemsSource="{Binding Path=Day.Entries, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -43,17 +42,17 @@
                             </DockPanel>
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftDoubleClick"
-                                          Command="{Binding Path=Command_Edit}"/>
+                                              Command="{Binding Path=Command_Edit}"/>
                             </Border.InputBindings>
                             <Border.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Upravit..."
-                                          Command="{Binding Path=Command_Edit}"/>
+                                              Command="{Binding Path=Command_Edit}"/>
                                     <MenuItem Header="Odstranit"
-                                          Command="{Binding Path=Command_Delete}"
-                                          CommandParameter="{Binding Path=PlacementTarget.Tag.DataContext.Day.Date, RelativeSource={RelativeSource Mode=FindAncestor, x:AncestorType=ContextMenu}}"/>
+                                              Command="{Binding Path=Command_Delete}"
+                                              CommandParameter="{Binding Path=PlacementTarget.Tag.DataContext.Day.Date, RelativeSource={RelativeSource Mode=FindAncestor, x:AncestorType=ContextMenu}}"/>
                                     <MenuItem Header="Odstranit všechny"
-                                          Command="{Binding Path=Command_Delete}"/>
+                                              Command="{Binding Path=Command_Delete}"/>
                                 </ContextMenu>
                             </Border.ContextMenu>
                         </Border>

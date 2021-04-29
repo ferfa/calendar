@@ -20,6 +20,8 @@ namespace calendar.ViewModels
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_ViewWeek { get; } = new(DateTime.Now);
         public ChangeViewModelCommand<CalendarDayViewModel> Command_ViewDay { get; } = new(DateTime.Now);
         public ChangeViewModelCommand<StatsViewModel> Command_ViewStats { get; } = new();
+        public LoadCommand Command_Load { get; } = new();
+        public SaveCommand Command_Save { get; } = new();
 
         public static ViewModel ViewModel
         {

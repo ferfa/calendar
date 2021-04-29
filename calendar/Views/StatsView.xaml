@@ -14,27 +14,37 @@
     </local:View.Resources>
 
     <Grid>
-        <ItemsControl ItemsSource="{Binding Path=StatBars}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="10" Orientation="Vertical">
-                        <TextBlock Text="{Binding Path=Entry.Name}"/>
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Path=Percentage}"/>
-                            <Border BorderBrush="Black" BorderThickness="2">
-                                <Rectangle Fill="BlueViolet" Height="50" HorizontalAlignment="Left">
-                                    <Rectangle.Width>
-                                        <MultiBinding Mode="OneWay" Converter="{StaticResource BarWidthConverter}">
-                                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type Border}}" Path="ActualWidth"/>
-                                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type StackPanel}}" Path="DataContext.Percentage"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=StatBars}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10" Orientation="Vertical">
+                            <TextBlock Text="{Binding Path=Entry.Name}" FontSize="20"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Margin="0,5,0,5">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0}/{1} hotovo ({2} %)">
+                                            <Binding Path="Entry.Completed.Count"/>
+                                            <Binding Path="Entry.Count"/>
+                                            <Binding Path="Percentage"/>
                                         </MultiBinding>
-                                    </Rectangle.Width>
-                                </Rectangle>
-                            </Border>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <Rectangle Fill="#FF005178" Height="50" HorizontalAlignment="Left">
+                                        <Rectangle.Width>
+                                            <MultiBinding Mode="OneWay" Converter="{StaticResource BarWidthConverter}">
+                                                <Binding RelativeSource="{RelativeSource AncestorType={x:Type Border}}" Path="ActualWidth"/>
+                                                <Binding RelativeSource="{RelativeSource AncestorType={x:Type StackPanel}}" Path="DataContext.Percentage"/>
+                                            </MultiBinding>
+                                        </Rectangle.Width>
+                                    </Rectangle>
+                                </Border>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </local:View>

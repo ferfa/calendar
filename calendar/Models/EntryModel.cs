@@ -11,6 +11,7 @@ using System.Windows.Data;
 
 namespace calendar.Models
 {
+    [Serializable()]
     public class EntryModel : ObservableObject
     {
         private string _name;

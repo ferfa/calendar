@@ -9,7 +9,7 @@ namespace calendar.Utilities
 {
     public static class EntryManager
     {
-        public static List<EntryModel> Entries { get; } = new();
+        public static List<EntryModel> Entries { get; set; } = new();
 
         public static event Action TasksModified;
 
