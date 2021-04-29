@@ -14,6 +14,8 @@ namespace calendar.ViewModels
     {
         public CalendarDayViewModel(DateTime date)
         {
+            date = date.Date;
+
             Command_CurrentDay = new(DateTime.Now);
             Command_PreviousDay = new(date.AddDays(-1));
             Command_NextDay = new(date.AddDays(1));
