@@ -11,7 +11,6 @@
 
     <local:View.Resources>
         <converters:CBToColorConverter x:Key="CBToColorConverter"/>
-        <converters:CBToCompletedConverter x:Key="CBToCompletedConverter"/>
     </local:View.Resources>
     
     <Border BorderThickness="1" BorderBrush="#FFB8B8B8">
@@ -31,9 +30,12 @@
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" DockPanel.Dock="Right">
                                     <TextBlock Text="{Binding Path=DateAndTime.TimeOfDay, UpdateSourceTrigger=PropertyChanged, StringFormat=h\\:mm}" Foreground="White" />
                                     <CheckBox x:Name="cb">
+                                        <CheckBox.Resources>
+                                            <converters:CBToCompletedConverter x:Key="CBToCompletedConverter"/>
+                                        </CheckBox.Resources>
                                         <CheckBox.IsChecked>
                                             <MultiBinding Converter="{StaticResource CBToCompletedConverter}">
-                                                <Binding ElementName="bdr" Path="DataContext"/>
+                                                <Binding RelativeSource="{RelativeSource Self}" Path="DataContext"/>
                                                 <Binding ElementName="ic" Path="DataContext.Day.Date"/>
                                             </MultiBinding>
                                         </CheckBox.IsChecked>

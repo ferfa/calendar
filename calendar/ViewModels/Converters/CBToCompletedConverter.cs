@@ -12,11 +12,15 @@ namespace calendar.ViewModels.Converters
 {
     public class CBToCompletedConverter : IMultiValueConverter
     {
+        private object[] _values;
+
         private EntryModel _entry;
         private DateTime _date;
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
+            _values = (object[])values.Clone();
+
             _entry = (EntryModel)values[0];
             _date = (DateTime)values[1];
 
@@ -24,25 +28,22 @@ namespace calendar.ViewModels.Converters
             {
                 return true;
             }
+
             return false;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            if ((bool)value == true)
+            if ((bool)value == true && _entry.Completed.Contains(_date) == false)
             {
-                _entry.Complete(_date);
+                _entry.Completed.Add(_date);
             }
-            else
+            else if ((bool)value == false && _entry.Completed.Contains(_date) == true)
             {
-                _entry.Uncomplete(_date);
+                _entry.Completed.Remove(_date);
             }
 
-            object[] ret = new object[2];
-            ret[0] = _entry;
-            ret[1] = _date;
-
-            return ret;
+            return _values;
         }
     }
 }

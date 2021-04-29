@@ -23,6 +23,10 @@ namespace calendar.Utilities
         {
             entryModel.Deleted.Add(date);
             entryModel.Completed.Remove(date);
+            if (entryModel.Count == 0)
+            {
+                DeleteAllEntries(entryModel);
+            }
             OnTasksModified();
         }
 
