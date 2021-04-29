@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json;
+using System.Windows;
 using System.Windows.Input;
 
 namespace calendar.ViewModels.Commands
@@ -28,11 +29,18 @@ namespace calendar.ViewModels.Commands
 
             if (openFileDialog.FileName != "")
             {
-                using (StreamReader r = new(openFileDialog.FileName))
+                try
                 {
+                    using StreamReader r = new(openFileDialog.FileName);
                     string json = r.ReadToEnd();
                     EntryManager.Entries = JsonSerializer.Deserialize<List<EntryModel>>(json);
                     EntryManager.OnTasksModified();
+
+                    MainWindowViewModel.ViewModel = new CalendarMonthViewModel(DateTime.Now);
+                }
+                catch (JsonException)
+                {
+                    MessageBox.Show("Neplatný soubor!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
