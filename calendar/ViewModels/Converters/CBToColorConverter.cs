@@ -15,9 +15,9 @@ namespace calendar.ViewModels.Converters
             switch ((bool)value)
             {
                 case false:
-                    return "#2B907C";
+                    return "#238AA6";
             }
-            return "#A4DA77";
+            return "#ADEB81";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

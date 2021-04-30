@@ -14,7 +14,11 @@
         <converters:CBToCrossedConverter x:Key="CBToCrossedConverter"/>
     </local:View.Resources>
 
-    <Border BorderThickness="1" SnapsToDevicePixels="True" BorderBrush="#999999" Margin="1,1,0,0">
+    <local:View.Background>
+        <SolidColorBrush Color="white"/>
+    </local:View.Background>
+
+    <Border BorderThickness="1" SnapsToDevicePixels="True" BorderBrush="Gray" Margin="2">
         <Grid Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

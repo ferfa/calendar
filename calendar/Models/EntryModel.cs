@@ -155,28 +155,27 @@ namespace calendar.Models
                         return (EndDate - DateAndTime.Date).Days - Deleted.Count + 1;
                     case Repeat.Weekly:
                         return (EndDate - DateAndTime.Date).Days / 7 - Deleted.Count + 1;
+                    case Repeat.Monthly:
+                        // TODO: FIX
+                        int count = 0;
+                        DateTime dt = DateAndTime.Date;
+                        while (dt <= EndDate)
+                        {
+                            try
+                            {
+                                dt = new DateTime(dt.Year, dt.Month + 1, dt.Day);
+                            }
+                            catch (ArgumentOutOfRangeException)
+                            {
+
+                            }
+                            count++;
+                        }
+
+                        return count - Deleted.Count;
                 }
                 return 0;
             }
-        }
-
-        public bool IsCompleted(DateTime date)
-        {
-            if (Completed.Contains(date))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public void Complete(DateTime date)
-        {
-            Completed.Add(date);
-        }
-
-        public void Uncomplete(DateTime date)
-        {
-            Completed.Remove(date);
         }
     }
 }
