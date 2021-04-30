@@ -6,15 +6,17 @@ using System.Windows;
 
 namespace calendar.Models
 {
+
+    // Model dne, obsahuje pouze základní vlastnosti a logiku
     public class DayModel : ObservableObject
     {
         private DateTime _date;
-        private List<TaskModel> _tasks;
+        private List<EntryModel> _entries;
 
         public DayModel(DateTime date)
         {
             Date = date;
-            TaskManager.TasksModified += QueryTasks;
+            EntryManager.TasksModified += QueryTasks;
         }
 
         public DateTime Date
@@ -31,23 +33,23 @@ namespace calendar.Models
             }
         }
 
-        public List<TaskModel> Tasks
+        public List<EntryModel> Entries
         {
             get
             {
-                return _tasks;
+                return _entries;
             }
             set
             {
-                _tasks = value;
+                _entries = value;
                 OnPropertyChanged();
             }
         }
 
-        // TODO: replace with OnPropertyChanged()
+        // Tato metoda je zavolána vždy, kdy by se měl aktualizovat seznam úkolů
         public void QueryTasks()
         {
-            Tasks = TaskManager.GetTasksByDate(Date);
+            Entries = EntryManager.GetEntriesByDate(Date);
         }
     }
 }

@@ -13,13 +13,15 @@ namespace calendar.ViewModels
         {
             _yearAndMonth = yearAndMonth;
 
+            // Vytvoření Commandů pro navigaci kalendářem po měsících
             Command_CurrentMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(DateTime.Now);
             Command_PreviousMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(-1));
             Command_NextMonth = new ChangeViewModelCommand<CalendarMonthViewModel>(_yearAndMonth.AddMonths(1));
 
-            // Makes Monday the first day of week and gets the day of week where the current month starts
+            // Získá den týdne (po-ne) prvního dne měsíce (a stanoví pondělí jako první den týdne)
             FirstDayOfWeek = ((int)(new DateTime(Year, Month, 1).DayOfWeek) + 6) % 7;
 
+            // Do Listu s buňkami přidá tolik buněk, kolik má měsíc dnů, a zviditelní je
             DayCells = new();
             for (int i = 0; i < DateTime.DaysInMonth(Year, Month); i++)
             {
@@ -29,7 +31,7 @@ namespace calendar.ViewModels
 
         public override string Title => "Kalendář / měsíc";
 
-        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new();
+        public ChangeViewModelCommand<EntryDetailsViewModel> Command_NewTaskDialog { get; } = new();
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_CurrentMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_PreviousMonth { get; }
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_NextMonth { get; }
@@ -54,6 +56,7 @@ namespace calendar.ViewModels
             }
         }
 
+        // User friendly text měsíce (použito v Bindingu)
         public string MonthString
         {
             get

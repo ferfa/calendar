@@ -17,6 +17,7 @@ namespace calendar.ViewModels
         {
             _date = date;
 
+            // Vytvoření Commandů pro navigaci kalendářem po týdnech
             Command_CurrentWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(DateTime.Now);
             Command_PreviousWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(-7));
             Command_NextWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(7));
@@ -30,18 +31,19 @@ namespace calendar.ViewModels
 
         public override string Title => "Kalendář / týden";
 
-        public ChangeViewModelCommand<TaskDetailsViewModel> Command_NewTaskDialog { get; } = new();
+        public ChangeViewModelCommand<EntryDetailsViewModel> Command_NewTaskDialog { get; } = new();
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_CurrentWeek { get; }
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_PreviousWeek { get; }
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_NextWeek { get; }
 
         public List<DayCellViewModel> DayCells { get; }
 
+        // Získá první den týdne, aby se po otevření náhledu automaticky zobrazil aktuální týden
         public DateTime FirstDay
         {
             get
             {
-                return _date.AddDays(-((int)_date.DayOfWeek + 6)).Date;
+                return _date.AddDays(-((int)_date.DayOfWeek + 6) % 7).Date;
             }
         }
 
@@ -53,6 +55,7 @@ namespace calendar.ViewModels
             }
         }
 
+        // User friendly text prvního dne (použito v Bindingu)
         public string FirstDayString
         {
             get
@@ -62,6 +65,7 @@ namespace calendar.ViewModels
             }
         }
 
+        // User friendly text posledního dne (použito v Bindingu)
         public string LastDayString
         {
             get

@@ -24,6 +24,9 @@
             <Button Content="Měsíc" Command="{Binding Path=Command_ViewMonth}" Margin="25,5,0,5"/>
             <Button Content="Týden" Command="{Binding Path=Command_ViewWeek}" Margin="5,5,0,5"/>
             <Button Content="Den" Command="{Binding Path=Command_ViewDay}" Margin="5,5,5,5"/>
+            <Button Content="Statistiky" Command="{Binding Path=Command_ViewStats}" Margin="50,5,5,5"/>
+            <Button Content="Načíst" Command="{Binding Path=Command_Load}" Margin="50,5,0,5"/>
+            <Button Content="Uložit" Command="{Binding Path=Command_Save}" Margin="5,5,0,5"/>
         </StackPanel>
 
         <ContentControl x:Name="ViewControl" Grid.Row="2">

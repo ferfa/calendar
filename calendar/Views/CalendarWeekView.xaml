@@ -11,26 +11,47 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal">
-            <Button Content="Nová událost..." Command="{Binding Path=Command_NewTaskDialog}" HorizontalAlignment="Left" Margin="5"/>
-            <Button Content="&lt;" Command="{Binding Path=Command_PreviousWeek}" HorizontalAlignment="Left" Margin="5,5,0,5"/>
-            <Button Content="&gt;" Command="{Binding Path=Command_NextWeek}" HorizontalAlignment="Left" Margin="0,5,5,5"/>
-            <TextBlock FontSize="18" Margin="5">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0:d. M. yyyy} - {1:d. M. yyyy}">
-                        <Binding Path="FirstDay"/>
-                        <Binding Path="LastDay"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-                <TextBlock.InputBindings>
-                    <MouseBinding Command="{Binding Path=Command_CurrentWeek}" MouseAction="LeftClick"/>
-                </TextBlock.InputBindings>
-            </TextBlock>
-        </StackPanel>
-        <ItemsControl ItemsSource="{Binding Path=DayCells}" Grid.Row="2">
+        <Border Padding="0,5,0,5" Margin="0,0,0,10" BorderThickness="0,1,0,1" BorderBrush="#999999">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Nová událost..." Command="{Binding Path=Command_NewTaskDialog}" HorizontalAlignment="Left" Margin="5"/>
+                <Button Content="&lt;" Command="{Binding Path=Command_PreviousWeek}" HorizontalAlignment="Left" Margin="5,5,0,5"/>
+                <Button Content="&gt;" Command="{Binding Path=Command_NextWeek}" HorizontalAlignment="Left" Margin="0,5,5,5"/>
+                <TextBlock FontSize="18" Margin="5">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0:d. M. yyyy} - {1:d. M. yyyy}">
+                            <Binding Path="FirstDay"/>
+                            <Binding Path="LastDay"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                    <TextBlock.InputBindings>
+                        <MouseBinding Command="{Binding Path=Command_CurrentWeek}" MouseAction="LeftClick"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">po</TextBlock>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">út</TextBlock>
+            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">st</TextBlock>
+            <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">čt</TextBlock>
+            <TextBlock Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">pá</TextBlock>
+            <TextBlock Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">so</TextBlock>
+            <TextBlock Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14">ne</TextBlock>
+        </Grid>
+        <ItemsControl ItemsSource="{Binding Path=DayCells}" Grid.Row="3">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="7" Rows="1"/>

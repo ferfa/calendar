@@ -11,15 +11,23 @@ namespace calendar.ViewModels
 
         public MainWindowViewModel()
         {
+            // Výchozí ViewModel hlavního okna je měsíční zobrazení kalendáře
             _view = new CalendarMonthViewModel(DateTime.Now);
         }
 
         public static event PropertyChangedEventHandler StaticPropertyChanged;
 
+        // Vytvoření Commandů pro zobrazení kalendáře podle měsíce/týdne/dne
         public ChangeViewModelCommand<CalendarMonthViewModel> Command_ViewMonth { get; } = new(DateTime.Now);
         public ChangeViewModelCommand<CalendarWeekViewModel> Command_ViewWeek { get; } = new(DateTime.Now);
         public ChangeViewModelCommand<CalendarDayViewModel> Command_ViewDay { get; } = new(DateTime.Now);
+        // Vytvoření Commandu pro zobrazení statistik
+        public ChangeViewModelCommand<StatsViewModel> Command_ViewStats { get; } = new();
+        // Vytvoření Commandů pro načítání z/ukládání do souboru
+        public LoadCommand Command_Load { get; } = new();
+        public SaveCommand Command_Save { get; } = new();
 
+        // Aktuální ViewModel hlavního okna, který lze změnit dle potřeby (např. při změně zobrazení)
         public static ViewModel ViewModel
         {
             get => _view;
@@ -30,7 +38,7 @@ namespace calendar.ViewModels
             }
         }
 
-        // TODO: move StaticPropertyChanged to ObservableObject
+        // Podobný princip jako OnPropertyChanged, ale pro statické vlastnosti
         protected static void OnStaticPropertyChanged([CallerMemberName] string propertyName = "")
         {
             StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));

@@ -1,11 +1,5 @@
 ﻿using calendar.Models;
-using calendar.ViewModels.Commands;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace calendar.ViewModels
@@ -14,6 +8,7 @@ namespace calendar.ViewModels
     {
         public DayCellViewModel(DateTime date)
         {
+            // Přiřazení DayModelu k ViewModelu buňky
             Day = new(date);
         }
 

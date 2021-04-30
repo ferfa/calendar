@@ -7,8 +7,10 @@
              StartupUri="Views/Windows/MainWindowView.xaml"
              ShutdownMode="OnMainWindowClose">
     
+    <!-- Zde jsou Viewy přiřazeny k ViewModelům; ViewModely se pak stávají jejich DataContexty -->
+    
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewmodels:TaskDetailsViewModel}">
+        <DataTemplate DataType="{x:Type viewmodels:EntryDetailsViewModel}">
             <views:TaskDetailsView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:DayCellViewModel}">
@@ -22,6 +24,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:CalendarDayViewModel}">
             <views:CalendarDayView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:StatsViewModel}">
+            <views:StatsView/>
         </DataTemplate>
     </Application.Resources>
     
