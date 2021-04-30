@@ -161,14 +161,22 @@ namespace calendar.Models
                         DateTime dt = DateAndTime.Date;
                         while (dt <= EndDate)
                         {
-                            try
+                            if (dt.Month != 12)
                             {
-                                dt = new DateTime(dt.Year, dt.Month + 1, dt.Day);
+                                if (dt.Day > DateTime.DaysInMonth(dt.Year, dt.Month + 1))
+                                {
+                                    dt = new DateTime(dt.Year, dt.Month + 2, dt.Day);
+                                }
+                                else
+                                {
+                                    dt = new DateTime(dt.Year, dt.Month + 1, dt.Day);
+                                }
                             }
-                            catch (ArgumentOutOfRangeException)
+                            else
                             {
+                                dt = new DateTime(dt.Year + 1, 1, dt.Day);
+                            }
 
-                            }
                             count++;
                         }
 
