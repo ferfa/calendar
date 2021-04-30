@@ -11,6 +11,7 @@ namespace calendar.ViewModels.Converters
 {
     public class RepeatRuleConverter : IValueConverter
     {
+        // Konvertuje Repeat enum na user friendly text
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is EntryModel.Repeat repeat)
@@ -31,6 +32,7 @@ namespace calendar.ViewModels.Converters
             return new string[] { "Nikdy", "Denně", "Týdně", "Měsíčně" };
         }
 
+        // Konvertuje user friendly text zpět na Repeat enum
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string repeatString = (string)value;

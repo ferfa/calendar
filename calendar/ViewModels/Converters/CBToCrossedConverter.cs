@@ -11,6 +11,8 @@ namespace calendar.ViewModels.Converters
 {
     public class CBToCrossedConverter : IValueConverter
     {
+
+        // Konvertuje hodnotu isChecked zaškrtávacího políčka na (ne)přeškrtnutý název a čas úkolu
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((bool)value == true)

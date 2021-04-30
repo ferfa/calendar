@@ -11,20 +11,13 @@ namespace calendar.ViewModels.Commands
         private readonly EntryDetailsViewModel _entryDetailsSource;
         private EntryModel _entry;
 
-        /// <summary>
-        /// Creates a new task with details provided by <paramref name="entryDetailsSource"/>.
-        /// </summary>
-        /// <param name="entryDetailsSource"></param>
+        // Vytvoří nový úkol podle dat z entryDetailsSource
         public SubmitTaskDetailsCommand(EntryDetailsViewModel entryDetailsSource)
         {
             _entryDetailsSource = entryDetailsSource;
         }
 
-        /// <summary>
-        /// Edits an existing <paramref name="entry"/> with details provided by <paramref name="entryDetailsSource"/>.
-        /// </summary>
-        /// <param name="entry"></param>
-        /// <param name="entryDetailsSource"></param>
+        // Upraví úkol podle dat z entryDetailsSource
         public SubmitTaskDetailsCommand(EntryDetailsViewModel entryDetailsSource, EntryModel entry)
         {
             _entryDetailsSource = entryDetailsSource;
@@ -38,6 +31,7 @@ namespace calendar.ViewModels.Commands
             return true;
         }
 
+        // Úprava existujícího úkolu; pokud neexistuje, je vytvořen úkol nový
         public void Execute(object parameter)
         {
             EntryModel entry = new()

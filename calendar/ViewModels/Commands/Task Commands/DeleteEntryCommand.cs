@@ -21,6 +21,7 @@ namespace calendar.ViewModels
             return true;
         }
 
+        // Pokud není stanoveno konkrétní datum, vymaže se úkol kompletně
         public void Execute(object parameter)
         {
             if (parameter == null)

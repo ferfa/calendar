@@ -27,6 +27,7 @@ namespace calendar.ViewModels.Commands
             openFileDialog.RestoreDirectory = true;
             openFileDialog.ShowDialog();
 
+            // Otevírání JSON souboru; pokud není obsah souboru ve správném formátu, zobrazí se chybové okno
             if (openFileDialog.FileName != "")
             {
                 try

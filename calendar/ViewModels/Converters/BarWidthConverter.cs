@@ -6,6 +6,7 @@ namespace calendar.ViewModels.Converters
 {
     public class BarWidthConverter : IMultiValueConverter
     {
+        // Konvertuje procentuální plnění úkolu na šířku progress baru v px
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             return (double)values[0] * ((double)values[1] / 100);

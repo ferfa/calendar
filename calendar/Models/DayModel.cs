@@ -6,6 +6,8 @@ using System.Windows;
 
 namespace calendar.Models
 {
+
+    // Model dne, obsahuje pouze základní vlastnosti a logiku
     public class DayModel : ObservableObject
     {
         private DateTime _date;
@@ -44,7 +46,7 @@ namespace calendar.Models
             }
         }
 
-        // TODO: replace with OnPropertyChanged()
+        // Tato metoda je zavolána vždy, kdy by se měl aktualizovat seznam úkolů
         public void QueryTasks()
         {
             Entries = EntryManager.GetEntriesByDate(Date);

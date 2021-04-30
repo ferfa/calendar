@@ -15,6 +15,7 @@ namespace calendar.ViewModels.Commands
             return true;
         }
 
+        // Je uložen předchozí ViewModel a při vyvolání Execute() je tento ViewModel nastaven
         public void Execute(object parameter)
         {
             EntryManager.OnTasksModified();

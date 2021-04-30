@@ -8,6 +8,7 @@ namespace calendar.ViewModels
     {
         public DayCellViewModel(DateTime date)
         {
+            // Přiřazení DayModelu k ViewModelu buňky
             Day = new(date);
         }
 

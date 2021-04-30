@@ -10,6 +10,7 @@ namespace calendar.ViewModels.Converters
 {
     public class CBToColorConverter : IValueConverter
     {
+        // Konvertuje hodnotu isChecked zaškrtávacího políčka na zbarvení úkolu
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch ((bool)value)

@@ -17,6 +17,7 @@ namespace calendar.ViewModels.Converters
         private EntryModel _entry;
         private DateTime _date;
 
+        // Konvertuje úkol a den na hodnotu isChecked zaškrtávacího políčka
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             _values = (object[])values.Clone();
@@ -32,6 +33,7 @@ namespace calendar.ViewModels.Converters
             return false;
         }
 
+        // Konvertuje hodnotu isChecked zaškrtávacího políčka na splnění úkolu v daný den
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             if ((bool)value == true && _entry.Completed.Contains(_date) == false)
@@ -43,6 +45,7 @@ namespace calendar.ViewModels.Converters
                 _entry.Completed.Remove(_date);
             }
 
+            // Vstupní hodnoty se nijak nemění, je pouze třeba je vrátit zpět
             return _values;
         }
     }

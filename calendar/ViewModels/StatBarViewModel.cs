@@ -13,11 +13,13 @@ namespace calendar.ViewModels
 
         public StatBarViewModel(EntryModel entry)
         {
+            // Přiřazení úkolu k progress baru
             _entry = entry;
         }
 
         public EntryModel Entry => _entry;
 
+        // Kalkulace procentuální úspěšnosti plnění úkolu (bez desetinného místa)
         public double Percentage
         {
             get

@@ -19,6 +19,7 @@ namespace calendar.ViewModels.Commands
             return true;
         }
 
+        // Změní ViewModel hlavního okna na novou instanci typu T; pokud jsou specifikovány parametry, je ViewModel vytvořen s nimi
         public void Execute(object parameter)
         {
             PreviousViewModelCommand.PreviousViewModel = MainWindowViewModel.ViewModel;

@@ -7,18 +7,22 @@ using System.Linq;
 
 namespace calendar.Utilities
 {
+    // Statická třída sloužící ke správě úkolů
     public static class EntryManager
     {
+        // Obsahuje všechny úkoly v kalendáři
         public static List<EntryModel> Entries { get; set; } = new();
 
+        // Tento event je vyvolána pokaždé, kdy by se měl aktualizovat List úkolů
         public static event Action TasksModified;
 
+        // Přidání úkolu
         public static void AddEntry(EntryModel entryModel)
         {
             Entries.Add(entryModel);
         }
 
-        // TODO: replace OnTasksModified with ObservableCollection
+        // Smazání jednotlivého výskytu úkolu; pokud již žádný nezbyde, úkol se smaže kompletně
         public static void DeleteEntry(EntryModel entryModel, DateTime date)
         {
             entryModel.Deleted.Add(date);
@@ -30,12 +34,14 @@ namespace calendar.Utilities
             OnTasksModified();
         }
 
+        // Kompletní smazání úkolu
         public static void DeleteAllEntries(EntryModel entryModel)
         {
             Entries.Remove(entryModel);
             OnTasksModified();
         }
 
+        // Vrátí List se všemi úkoly, které se vyskytují v daný den
         public static List<EntryModel> GetEntriesByDate(DateTime date)
         {
             var query = from entry in Entries

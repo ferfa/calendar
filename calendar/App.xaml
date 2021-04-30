@@ -7,6 +7,8 @@
              StartupUri="Views/Windows/MainWindowView.xaml"
              ShutdownMode="OnMainWindowClose">
     
+    <!-- Zde jsou Viewy přiřazeny k ViewModelům; ViewModely se pak stávají jejich DataContexty -->
+    
     <Application.Resources>
         <DataTemplate DataType="{x:Type viewmodels:EntryDetailsViewModel}">
             <views:TaskDetailsView/>

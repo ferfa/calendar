@@ -17,6 +17,7 @@ namespace calendar.ViewModels
         {
             _date = date;
 
+            // Vytvoření Commandů pro navigaci kalendářem po týdnech
             Command_CurrentWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(DateTime.Now);
             Command_PreviousWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(-7));
             Command_NextWeek = new ChangeViewModelCommand<CalendarWeekViewModel>(_date.AddDays(7));
@@ -37,6 +38,7 @@ namespace calendar.ViewModels
 
         public List<DayCellViewModel> DayCells { get; }
 
+        // Získá první den týdne, aby se po otevření náhledu automaticky zobrazil aktuální týden
         public DateTime FirstDay
         {
             get
@@ -53,6 +55,7 @@ namespace calendar.ViewModels
             }
         }
 
+        // User friendly text prvního dne (použito v Bindingu)
         public string FirstDayString
         {
             get
@@ -62,6 +65,7 @@ namespace calendar.ViewModels
             }
         }
 
+        // User friendly text posledního dne (použito v Bindingu)
         public string LastDayString
         {
             get

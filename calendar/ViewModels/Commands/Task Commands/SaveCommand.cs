@@ -22,7 +22,7 @@ namespace calendar.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-
+            // Uložení do JSON souboru
             SaveFileDialog saveFileDialog1 = new();
             saveFileDialog1.Filter = "JSON|*.json";
             saveFileDialog1.Title = "Uložit do souboru";

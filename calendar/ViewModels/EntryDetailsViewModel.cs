@@ -14,18 +14,13 @@ namespace calendar.ViewModels
         private TimeSpan _entry_Time = new(0, (int)(Math.Round(DateTime.Now.TimeOfDay.TotalMinutes / 15) * 15), 0);
         private EntryModel.Repeat _entry_RepeatRule;
 
-        /// <summary>
-        /// Creates a new <typeparamref name="CalendarEntry"/>.
-        /// </summary>
+        // Vytvoří nový úkol
         public EntryDetailsViewModel()
         {
             Command_Submit = new CommandCombo(new SubmitTaskDetailsCommand(this), Command_Close);
         }
 
-        /// <summary>
-        /// Edits an existing <paramref name="entryModel"/>.
-        /// </summary>
-        /// <param name="entryModel"></param>
+        // Upraví existující úkol
         public EntryDetailsViewModel(EntryModel entryModel)
         {
             Entry_Name = entryModel.Name;
@@ -43,6 +38,7 @@ namespace calendar.ViewModels
         public CommandCombo Command_Submit { get; private set; }
         public PreviousViewModelCommand Command_Close { get; private set; } = new();
 
+        // "Opsané" vlastnosti úkolu (použity při upravování existujícího úkolu)
         public string Entry_Name
         {
             get => _entry_Name;
@@ -103,6 +99,7 @@ namespace calendar.ViewModels
             }
         }
 
+        // Kolonka "Opakovat do" je viditelná, pouze pokud je zvolena možnost opakování úkolu (použito v Bindingu)
         public Visibility EndDatePickerVisibility
         {
             get
