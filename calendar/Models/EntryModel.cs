@@ -1,8 +1,10 @@
-﻿using calendar.ViewModels;
+﻿using calendar.Utilities;
+using calendar.ViewModels;
 using calendar.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -33,9 +35,32 @@ namespace calendar.Models
             Command_Edit = new(this);
             Command_Delete = new(this);
 
+            AfterLoad();
+
             Trace.WriteLine($"Entry { Name } created.");
         }
-        
+
+
+        // Přidá anonymní metody k eventům
+        // Když se změní kolekce Completed, nebo Deleted, označí se aktuální soubor za neuložený
+        public void AfterLoad()
+        {
+            Completed.CollectionChanged += (_, _) =>
+            {
+                FileManager.CurrentFileModified = true;
+                Trace.WriteLine("Completed changed");
+            };
+
+            Deleted.CollectionChanged += (_, _) =>
+            {
+                FileManager.CurrentFileModified = true;
+                Trace.WriteLine("Deleted changed");
+            };
+
+            Trace.WriteLine($"Entry { Name } deserialized.");
+        }
+
+
         // Commandy není potřeba serializovat, uživatel je nijak nemění
         [JsonIgnore]
         public ChangeViewModelCommand<EntryDetailsViewModel> Command_Edit { get; }
@@ -48,6 +73,7 @@ namespace calendar.Models
             set
             {
                 _name = value;
+                FileManager.CurrentFileModified = true;
                 OnPropertyChanged();
             }
         }
@@ -58,6 +84,7 @@ namespace calendar.Models
             set
             {
                 _description = value;
+                FileManager.CurrentFileModified = true;
                 OnPropertyChanged();
             }
         }
@@ -68,6 +95,7 @@ namespace calendar.Models
             set
             {
                 _dateAndTime = value;
+                FileManager.CurrentFileModified = true;
                 OnPropertyChanged();
             }
         }
@@ -78,6 +106,7 @@ namespace calendar.Models
             set
             {
                 _endDate = value;
+                FileManager.CurrentFileModified = true;
                 OnPropertyChanged();
             }
         }
@@ -88,6 +117,7 @@ namespace calendar.Models
             set
             {
                 _repeatRule = value;
+                FileManager.CurrentFileModified = true;
                 OnPropertyChanged();
             }
         }
@@ -102,26 +132,10 @@ namespace calendar.Models
         }
 
         // Kolekce obsahující data, ve kterých je úkol splněn
-        public ObservableCollection<DateTime> Completed
-        {
-            get => _completed;
-            set
-            {
-                _completed = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<DateTime> Completed { get; set; } = new();
 
         // Kolekce obsahující data, ve kterých je úkol vymazán (v tyto dny se nevykreslí a nezapočítává se do statistik)
-        public ObservableCollection<DateTime> Deleted
-        {
-            get => _deleted;
-            set
-            {
-                _deleted = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<DateTime> Deleted { get; set; } = new();
 
         // Tato metoda zkontroluje, zda by se měl v daný den úkol vykreslit
         public bool CheckDay(DateTime date)
