@@ -2,6 +2,7 @@
 using calendar.Utilities;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 
 namespace calendar.ViewModels.Commands
@@ -54,6 +55,15 @@ namespace calendar.ViewModels.Commands
                 _entry.DateAndTime = _entryDetailsSource.Entry_Date + _entryDetailsSource.Entry_Time;
                 _entry.EndDate = _entryDetailsSource.Entry_EndDate;
                 _entry.RepeatRule = _entryDetailsSource.Entry_RepeatRule;
+
+                foreach (DateTime completed in _entry.Completed.ToList())
+                {
+                    if (_entry.CheckDay(completed.Date) == false)
+                    {
+                        Trace.WriteLine("a completed occurence of an entry deleted!");
+                        _entry.Completed.Remove(completed.Date);
+                    }
+                }
             }
         }
     }

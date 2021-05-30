@@ -1,4 +1,5 @@
 ﻿using calendar.Utilities;
+using calendar.ViewModels.Commands;
 using System.ComponentModel;
 using System.Windows;
 
@@ -21,7 +22,14 @@ namespace calendar.Views.Windows
                 MessageBoxResult dialogResult = MessageBox.Show("Máte neuložené změny. Chcete je uložit?", "Neuložené změny", MessageBoxButton.YesNoCancel);
                 if (dialogResult == MessageBoxResult.Yes)
                 {
-                    FileManager.SaveFile(FileManager.CurrentFileName);
+                    if (FileManager.CurrentFileName == null)
+                    {
+                        new SaveAsCommand().Execute(null);
+                    }
+                    else
+                    {
+                        FileManager.SaveFile(FileManager.CurrentFileName);
+                    }
                 }
                 else if (dialogResult == MessageBoxResult.Cancel)
                 {

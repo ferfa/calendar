@@ -35,7 +35,14 @@ namespace calendar.ViewModels.Commands
                     MessageBoxResult dialogResult = MessageBox.Show("Máte neuložené změny. Chcete je před změnou souboru uložit?", "Neuložené změny", MessageBoxButton.YesNoCancel);
                     if (dialogResult == MessageBoxResult.Yes)
                     {
-                        FileManager.SaveFile(FileManager.CurrentFileName);
+                        if (FileManager.CurrentFileName == null)
+                        {
+                            new SaveAsCommand().Execute(null);
+                        }
+                        else
+                        {
+                            FileManager.SaveFile(FileManager.CurrentFileName);
+                        }
                     }
                     if (dialogResult == MessageBoxResult.Cancel)
                     {

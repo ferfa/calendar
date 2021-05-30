@@ -20,7 +20,7 @@ namespace calendar.ViewModels
             }
             catch (Exception)
             {
-                Trace.WriteLine($"Error: file not found ({File.ReadAllText(".calfile")})");
+                Trace.WriteLine($"Error loading file '{File.ReadAllText(".calfile")}'");
             }
 
             // Výchozí ViewModel hlavního okna je měsíční zobrazení kalendáře
