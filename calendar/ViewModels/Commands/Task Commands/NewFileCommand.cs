@@ -1,20 +1,24 @@
 ﻿using calendar.Utilities;
-using System.ComponentModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
-namespace calendar.Views.Windows
+namespace calendar.ViewModels.Commands
 {
-    /// <summary>
-    /// Interaction logic for MainWindowView.xaml
-    /// </summary>
-    public partial class MainWindowView
+    public class NewFileCommand : ICommand
     {
-        public MainWindowView()
+        public event EventHandler CanExecuteChanged;
+
+        public bool CanExecute(object parameter)
         {
-            InitializeComponent();
+            return true;
         }
 
-        protected override void OnClosing(CancelEventArgs e)
+        public void Execute(object parameter)
         {
             if (FileManager.CurrentFileModified == true)
             {
@@ -25,11 +29,14 @@ namespace calendar.Views.Windows
                 }
                 else if (dialogResult == MessageBoxResult.Cancel)
                 {
-                    e.Cancel = true;
                     return;
                 }
             }
-            base.OnClosing(e);
+
+            FileManager.CurrentFileName = null;
+            FileManager.CurrentFileModified = false;
+            EntryManager.Entries = new();
+            EntryManager.OnTasksModified();
         }
     }
 }

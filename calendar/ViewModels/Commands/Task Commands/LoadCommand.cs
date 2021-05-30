@@ -30,13 +30,22 @@ namespace calendar.ViewModels.Commands
             // Otevírání JSON souboru; pokud není obsah souboru ve správném formátu, zobrazí se chybové okno
             if (openFileDialog.FileName != "")
             {
+                if (FileManager.CurrentFileModified == true)
+                {
+                    MessageBoxResult dialogResult = MessageBox.Show("Máte neuložené změny. Chcete je před změnou souboru uložit?", "Neuložené změny", MessageBoxButton.YesNoCancel);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        FileManager.SaveFile(FileManager.CurrentFileName);
+                    }
+                    if (dialogResult == MessageBoxResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+
                 try
                 {
-                    using StreamReader r = new(openFileDialog.FileName);
-                    string json = r.ReadToEnd();
-                    EntryManager.Entries = JsonSerializer.Deserialize<List<EntryModel>>(json);
-                    EntryManager.OnTasksModified();
-
+                    FileManager.LoadFile(openFileDialog.FileName);
                     MainWindowViewModel.ViewModel = new CalendarMonthViewModel(DateTime.Now);
                 }
                 catch (JsonException)

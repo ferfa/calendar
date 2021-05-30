@@ -20,6 +20,7 @@ namespace calendar.Utilities
         public static void AddEntry(EntryModel entryModel)
         {
             Entries.Add(entryModel);
+            FileManager.CurrentFileModified = true;
         }
 
         // Smazání jednotlivého výskytu úkolu; pokud již žádný nezbyde, úkol se smaže kompletně
