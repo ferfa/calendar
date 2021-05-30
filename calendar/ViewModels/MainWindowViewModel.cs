@@ -16,7 +16,10 @@ namespace calendar.ViewModels
         {
             try
             {
-                FileManager.LoadFile(File.ReadAllText(".calfile"));
+                if (File.Exists(".calfile"))
+                {
+                    FileManager.LoadFile(File.ReadAllText(".calfile"));
+                }
             }
             catch (Exception)
             {
